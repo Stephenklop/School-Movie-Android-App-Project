@@ -17,7 +17,7 @@ TODO: Write a project description
 5. [Code conventions Android](https://source.android.com/setup/contribute/code-style#follow-field-naming-conventions)
 
 ## Git branch naming conventions:
-1. <type> / <detailed_comment>
+1. "<type> / <detailed_comment>"
 - feat - actual feature implementation
 - style - code style and code clean up
 - test - actual test implementation
