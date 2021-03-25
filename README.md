@@ -15,3 +15,15 @@ TODO: Write a project description
 3. Git branch naming conventions volgen
 4. [Code conventions Java](https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md)
 5. [Code conventions Android](https://source.android.com/setup/contribute/code-style#follow-field-naming-conventions)
+
+## Git branch naming conventions:
+<type> / <detailed_comment>
+
+- feat - actual feature implementation
+- style - code style and code clean up
+- test - actual test implementation
+- fix - bug fix
+- refactor - refactoring that doesn't affect the behavior of the code
+- chore - no production code changes, but more like configuration and setup
+
+- Example - refactor / refactored the main.java file
