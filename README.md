@@ -13,4 +13,5 @@ TODO: Write a project description
 1. Alles moet in het Engels behalve review comments
 2. Java naming conventions volgen
 3. Git branch naming conventions volgen
-4. [Code conventions](https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md)
+4. [Code conventions Java](https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md)
+5. [Code conventions Android](https://source.android.com/setup/contribute/code-style#follow-field-naming-conventions)
