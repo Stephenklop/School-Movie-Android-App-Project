@@ -13,8 +13,8 @@ public class Movie {
     private double mRatingAverage;
     private int mRatingCount;
 
-    public Movie(int mId, String title, String description, String language, List<Integer> genreIds, String releaseDate, String posterPath, double ratingAverage, int ratingCount) {
-        mId = mId;
+    public Movie(int id, String title, String description, String language, List<Integer> genreIds, String releaseDate, String posterPath, double ratingAverage, int ratingCount) {
+        mId = id;
         mTitle = title;
         mDescription = description;
         mLanguage = language;
