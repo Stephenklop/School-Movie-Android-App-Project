@@ -21,10 +21,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-
-//        applicationVariants.all { variant ->
-//            variant.buildConfigField "String", "API_KEY", "\""+getApiKey()+"\""
-//        }
     }
 
     compileOptions {
@@ -32,12 +28,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
-//def getApiKey() {
-//    def Properties props = new Properties()
-//    props.load(new FileInputStream('data.properties'))
-//    return props['API_KEY']
-//}
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
