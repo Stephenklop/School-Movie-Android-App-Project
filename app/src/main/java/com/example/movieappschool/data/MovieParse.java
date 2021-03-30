@@ -26,7 +26,7 @@ public class MovieParse {
         }
 
         String releaseDate = jsonMovieObject.getString("release_date");
-        String posterPath = jsonMovieObject.getString("poster_path");
+        String posterPath = "https://image.tmdb.org/t/p/w500" + jsonMovieObject.getString("poster_path");
         double ratingAverage = jsonMovieObject.getDouble("vote_average");
         int ratingCount = jsonMovieObject.getInt("vote_count");
 
