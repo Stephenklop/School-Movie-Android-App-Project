@@ -9,18 +9,18 @@ public class Movie {
     private String mLanguage;
     private List<Integer> mGenreIds;
     private String mReleaseDate;
-    private String mPosterPath;
+    private String mPosterURL;
     private double mRatingAverage;
     private int mRatingCount;
 
-    public Movie(int id, String title, String description, String language, List<Integer> genreIds, String releaseDate, String posterPath, double ratingAverage, int ratingCount) {
+    public Movie(int id, String title, String description, String language, List<Integer> genreIds, String releaseDate, String posterURL, double ratingAverage, int ratingCount) {
         mId = id;
         mTitle = title;
         mDescription = description;
         mLanguage = language;
         mGenreIds = genreIds;
         mReleaseDate = releaseDate;
-        mPosterPath = posterPath;
+        mPosterURL = posterURL;
         mRatingAverage = ratingAverage;
         mRatingCount = ratingCount;
     }
@@ -49,8 +49,8 @@ public class Movie {
         return mReleaseDate;
     }
 
-    public String getPosterPath() {
-        return mPosterPath;
+    public String getPosterURL() {
+        return mPosterURL;
     }
 
     public double getRatingAverage() {
@@ -70,7 +70,7 @@ public class Movie {
                 ", mLanguage='" + mLanguage + '\'' +
                 ", mGenreIds=" + mGenreIds +
                 ", mReleaseDate='" + mReleaseDate + '\'' +
-                ", mPosterPath='" + mPosterPath + '\'' +
+                ", mPosterURL='" + mPosterURL + '\'' +
                 ", mRatingAverage=" + mRatingAverage +
                 ", mRatingCount=" + mRatingCount +
                 '}';
