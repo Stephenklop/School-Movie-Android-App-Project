@@ -22,9 +22,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
-        applicationVariants.all { variant ->
-            variant.buildConfigField "String", "API_KEY", "\""+getApiKey()+"\""
-        }
+//        applicationVariants.all { variant ->
+//            variant.buildConfigField "String", "API_KEY", "\""+getApiKey()+"\""
+//        }
     }
 
     compileOptions {
@@ -33,11 +33,11 @@ android {
     }
 }
 
-def getApiKey() {
-    def Properties props = new Properties()
-    props.load(new FileInputStream('data.properties'))
-    return props['API_KEY']
-}
+//def getApiKey() {
+//    def Properties props = new Properties()
+//    props.load(new FileInputStream('data.properties'))
+//    return props['API_KEY']
+//}
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
