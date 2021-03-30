@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="visible">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="40dp"
+        android:paddingTop="35dp"
+        android:paddingRight="40dp"
+        android:paddingBottom="35dp">
+
+        <!-- Hamburger Icon -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_baseline_menu_24" />
+
+        <!-- Close Icon -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_baseline_close_24" />
+
+        <!-- Flag Icon -->
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/_66px_flag_of_the_netherlands_svg" />
+
+    </RelativeLayout>
+</RelativeLayout>

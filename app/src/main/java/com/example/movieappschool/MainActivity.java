@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.movieappschool.data.MovieDataService;
 import com.example.movieappschool.domain.Movie;
@@ -13,13 +14,15 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
-    private final String API_KEY = BuildConfig.API_KEY;
+    private final String API_KEY = "b3dc30d1b882188c9c0161b97d66f032";
     private List<Movie> mMovies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         // Initialize MovieDataService for making API calls.
         MovieDataService movieDataService = new MovieDataService(API_KEY, "en-US", this);
