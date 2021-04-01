@@ -12,4 +12,7 @@
     <color name="tint4">#58575D</color>
     <color name="tint5">#262627</color>
     <color name="tint6">#101012</color>
+
+    <color name="orangeStartcolor">#FCA760</color>
+    <color name="orangeEndcolor">#D46155</color>
 </resources>
