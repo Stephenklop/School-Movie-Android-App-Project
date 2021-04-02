@@ -13,6 +13,9 @@
     <color name="tint5">#262627</color>
     <color name="tint6">#101012</color>
 
+    <!-- Gradient Colors -->
     <color name="orangeStartcolor">#FCA760</color>
     <color name="orangeEndcolor">#D46155</color>
+    <color name="purpleStartcolor">#6663FF</color>
+    <color name="purpleEndcolor">#7D7AFF</color>
 </resources>
