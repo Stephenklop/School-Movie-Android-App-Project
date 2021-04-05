@@ -2,6 +2,8 @@ package com.example.movieappschool.ui.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +61,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return mMovies.size();
     }
 
+    public static int dpToPx(int dp, Context context) {
+        float density = context.getResources().getDisplayMetrics().density;
+        return Math.round((float) dp * density);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Define the ViewHolder.
         ImageView poster;
@@ -73,6 +80,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             title = itemView.findViewById(R.id.item_title);
             rating = itemView.findViewById(R.id.item_rating);
             parentLayout = itemView.findViewById(R.id.movie_list_item);
+
+            customizeLayout();
         }
+
+        public void customizeLayout() {
+            poster.setBackgroundColor(Color.GREEN);
+            poster.setScaleType(ImageView.ScaleType.FIT_XY);
+            poster.getLayoutParams().width = dpToPx(146, context);
+            poster.getLayoutParams().height = dpToPx(232, context);
+            title.setTextSize(16);
+        }
+
     }
 }

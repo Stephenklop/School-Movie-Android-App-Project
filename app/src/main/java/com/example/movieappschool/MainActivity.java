@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // RecyclerView
-        recyclerView = findViewById(R.id.movie_recyclerview);
+        recyclerView = findViewById(R.id.homepage_movies);
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new GridLayoutManager(this, 2);
