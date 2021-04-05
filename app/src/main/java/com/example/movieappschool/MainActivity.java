@@ -1,13 +1,11 @@
 package com.example.movieappschool;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.data.MovieDataService;
@@ -62,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.movie_recyclerview);
         recyclerView.setHasFixedSize(true);
 
-        layoutManager = new LinearLayoutManager(MainActivity.this);
+        layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
     }
 }
