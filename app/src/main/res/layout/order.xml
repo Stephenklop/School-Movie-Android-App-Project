@@ -57,6 +57,7 @@
             android:gravity="center_horizontal">
 
             <Button
+                android:id="@+id/seat_1"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -68,6 +69,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_2"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -79,6 +81,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_3"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -90,6 +93,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_4"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -102,6 +106,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_5"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:backgroundTint="@color/tint5"
@@ -119,6 +124,7 @@
             android:gravity="center_horizontal">
 
             <Button
+                android:id="@+id/seat_6"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -130,6 +136,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_7"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -141,6 +148,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_8"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -152,18 +160,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
+                android:id="@+id/seat_9"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -176,6 +173,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_10"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -188,6 +186,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_11"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -200,6 +199,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_12"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -212,6 +212,20 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_13"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginRight="7dp"
+                android:backgroundTint="@color/tint5"
+                android:gravity="clip_horizontal"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:iconPadding="0dp"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="227dp" />
+
+            <Button
+                android:id="@+id/seat_14"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:backgroundTint="@color/tint5"
@@ -229,6 +243,7 @@
             android:gravity="center_horizontal">
 
             <Button
+                android:id="@+id/seat_15"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -240,6 +255,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_16"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -251,6 +267,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_17"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -262,18 +279,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
+                android:id="@+id/seat_18"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -286,6 +292,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_19"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -298,6 +305,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_20"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -310,6 +318,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_21"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -322,6 +331,20 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_22"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginRight="7dp"
+                android:backgroundTint="@color/tint5"
+                android:gravity="clip_horizontal"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:iconPadding="0dp"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="227dp" />
+
+            <Button
+                android:id="@+id/seat_23"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:backgroundTint="@color/tint5"
@@ -339,6 +362,7 @@
             android:gravity="center_horizontal">
 
             <Button
+                android:id="@+id/seat_24"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -350,6 +374,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_25"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -361,6 +386,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_26"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -372,18 +398,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
+                android:id="@+id/seat_27"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -396,6 +411,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_28"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -408,6 +424,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_29"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -420,6 +437,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_30"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -432,6 +450,20 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_31"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginRight="7dp"
+                android:backgroundTint="@color/tint5"
+                android:gravity="clip_horizontal"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:iconPadding="0dp"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="227dp" />
+
+            <Button
+                android:id="@+id/seat_32"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:backgroundTint="@color/tint5"
@@ -449,6 +481,7 @@
             android:gravity="center_horizontal">
 
             <Button
+                android:id="@+id/seat_33"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -460,6 +493,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_34"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -471,6 +505,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_35"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -482,18 +517,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
+                android:id="@+id/seat_36"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -506,6 +530,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_37"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -518,6 +543,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_38"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -530,6 +556,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_39"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -542,6 +569,20 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_40"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginRight="7dp"
+                android:backgroundTint="@color/tint5"
+                android:gravity="clip_horizontal"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:iconPadding="0dp"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="227dp" />
+
+            <Button
+                android:id="@+id/seat_41"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:backgroundTint="@color/tint5"
@@ -559,6 +600,7 @@
             android:gravity="center_horizontal">
 
             <Button
+                android:id="@+id/seat_42"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -570,6 +612,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_43"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -581,6 +624,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_44"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -592,18 +636,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
+                android:id="@+id/seat_45"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -616,6 +649,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_46"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -628,6 +662,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_47"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -640,6 +675,7 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_48"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
@@ -652,6 +688,20 @@
                 tools:layout_editor_absoluteY="227dp" />
 
             <Button
+                android:id="@+id/seat_49"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginRight="7dp"
+                android:backgroundTint="@color/tint5"
+                android:gravity="clip_horizontal"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:iconPadding="0dp"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="227dp" />
+
+            <Button
+                android:id="@+id/seat_50"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:backgroundTint="@color/tint5"
@@ -859,6 +909,7 @@
 
     <!-- order button -->
     <Button
+        android:id="@+id/order_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
