@@ -27,8 +27,6 @@ public class SeatConfigurator {
         selectionDisabled = false;
     }
 
-    // TODO: USE BOOLEAN OF ADD AND DELETE SEAT!!!
-
     // Disable the preoccupied seats.
     public void setOccupiedSeats() {
         for (int seat : occupiedSeats) {
@@ -42,56 +40,51 @@ public class SeatConfigurator {
 
     // Set a onClickListener on the remaining available seats.
     public void setAvailableSeats() {
-        // TODO: REMOVE THE LISTENER FROM ALREADY OCCUPIED SEATS!!!
-
         for (int i = 1; i < 51; i++) {
             int index = i;
-            String seatIdName = "seat_" + index;
-            final boolean[] isToggleOn = {false};
 
-            Button seatButton = activityView.findViewById(getResId(seatIdName, R.id.class));
-            seatButton.setOnClickListener(v -> {
-                // Flip the toggle.
-                isToggleOn[0] = !isToggleOn[0];
+            if (!occupiedSeats.contains(index)) {
+                String seatIdName = "seat_" + index;
+                final boolean[] isToggleOn = {false};
 
-                // Check if the seat (button) is toggled.
-                if (isToggleOn[0]) {
-                    // Seat is toggled.
-                    seatButton.setBackgroundColor(activityView.getResources().getColor(R.color.design_default_color_primary, activityView.getTheme()));
-                    addSeat(index);
-                } else {
-                    // Seat is not toggled.
-                    seatButton.setBackgroundColor(activityView.getResources().getColor(R.color.tint5, activityView.getTheme()));
-                    removeSeat(index);
-                }
+                Button seatButton = activityView.findViewById(getResId(seatIdName, R.id.class));
+                seatButton.setOnClickListener(v -> {
+                    // Flip the toggle.
+                    isToggleOn[0] = !isToggleOn[0];
 
-                checkTicketLimit();
-            });
+                    // Check if the seat (button) is toggled.
+                    if (isToggleOn[0]) {
+                        // Seat is toggled.
+                        seatButton.setBackgroundColor(activityView.getResources().getColor(R.color.design_default_color_primary, activityView.getTheme()));
+                        addSeat(index);
+                    } else {
+                        // Seat is not toggled.
+                        seatButton.setBackgroundColor(activityView.getResources().getColor(R.color.tint5, activityView.getTheme()));
+                        removeSeat(index);
+                    }
+
+                    checkTicketLimit();
+                });
+            }
         }
     }
 
     // Add a seat seat to the selected seats array.
-    private boolean addSeat(int seatNumber) {
+    private void addSeat(int seatNumber) {
         if (selectedSeats.size() < numberOfTickets) {
             selectedSeats.add(new Seat(seatNumber, getRow(seatNumber)));
-            return true;
         }
-
-        return false;
     }
 
     // Remove a seat from the selected seats array.
-    private boolean removeSeat(int seatNumber) {
+    private void removeSeat(int seatNumber) {
         for (int i = 0; i < selectedSeats.size(); i++) {
             Seat seat = selectedSeats.get(i);
 
             if (seat.getSeatNumber() == seatNumber) {
                 selectedSeats.remove(i);
-                return true;
             }
         }
-
-        return false;
     }
 
     // Disable (lock) the remaining seats (meaning except the selected and occupied seats).
