@@ -80,17 +80,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             title = itemView.findViewById(R.id.item_title);
             rating = itemView.findViewById(R.id.item_rating);
             parentLayout = itemView.findViewById(R.id.movie_list_item);
-
-            customizeLayout();
         }
-
-        public void customizeLayout() {
-            poster.setBackgroundColor(Color.GREEN);
-            poster.setScaleType(ImageView.ScaleType.FIT_XY);
-            poster.getLayoutParams().width = dpToPx(146, context);
-            poster.getLayoutParams().height = dpToPx(232, context);
-            title.setTextSize(16);
-        }
-
     }
 }
