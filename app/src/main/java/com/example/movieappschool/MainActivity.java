@@ -5,29 +5,29 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
+import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
-import com.example.movieappschool.data.MovieDataService;
+import com.example.movieappschool.data.MovieAPIService;
 import com.example.movieappschool.domain.Movie;
 import com.example.movieappschool.ui.home.MovieAdapter;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private MovieDataService movieDataService;
+    private final CinemaDatabaseService cinemaDatabaseService;
+    private final MovieAPIService movieAPIService;
     private final String API_KEY = "b3dc30d1b882188c9c0161b97d66f032";
-    private LocalAppStorage localAppStorage;
+    private final LocalAppStorage localAppStorage;
     private List<Movie> mMovies;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private List<Integer> databaseIdsResult;
 
     public MainActivity() {
-        // Initialize MovieDataService for making API calls.
-        movieDataService = new MovieDataService(API_KEY, "en-US", this);
-
-        // Initialize LocalAppStorage for accessing the global storage.
+        cinemaDatabaseService = new CinemaDatabaseService("jdbc:jtds:sqlserver://aei-sql2.avans.nl:1443/CinemaApplicationDB", "MovieB2", "AnikaWante");
+        movieAPIService = new MovieAPIService(API_KEY, "en-US");
         localAppStorage = (LocalAppStorage) this.getApplication();
     }
 
@@ -36,31 +36,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Make a call to get the most popular movies using the MovieDataService.
-        movieDataService.getPopularMovies(new MovieDataService.VolleyResponseListener() {
-            @Override
-            public void onResponse(Object response) {
-                // Store the movies and set Adapter of RecyclerView when response is received.
-                localAppStorage.setMovies((List<Movie>) response);
-                mMovies = localAppStorage.getMovies();
-
-                mAdapter = new MovieAdapter(mMovies, MainActivity.this);
-                recyclerView.setAdapter(mAdapter);
-            }
-
-            @Override
-            public void onError(String message) {
-                // Do something when an error occurred while trying to receive a response
-                // TODO: Handle error
-                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
-            }
-        });
-
         // RecyclerView
         recyclerView = findViewById(R.id.movie_recyclerview);
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
+
+        // Create three new threads.
+        Thread cinemaDatabaseThread = new Thread(() -> databaseIdsResult = cinemaDatabaseService.getAllMovieIds());
+
+        Thread movieAPIThread = new Thread(() -> {
+            mMovies = movieAPIService.getMoviesByIds(databaseIdsResult);
+            localAppStorage.setMovies(mMovies);
+        });
+
+        Thread adapterThread = new Thread(() -> {
+            mAdapter = new MovieAdapter(mMovies, MainActivity.this);
+            recyclerView.setAdapter(mAdapter);
+        });
+
+        // Start and join the threads.
+        try {
+            cinemaDatabaseThread.start();
+            cinemaDatabaseThread.join();
+
+            movieAPIThread.start();
+            movieAPIThread.join();
+
+            adapterThread.start();
+            adapterThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -40,7 +40,7 @@ public class CinemaDatabaseService {
     }
 
     public List<Integer> getAllMovieIds() {
-        String query = "SELECT * FROM Movies";
+        String query = "SELECT * FROM Movie";
         List<Integer> result = new ArrayList<>();
 
         try {
