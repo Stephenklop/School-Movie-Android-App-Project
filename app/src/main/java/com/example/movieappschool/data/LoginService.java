@@ -19,7 +19,7 @@ public class LoginService extends AppCompatActivity {
     private CinemaDatabaseService cinemaDatabaseService;
 
     public LoginService() {
-        cinemaDatabaseService = new CinemaDatabaseService("jdbc:jtds:sqlserver://aei-sql2.avans.nl:1443/CinemaApplicationDB", "MovieB2", "AnikaWante");
+        cinemaDatabaseService = new CinemaDatabaseService();
     }
 
     public void executeLogin(String Username, String Password) {

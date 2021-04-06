@@ -9,33 +9,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CinemaDatabaseService {
-    private String connectionUrl;
-    private String user;
-    private String password;
+    private final String connectionUrl = "jdbc:jtds:sqlserver://aei-sql2.avans.nl:1443/CinemaApplicationDB";
+    private final String user = "MovieB2";
+    private final String password = "AnikaWante";
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
 
-    public CinemaDatabaseService(String connectionUrl, String user, String password) {
-        this.connectionUrl = connectionUrl;
-        this.user = user;
-        this.password = password;
+    public CinemaDatabaseService() {
+
     }
 
-    private void connect() throws SQLException {
-        connection = DriverManager.getConnection(connectionUrl, user, password);
+    private void connect() {
+        try {
+            connection = DriverManager.getConnection(connectionUrl, user, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getMessage();
+        }
     }
 
-    private void executeQuery(String query) throws SQLException {
-        statement = connection.createStatement();
-        resultSet = statement.executeQuery(query);
+    private void executeQuery(String query) {
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+        } catch(SQLException e) {
+            e.printStackTrace();
+            e.getMessage();
+        }
     }
 
     private void disconnect() {
         try {
             connection.close();
+            resultSet.close();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            e.getMessage();
         }
     }
 
@@ -52,6 +63,7 @@ public class CinemaDatabaseService {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            e.getMessage();
         } finally {
             disconnect();
         }
@@ -72,6 +84,7 @@ public class CinemaDatabaseService {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            e.getMessage();
         } finally {
             disconnect();
         }
