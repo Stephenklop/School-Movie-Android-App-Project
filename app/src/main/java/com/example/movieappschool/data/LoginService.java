@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class LoginService extends AppCompatActivity {
+public class LoginService {
     private CinemaDatabaseService cinemaDatabaseService;
 
     public LoginService() {
