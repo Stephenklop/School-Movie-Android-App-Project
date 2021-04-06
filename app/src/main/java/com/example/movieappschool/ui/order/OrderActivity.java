@@ -42,7 +42,7 @@ public class OrderActivity extends AppCompatActivity {
         // Handle the seats that are available.
         seatConfigurator.setAvailableSeats();
 
-        Button orderButton = findViewById(R.id.order_button);
+        Button orderButton = findViewById(R.id.order_availability_button);
 
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override

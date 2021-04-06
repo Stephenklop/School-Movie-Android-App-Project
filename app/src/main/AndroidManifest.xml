@@ -11,8 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieAppSchool">
         <activity android:name=".ui.detail.DetailActivity"/>
-        <activity android:name=".ui.order.OrderActivity" android:exported="true"/>
-        <activity android:name=".MainActivity">
+<!--        <activity android:name=".ui.order.OrderActivity" android:exported="true"/>-->
+        <activity android:name=".ui.order.OrderActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
