@@ -783,7 +783,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
+                android:background="@drawable/purple_gradient_small"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 app:iconPadding="0dp"
