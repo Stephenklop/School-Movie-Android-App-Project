@@ -19,10 +19,11 @@ public class MovieParse {
         String language = jsonMovieObject.getString("original_language");
 
         // Load genres and store in genreIds ArrayList.
-        ArrayList<Integer> genreIds = new ArrayList<>();
-        JSONArray jsonGenres = jsonMovieObject.getJSONArray("genre_ids");
-        for (int j = 0; j < jsonGenres.length(); j++) {
-            genreIds.add((Integer) jsonGenres.get(j));
+        ArrayList<String> genres = new ArrayList<>();
+        JSONArray jsonGenres = jsonMovieObject.getJSONArray("genres");
+        for (int i = 0; i < jsonGenres.length(); i++) {
+            String genre = jsonGenres.getJSONObject(i).getString("name");
+            genres.add(genre);
         }
 
         String releaseDate = jsonMovieObject.getString("release_date");
@@ -30,6 +31,6 @@ public class MovieParse {
         double ratingAverage = jsonMovieObject.getDouble("vote_average");
         int ratingCount = jsonMovieObject.getInt("vote_count");
 
-        return new Movie(id, title, description, language, genreIds, releaseDate, posterPath, ratingAverage, ratingCount);
+        return new Movie(id, title, description, language, genres, releaseDate, posterPath, ratingAverage, ratingCount);
     }
 }

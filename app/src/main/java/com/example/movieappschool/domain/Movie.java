@@ -7,13 +7,13 @@ public class Movie {
     private String mTitle;
     private String mDescription;
     private String mLanguage;
-    private List<Integer> mGenreIds;
+    private List<String> mGenreIds;
     private String mReleaseDate;
     private String mPosterURL;
     private double mRatingAverage;
     private int mRatingCount;
 
-    public Movie(int id, String title, String description, String language, List<Integer> genreIds, String releaseDate, String posterURL, double ratingAverage, int ratingCount) {
+    public Movie(int id, String title, String description, String language, List<String> genreIds, String releaseDate, String posterURL, double ratingAverage, int ratingCount) {
         mId = id;
         mTitle = title;
         mDescription = description;
@@ -41,7 +41,7 @@ public class Movie {
         return mLanguage;
     }
 
-    public List<Integer> getGenreIds() {
+    public List<String> getGenreIds() {
         return mGenreIds;
     }
 
