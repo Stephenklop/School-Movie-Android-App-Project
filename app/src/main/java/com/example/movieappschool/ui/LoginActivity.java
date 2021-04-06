@@ -9,17 +9,21 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.movieappschool.R;
-import com.example.movieappschool.data.UserDAO;
+import com.example.movieappschool.data.CinemaDatabaseService;
 
 public class LoginActivity extends AppCompatActivity {
+    private CinemaDatabaseService cinemaDatabaseService;
     private EditText mUsernameInput, mPasswordInput;
     private Button mLoginButton;
+
+    public LoginActivity() {
+        cinemaDatabaseService = new CinemaDatabaseService("jdbc:jtds:sqlserver://aei-sql2.avans.nl:1443/CinemaApplicationDB", "MovieB2", "AnikaWante");
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        UserDAO mUserDAO = new UserDAO();
         mUsernameInput = findViewById(R.id.editUsername);
         mPasswordInput = findViewById(R.id.editPassword);
         mLoginButton = findViewById(R.id.loginButton);
@@ -32,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (checkIfEmpty(mUsernameInput, mPasswordInput)) {
                     // Error geven dat een van de twee velden niet is ingevoerd
                 } else {
-                    if (mUserDAO.doesUserExist(mUsername, mPassword)) {
+                    if (cinemaDatabaseService.doesUserExist(mUsername, mPassword)) {
                         //Gebruiker wordt ingelogd
                     } else {
                         // Error geven dat combinatie gebruikersnaam en wachtwoord niet correct is
