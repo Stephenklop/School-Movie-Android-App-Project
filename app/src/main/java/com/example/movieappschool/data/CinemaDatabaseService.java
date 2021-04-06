@@ -1,5 +1,9 @@
 package com.example.movieappschool.data;
 
+import android.util.Log;
+
+import com.example.movieappschool.domain.User;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -71,16 +75,23 @@ public class CinemaDatabaseService {
         return result;
     }
 
-    public boolean doesUserExist(String user, String password) {
-        String query = "SELECT Username, Password FROM User WHERE Username = '" + user + "' AND Password = '" + password + "'";
-        boolean result = false;
+    public User doesUserExist(String user, String password) {
+        String query = "SELECT * FROM Account WHERE username = '" + user + "' AND password = '" + password + "'";
+        Log.d("USER EXIST", query);
+        User result = null;
 
         try {
             connect();
             executeQuery(query);
 
-            if (resultSet.next()) {
-                result = true;
+            while (resultSet.next()) {
+                int mUserId = resultSet.getInt("userID");
+                String mFirstName = resultSet.getString("firstName");
+                String mLastName = resultSet.getString("lastName");
+                String mAddress = resultSet.getString("address");
+                String mEmail = resultSet.getString("email");
+                String mDateOfBirth = resultSet.getString("dateOfBirth");
+                result = new User(mUserId, mFirstName, mLastName, user, mAddress, mEmail, password, mDateOfBirth);
             }
         } catch (SQLException e) {
             e.printStackTrace();

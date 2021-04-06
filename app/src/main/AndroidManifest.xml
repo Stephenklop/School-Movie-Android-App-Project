@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieAppSchool">
         <activity android:name=".ui.detail.DetailActivity"/>
+        <activity android:name=".MainActivity"/>
         <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

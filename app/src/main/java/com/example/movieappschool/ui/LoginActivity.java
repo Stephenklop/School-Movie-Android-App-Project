@@ -1,5 +1,6 @@
 package com.example.movieappschool.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,13 +8,18 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.movieappschool.MainActivity;
 import com.example.movieappschool.R;
+import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.data.LoginService;
+import com.example.movieappschool.domain.User;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity{
     LoginService login = new LoginService();
     private Button mLoginButton;
     private EditText mUsernameInput, mPasswordInput;
+    private User mUser;
+    private LocalAppStorage localAppStorage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +39,21 @@ public class LoginActivity extends AppCompatActivity {
                 String Username = mUsernameInput.getText().toString();
                 String Password = mPasswordInput.getText().toString();
 
-                login.executeLogin(Username, Password);
+                mUser = login.executeLogin(Username, Password);
+                if (mUser != null) {
+                    localAppStorage = new LocalAppStorage();
+                    LocalAppStorage.addUser(mUser);
+                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    i.putExtra("userId", mUser.getUserId());
+                    i.putExtra("firstName", mUser.getFirstName());
+                    i.putExtra("lastName", mUser.getLastName());
+                    i.putExtra("username", mUser.getUsername());
+                    i.putExtra("address", mUser.getAddress());
+                    i.putExtra("email", mUser.getEmail());
+                    i.putExtra("password", mUser.getPassword());
+                    i.putExtra("dateOfBirth", mUser.getDateBirth());
+                    startActivity(i);
+                }
             }
         });
     }

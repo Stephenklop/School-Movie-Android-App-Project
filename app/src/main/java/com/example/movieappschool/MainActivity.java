@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.data.MovieAPIService;
 import com.example.movieappschool.domain.Movie;
+import com.example.movieappschool.domain.User;
 import com.example.movieappschool.ui.home.MovieAdapter;
 
 import java.util.List;
@@ -35,6 +37,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intentUser = getIntent();
+
+        int mUserId = intentUser.getIntExtra("userId", 0);
+        String mFirstName = intentUser.getStringExtra("firstName");
+        String mLastName = intentUser.getStringExtra("lastName");
+        String mUsername = intentUser.getStringExtra("username");
+        String mAddress = intentUser.getStringExtra("address");
+        String mEmail = intentUser.getStringExtra("email");
+        String mPassword = intentUser.getStringExtra("password");
+        String mDateOfBirth = intentUser.getStringExtra("dateOfBirth");
+
+        User mLoggedUser = new User(mUserId, mFirstName, mLastName, mUsername, mAddress, mEmail, mPassword, mDateOfBirth);
+
+        //TODO: Add user to localAppStorage
 
         // RecyclerView
         recyclerView = findViewById(R.id.homepage_movies);
