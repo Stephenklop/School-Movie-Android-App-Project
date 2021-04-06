@@ -58,4 +58,24 @@ public class CinemaDatabaseService {
 
         return result;
     }
+
+    public boolean doesUserExist(String user, String password) {
+        String query = "SELECT Username, Password FROM User WHERE Username = '" + user + "' AND Password = '" + password + "'";
+        boolean result = false;
+
+        try {
+            connect();
+            executeQuery(query);
+
+            if (resultSet.next()) {
+                result = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            disconnect();
+        }
+
+        return result;
+    }
 }
