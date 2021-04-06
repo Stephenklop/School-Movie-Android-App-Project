@@ -13,6 +13,7 @@ import com.example.movieappschool.R;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Movie;
 
+import java.util.Date;
 import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
@@ -21,12 +22,19 @@ public class DetailActivity extends AppCompatActivity {
     private Movie movie;
     private ImageView poster;
     private TextView title;
+    private TextView releaseyear;
+    private TextView genres;
+    private TextView movieLength;
     private TextView rating;
     private int movieId;
 
     public DetailActivity() {
         localAppStorage = (LocalAppStorage) this.getApplication();
         movies = localAppStorage.getMovies();
+    }
+
+    public String getYearFromDate(String date) {
+        return date.split("-")[0];
     }
 
     @Override
@@ -36,6 +44,9 @@ public class DetailActivity extends AppCompatActivity {
 
         poster = findViewById(R.id.detail_poster);
         title = findViewById(R.id.detail_title);
+        releaseyear = findViewById(R.id.detail_releaseyear);
+        genres = findViewById(R.id.detail_genres);
+        movieLength = findViewById(R.id.detail_movie_length);
 
         // Get extra id from intent and store it locally.
         Intent intent = getIntent();
@@ -49,8 +60,19 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
 
+            // Add Poster
             Glide.with(this).load(movie.getPosterURL()).into(poster);
+
+            // Set Title
             title.setText(movie.getTitle());
+
+            // Set Release Year
+            releaseyear.setText(getYearFromDate(movie.getReleaseDate()));
+
+            // Set Genres
+            for(String genre : movie.getGenreIds()) {
+                genres.append(genre + "/");
+            }
         } else {
             // Something went wrong, show error.
             // TODO: Handle error
