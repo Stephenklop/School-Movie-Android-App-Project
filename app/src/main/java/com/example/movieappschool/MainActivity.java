@@ -44,21 +44,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intentUser = getIntent();
-
-        int mUserId = intentUser.getIntExtra("userId", 0);
-        String mFirstName = intentUser.getStringExtra("firstName");
-        String mLastName = intentUser.getStringExtra("lastName");
-        String mUsername = intentUser.getStringExtra("username");
-        String mAddress = intentUser.getStringExtra("address");
-        String mEmail = intentUser.getStringExtra("email");
-        String mPassword = intentUser.getStringExtra("password");
-        String mDateOfBirth = intentUser.getStringExtra("dateOfBirth");
-
-        User mLoggedUser = new User(mUserId, mFirstName, mLastName, mUsername, mAddress, mEmail, mPassword, mDateOfBirth);
-
-        localAppStorage.setUser(mLoggedUser);
-        localAppStorage.setLoggedIn();
         // Menu
         View toolBar = findViewById(R.id.homepage_toolbar);
         ImageView hamburgerIcon = toolBar.findViewById(R.id.hamburger_icon);

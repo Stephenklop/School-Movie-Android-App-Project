@@ -33,20 +33,6 @@ public class AccountActivity extends AppCompatActivity {
 
         mUpdate = findViewById(R.id.updateButton);
 
-        // Test data
-        Intent intentUser = getIntent();
-        int mmUserId = intentUser.getIntExtra("userId", 0);
-        String mmFirstName = intentUser.getStringExtra("firstName");
-        String mmLastName = intentUser.getStringExtra("lastName");
-        String mmUsername = intentUser.getStringExtra("username");
-        String mmAddress = intentUser.getStringExtra("address");
-        String mmEmail = intentUser.getStringExtra("email");
-        String mmPassword = intentUser.getStringExtra("password");
-        String mmDateOfBirth = intentUser.getStringExtra("dateOfBirth");
-        User mLoggedUser = new User(mmUserId, mmFirstName, mmLastName, mmUsername, mmAddress, mmEmail, mmPassword, mmDateOfBirth);
-        localAppStorage.setUser(mLoggedUser);
-        localAppStorage.setLoggedIn();
-
         mUsername = findViewById(R.id.my_account_username_input);
         mFirstname = findViewById(R.id.my_account_firstname_input);
         mLastname = findViewById(R.id.my_account_lastname_input);

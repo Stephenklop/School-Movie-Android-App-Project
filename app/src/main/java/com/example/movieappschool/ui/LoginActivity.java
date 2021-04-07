@@ -16,9 +16,14 @@ import com.example.movieappschool.domain.User;
 
 public class LoginActivity extends AppCompatActivity{
     LoginService login = new LoginService();
+    private LocalAppStorage localAppStorage;
     private Button mLoginButton;
     private EditText mUsernameInput, mPasswordInput;
     private User mUser;
+
+    public LoginActivity() {
+        localAppStorage = (LocalAppStorage) this.getApplication();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,22 +39,14 @@ public class LoginActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                // Insert values into variables
                 String Username = mUsernameInput.getText().toString();
                 String Password = mPasswordInput.getText().toString();
 
                 mUser = login.executeLogin(Username, Password);
                 if (mUser != null) {
-                    // Change to main
+                    localAppStorage.setUser(mUser);
+                    localAppStorage.setLoggedIn();
                     Intent i = new Intent(LoginActivity.this, AccountActivity.class);
-                    i.putExtra("userId", mUser.getUserId());
-                    i.putExtra("firstName", mUser.getFirstName());
-                    i.putExtra("lastName", mUser.getLastName());
-                    i.putExtra("username", mUser.getUsername());
-                    i.putExtra("address", mUser.getAddress());
-                    i.putExtra("email", mUser.getEmail());
-                    i.putExtra("password", mUser.getPassword());
-                    i.putExtra("dateOfBirth", mUser.getDateBirth());
                     startActivity(i);
                 }
             }
