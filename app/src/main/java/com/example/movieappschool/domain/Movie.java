@@ -1,5 +1,6 @@
 package com.example.movieappschool.domain;
 
+import java.util.Date;
 import java.util.List;
 
 public class Movie {
@@ -12,8 +13,9 @@ public class Movie {
     private String mPosterURL;
     private double mRatingAverage;
     private int mRatingCount;
+    private int mLength;
 
-    public Movie(int id, String title, String description, String language, List<String> genreIds, String releaseDate, String posterURL, double ratingAverage, int ratingCount) {
+    public Movie(int id, String title, String description, String language, List<String> genreIds, String releaseDate, String posterURL, double ratingAverage, int ratingCount, int movieLength) {
         mId = id;
         mTitle = title;
         mDescription = description;
@@ -23,6 +25,7 @@ public class Movie {
         mPosterURL = posterURL;
         mRatingAverage = ratingAverage;
         mRatingCount = ratingCount;
+        mLength = movieLength;
     }
 
     public int getId() {
@@ -61,6 +64,8 @@ public class Movie {
         return mRatingCount;
     }
 
+    public int getMovieLength() { return mLength; };
+
     @Override
     public String toString() {
         return "Movie{" +
@@ -73,6 +78,7 @@ public class Movie {
                 ", mPosterURL='" + mPosterURL + '\'' +
                 ", mRatingAverage=" + mRatingAverage +
                 ", mRatingCount=" + mRatingCount +
+                ", mLength=" + mLength +
                 '}';
     }
 }
