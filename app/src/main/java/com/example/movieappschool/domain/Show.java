@@ -1,15 +1,13 @@
 package com.example.movieappschool.domain;
 
-import java.util.Date;
-
 public class Show {
 
     private int mShowId, mHallId, mMovieId;
-    private Date mDate;
+    private String mFullDate;
 
-    public Show(int mMovieId, Date mDate, int mShowId, int mHallId) {
+    public Show(int mMovieId, String mFullDate, int mShowId, int mHallId) {
         this.mMovieId = mMovieId;
-        this.mDate = mDate;
+        this.mFullDate = mFullDate;
         this.mShowId = mShowId;
         this.mHallId = mHallId;
     }
@@ -18,8 +16,20 @@ public class Show {
         return mMovieId;
     }
 
-    public Date getDate() {
-        return mDate;
+    public String getFullDate() {
+        return mFullDate;
+    }
+
+    public String getDate() {
+        String dateTime[] = mFullDate.split(" ");
+        return  dateTime[0];
+    }
+
+    public String getTime() {
+        String dateTime[] = mFullDate.split(" ");
+        String fullTime[] = dateTime[1].split(":");
+        //2021-04-10 16:30:00.0
+        return fullTime[0] + ":" + fullTime[1];
     }
 
     public int getShowId() {
