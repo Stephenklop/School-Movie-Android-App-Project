@@ -1,4 +1,4 @@
-package com.example.movieappschool;
+package com.example.movieappschool.logic;
 
 
 import android.annotation.TargetApi;
