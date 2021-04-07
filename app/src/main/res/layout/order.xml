@@ -1,926 +1,1086 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/tint6">
+    android:layout_height="match_parent" android:layout_width="match_parent" android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <include
-        android:id="@+id/order_toolbar"
-        layout="@layout/toolbar_fragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:text="Kies uw tijd"
-        android:textColor="@color/tint1"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include3" />
+        android:background="@color/tint6">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/halfcircle" />
-    <!-- seats layout -->
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="40dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+        <include
+            android:id="@+id/order_toolbar"
+            layout="@layout/toolbar_fragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/order_person_picker_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:text="Hoeveel mensen gaan er mee?"
+            android:textColor="@color/tint1"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_toolbar" />
 
-            <Button
-                android:id="@+id/seat_1"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+        <LinearLayout
+            android:id="@+id/order_person_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_person_picker_title">
 
-            <Button
-                android:id="@+id/seat_2"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="25dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/seat_3"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kind"
+                    android:textColor="@color/tint4"
+                    android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/seat_4"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+                <include
+                    android:id="@+id/child_ticket_picker"
+                    layout="@layout/custom_picker_fragment"/>
 
-            <Button
-                android:id="@+id/seat_5"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="€7,-"
+                    android:textColor="@color/tint4"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="25dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volwassen"
+                    android:textColor="@color/tint4"
+                    android:textSize="16sp" />
+
+                <include
+                    android:id="@+id/adult_ticket_picker"
+                    layout="@layout/custom_picker_fragment"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="€11,-"
+                    android:textColor="@color/tint4"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Senior"
+                    android:textColor="@color/tint4"
+                    android:textSize="16sp" />
+
+                <include
+                    android:id="@+id/senior_ticket_picker"
+                    layout="@layout/custom_picker_fragment"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="€9,-"
+                    android:textColor="@color/tint4"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/order_seats_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:text="Kies uw plaatsen"
+            android:textColor="@color/tint1"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_person_picker" />
+
+        <ImageView
+            android:id="@+id/order_seats_screen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_seats_title"
+            app:srcCompat="@drawable/halfcircle" />
+
+        <TextView
+            android:id="@+id/order_seats_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:text="0 / 0 stoelen"
+            android:textColor="@color/tint4"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_seats_screen" />
+
+        <LinearLayout
+            android:id="@+id/order_seats_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/order_seats_total">
+
+            <LinearLayout
+                android:id="@+id/order_seats_container_row_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/seat_1"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_2"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_3"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_4"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_5"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/order_seats_container_row_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/seat_6"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_7"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_8"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_9"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_10"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_11"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_12"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_13"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_14"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/order_seats_container_row_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/seat_15"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_16"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_17"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_18"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_19"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_20"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_21"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_22"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_23"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/order_seats_container_row_four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/seat_24"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_25"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_26"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_27"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_28"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_29"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_30"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_31"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_32"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/order_seats_container_row_five"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/seat_33"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_34"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_35"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_36"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_37"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_38"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_39"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_40"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_41"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/order_seats_container_row_six"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/seat_42"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_43"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_44"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_45"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_46"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_47"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_48"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_49"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:gravity="clip_horizontal"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+
+                <Button
+                    android:id="@+id/seat_50"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/order_seats_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:gravity="center_horizontal">
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/order_seats_container"
+            tools:layout_editor_absoluteX="40dp">
 
-            <Button
-                android:id="@+id/seat_6"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:gravity="center">
 
-            <Button
-                android:id="@+id/seat_7"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+                <Button
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/tint5"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
 
-            <Button
-                android:id="@+id/seat_8"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Beschikbaar"
+                    android:textColor="@color/tint1"
+                    android:textSize="10sp" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/seat_9"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:gravity="center">
 
-            <Button
-                android:id="@+id/seat_10"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+                <Button
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:backgroundTint="@color/white"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
 
-            <Button
-                android:id="@+id/seat_11"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gereserveerd"
+                    android:textColor="@color/tint1"
+                    android:textSize="10sp" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/seat_12"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
 
-            <Button
-                android:id="@+id/seat_13"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+                <Button
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="7dp"
+                    android:background="@drawable/purple_gradient_small"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:iconPadding="0dp"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="227dp" />
 
-            <Button
-                android:id="@+id/seat_14"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Geselecteerd"
+                    android:textColor="@color/tint1"
+                    android:textSize="10sp" />
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/order_datetime_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:gravity="center_horizontal">
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:text="Kies uw datum en tijd"
+            android:textColor="@color/tint1"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_seats_info" />
 
-            <Button
-                android:id="@+id/seat_15"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_16"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_17"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_18"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_19"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_20"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_21"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_22"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_23"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/order_datetime_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/seat_24"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_25"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_26"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_27"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_28"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_29"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_30"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_31"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_32"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-        </LinearLayout>
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="40dp"
+            android:text="DATE"
+            android:textColor="@color/tint4"
+            android:textFontWeight="600"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_datetime_title" />
 
         <LinearLayout
+            android:id="@+id/order_datetime_date_picker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="40dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_datetime_date">
+
+            <TextView
+                android:id="@+id/order_datetime_date_picker_day_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="33dp"
+                android:text="2 Apr"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/order_datetime_date_picker_day_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="33dp"
+                android:text="3 Apr"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/order_datetime_date_picker_day_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="33dp"
+                android:text="4 Apr"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/order_datetime_date_picker_day_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="33dp"
+                android:text="5 Apr"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/order_datetime_date_picker_day_five"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6 Apr"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/order_datetime_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/seat_33"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_34"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_35"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_36"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_37"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_38"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_39"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_40"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_41"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-        </LinearLayout>
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:text="TIME"
+            android:textColor="@color/tint4"
+            android:textFontWeight="600"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_datetime_date_picker" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/order_datetime_time_picker"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/seat_42"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_43"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_44"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_45"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_46"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_47"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_48"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_49"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:gravity="clip_horizontal"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-
-            <Button
-                android:id="@+id/seat_50"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- info layout -->
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
-            android:gravity="center">
-
-            <Button
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/tint5"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="40dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_datetime_time">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Beschikbaar"
+                android:layout_marginRight="33dp"
+                android:text="16:30"
                 android:textColor="@color/tint1"
-                android:textSize="10sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
-            android:gravity="center">
-
-            <Button
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:backgroundTint="@color/white"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gereserveerd"
+                android:text="18:50"
                 android:textColor="@color/tint1"
-                android:textSize="10sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <!-- order button -->
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <Button
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginRight="7dp"
-                android:background="@drawable/purple_gradient_small"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:iconPadding="0dp"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="227dp" />
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_datetime_time_picker">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Geselecteerd"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="€0,-"
                 android:textColor="@color/tint1"
-                android:textSize="10sp" />
-        </LinearLayout>
-    </LinearLayout>
+                android:textSize="20sp"
+                android:layout_centerVertical="true"/>
 
-    <!-- date layout -->
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:text="DATE"
-        android:textColor="@color/tint4"
-        android:textFontWeight="600"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            <Button
+                android:id="@+id/order_availability_button"
+                android:layout_width="232dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/orange_gradient"
+                android:insetTop="0dp"
+                android:insetBottom="0dp" />
+        </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="40dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="33dp"
-            android:text="2 Apr"
-            android:textColor="@color/tint1"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="33dp"
-            android:text="3 Apr"
-            android:textColor="@color/tint1"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="33dp"
-            android:text="4 Apr"
-            android:textColor="@color/tint1"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="33dp"
-            android:text="5 Apr"
-            android:textColor="@color/tint1"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="6 Apr"
-            android:textColor="@color/tint1"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <!-- time layout -->
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="41dp"
-        android:layout_marginEnd="40dp"
-        android:text="TIME"
-        android:textColor="@color/tint4"
-        android:textFontWeight="600"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="33dp"
-            android:text="16:30"
-            android:textColor="@color/tint1"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="18:50"
-            android:textColor="@color/tint1"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <!-- order button -->
-    <Button
-        android:id="@+id/order_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/orange_gradient"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
