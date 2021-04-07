@@ -4,13 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.data.MovieAPIService;
 import com.example.movieappschool.domain.Movie;
+import com.example.movieappschool.ui.detail.DetailActivity;
 import com.example.movieappschool.ui.home.MovieAdapter;
+import com.example.movieappschool.ui.menu.MenuActivity;
 
 import java.util.List;
 
@@ -35,6 +42,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Menu
+        View toolBar = findViewById(R.id.homepage_toolbar);
+        ImageView hamburgerIcon = toolBar.findViewById(R.id.hamburger_icon);
+
+        hamburgerIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+            intent.putExtra("prevActivity", getClass().getName());
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            ActivityOptions options = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.fade_out);
+
+            getApplicationContext().startActivity(intent, options.toBundle());
+        });
 
         // RecyclerView
         recyclerView = findViewById(R.id.homepage_movies);

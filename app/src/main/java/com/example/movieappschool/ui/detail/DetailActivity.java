@@ -1,5 +1,6 @@
 package com.example.movieappschool.ui.detail;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,10 +25,11 @@ public class DetailActivity extends AppCompatActivity {
     private LocalAppStorage localAppStorage;
     private List<Movie> movies;
     private Movie movie;
-    private ImageView backgroundImage, poster, starOne, starTwo, starThree, starFour, starFive;
+    private ImageView backgroundImage, poster, starOne, starTwo, starThree, starFour, starFive, backButton;
     private TextView title, releaseyear, genres, movieLength, rating, description, textRating;
     private Button showMoreButton;
     private int movieId;
+    private String previousActivity;
 
     public DetailActivity() {
         localAppStorage = (LocalAppStorage) this.getApplication();
@@ -43,6 +45,26 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_detail);
 
+        Intent intent = getIntent();
+        movieId = intent.getIntExtra("id", -1);
+        previousActivity = intent.getStringExtra("prevActivity");
+
+        toolbar = findViewById(R.id.movie_detail_toolbar);
+        toolbar.findViewById(R.id.hamburger_icon).setVisibility(View.INVISIBLE);
+
+        backButtton = toolbar.findViewById(R.id.back_icon);
+        backButtton.setVisibility(View.VISIBLE);
+        backButtton.setOnClickListener(v -> {
+            try {
+                Intent backIntent = new Intent(getApplicationContext(), Class.forName(previousActivity));
+                backIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                getApplicationContext().startActivity(backIntent);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+
         poster = findViewById(R.id.detail_poster);
         title = findViewById(R.id.detail_title);
         releaseyear = findViewById(R.id.detail_releaseyear);
@@ -56,10 +78,6 @@ public class DetailActivity extends AppCompatActivity {
         starThree = findViewById(R.id.detail_star_three);
         starFour = findViewById(R.id.detail_star_four);
         starFive = findViewById(R.id.detail_star_five);
-
-        // Get extra id from intent and store it locally.
-        Intent intent = getIntent();
-        movieId = intent.getIntExtra("id", -1);
 
         if (movieId >= 0) {
 
