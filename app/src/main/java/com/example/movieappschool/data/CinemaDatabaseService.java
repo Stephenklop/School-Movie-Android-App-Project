@@ -131,9 +131,6 @@ public class CinemaDatabaseService {
         try {
             connect();
             executeQuery(query);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         } finally {
             disconnect();
         }

@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class LoginService extends AppCompactActivity {
+public class LoginService extends AppCompatActivity {
 
     private CinemaDatabaseService cinemaDatabaseService;
     private User result;
