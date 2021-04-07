@@ -17,7 +17,7 @@ import com.example.movieappschool.domain.User;
 public class LoginActivity extends AppCompatActivity{
     LoginService login = new LoginService();
     private LocalAppStorage localAppStorage;
-    private Button mLoginButton;
+    private Button mLoginButton, mRegisterButton;
     private EditText mUsernameInput, mPasswordInput;
     private User mUser;
 
@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity{
         setContentView(R.layout.login);
 
         mLoginButton = findViewById(R.id.loginButton);
+        mRegisterButton = findViewById(R.id.registerButton);
         mUsernameInput = findViewById(R.id.editUsername);
         mPasswordInput = findViewById(R.id.editPassword);
 
@@ -49,6 +50,15 @@ public class LoginActivity extends AppCompatActivity{
                     Intent i = new Intent(LoginActivity.this, AccountActivity.class);
                     startActivity(i);
                 }
+            }
+        });
+
+        mRegisterButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(i);
             }
         });
     }

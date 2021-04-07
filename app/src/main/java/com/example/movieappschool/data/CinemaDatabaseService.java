@@ -46,7 +46,9 @@ public class CinemaDatabaseService {
     private void disconnect() {
         try {
             connection.close();
-            resultSet.close();
+            if (resultSet != null) {
+                resultSet.close();
+            }
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -131,7 +133,8 @@ public class CinemaDatabaseService {
         try {
             connect();
             executeQuery(query);
-        } finally {
+        }
+        finally {
             disconnect();
         }
     }
@@ -141,7 +144,6 @@ public class CinemaDatabaseService {
         user = doesUserExist(mUsername, mPassword);
         if (user != null) {
             return user;
-            //TODO: Show error that the chosen username already exists
         }
 
         String query = "UPDATE Account SET username='" + mUsername + "', email='" + mEmail + "', password='" + mPassword + "', firstName='" + mFirstName

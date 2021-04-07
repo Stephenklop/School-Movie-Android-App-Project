@@ -64,7 +64,7 @@ public class MenuActivity extends AppCompatActivity {
         logout.setOnClickListener(v -> {
             localAppStorage.setLoggedOut();
             localAppStorage.deleteUser();
-            myAccount = findViewById(R.id.menu_account);
+            myAccount = findViewById(R.id.menu_account_text);
             myAccount.setText("Login");
             System.out.println(localAppStorage.getLoggedIn());
         });
@@ -89,11 +89,9 @@ public class MenuActivity extends AppCompatActivity {
             getApplicationContext().startActivity(myTicketsIntent, options.toBundle());
         });
 
-        myAccount = findViewById(R.id.);
-
         // Check if user is logged in
         if(!localAppStorage.getLoggedIn()) {
-            login = findViewById(R.id.menu_account);
+            login = findViewById(R.id.menu_account_text);
             login.setText("Login");
             login.setOnClickListener(v -> {
                 Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -104,7 +102,7 @@ public class MenuActivity extends AppCompatActivity {
                 getApplicationContext().startActivity(loginIntent, options.toBundle());
             });
         } else {
-            myAccount = findViewById(R.id.menu_account);
+            myAccount = findViewById(R.id.menu_account_text);
             myAccount.setText("My Account");
             myAccount.setOnClickListener(v -> {
                 Intent myAccountIntent = new Intent(getApplicationContext(), AccountActivity.class);
