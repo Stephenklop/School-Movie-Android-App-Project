@@ -8,7 +8,7 @@
     android:background="@color/tint6">
 
     <include
-        android:id="@+id/tickets_list_toolbar"
+        android:id="@+id/tickets_toolbar"
         layout="@layout/toolbar_fragment" />
 
     <TextView

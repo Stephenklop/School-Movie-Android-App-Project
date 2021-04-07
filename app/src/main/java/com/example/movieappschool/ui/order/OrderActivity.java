@@ -1,10 +1,12 @@
 package com.example.movieappschool.ui.order;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -23,6 +25,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OrderActivity extends AppCompatActivity {
+    private View toolbar;
+    private ImageView backButtton;
     CinemaDatabaseService cinemaDatabaseService;
     private SeatConfigurator seatConfigurator;
     private int amountOfChildTickets;
@@ -44,6 +48,12 @@ public class OrderActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
+
+        toolbar = findViewById(R.id.order_toolbar);
+        toolbar.findViewById(R.id.hamburger_icon).setVisibility(View.INVISIBLE);
+
+        backButtton = toolbar.findViewById(R.id.back_icon);
+        backButtton.setVisibility(View.VISIBLE);
 
         // Threads.
         Thread cinemaDatabaseThread = new Thread(() -> occupiedSeats = cinemaDatabaseService.getOccupiedSeats(1));

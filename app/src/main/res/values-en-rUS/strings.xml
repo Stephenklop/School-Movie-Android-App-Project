@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MovieAppSchool</string>
+    <string name="explore">Explore</string>
+    <string name="explore_desc">Let\'s find  your favorite movie</string>
+</resources>

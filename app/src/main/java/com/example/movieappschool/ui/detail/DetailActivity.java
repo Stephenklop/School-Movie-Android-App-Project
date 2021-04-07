@@ -1,7 +1,9 @@
 package com.example.movieappschool.ui.detail;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +22,8 @@ public class DetailActivity extends AppCompatActivity {
     private LocalAppStorage localAppStorage;
     private List<Movie> movies;
     private Movie movie;
+    private View toolbar;
+    private ImageView backButtton;
     private ImageView poster;
     private TextView title;
     private TextView releaseyear;
@@ -27,6 +31,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView movieLength;
     private TextView rating;
     private int movieId;
+    private String previousActivity;
 
     public DetailActivity() {
         localAppStorage = (LocalAppStorage) this.getApplication();
@@ -42,15 +47,31 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_detail);
 
+        Intent intent = getIntent();
+        movieId = intent.getIntExtra("id", -1);
+        previousActivity = intent.getStringExtra("prevActivity");
+
+        toolbar = findViewById(R.id.movie_detail_toolbar);
+        toolbar.findViewById(R.id.hamburger_icon).setVisibility(View.INVISIBLE);
+
+        backButtton = toolbar.findViewById(R.id.back_icon);
+        backButtton.setVisibility(View.VISIBLE);
+        backButtton.setOnClickListener(v -> {
+            try {
+                Intent backIntent = new Intent(getApplicationContext(), Class.forName(previousActivity));
+                backIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                getApplicationContext().startActivity(backIntent);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+
         poster = findViewById(R.id.detail_poster);
         title = findViewById(R.id.detail_title);
         releaseyear = findViewById(R.id.detail_releaseyear);
         genres = findViewById(R.id.detail_genres);
         movieLength = findViewById(R.id.detail_movie_length);
-
-        // Get extra id from intent and store it locally.
-        Intent intent = getIntent();
-        movieId = intent.getIntExtra("id", -1);
 
         if (movieId >= 0) {
             // Load the corresponding movie.
