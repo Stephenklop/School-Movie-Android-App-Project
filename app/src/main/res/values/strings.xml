@@ -3,4 +3,13 @@
     <string name="explore">Ontdek</string>
     <string name="explore_desc">Laten we uw favoriete film zoeken</string>
     <string name="test">Dit is een test</string>
+    <string name="amount_of_tickets_title">Hoeveel mensen gaan er mee?</string>
+    <string name="choose_seats_title">Kies uw plaatsen</string>
+    <string name="choose_date_time_title">Kies uw datum en tijd</string>
+    <string name="date">DATE</string>
+    <string name="time">TIME</string>
+    <string name="seats">stoelen</string>
+    <string name="available">Beschikbaar</string>
+    <string name="reserved">Gereserveerd</string>
+    <string name="selected">Geselecteerd</string>
 </resources>

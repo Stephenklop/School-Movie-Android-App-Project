@@ -114,6 +114,6 @@ public class OrderActivity extends AppCompatActivity {
 
     private void updateSeatTextView() {
         totalOrderSeatsTextView = findViewById(R.id.order_seats_total);
-        totalOrderSeatsTextView.setText(selectedSeats.size() + " / " + totalAmountOfTickets + " stoelen");
+        totalOrderSeatsTextView.setText(selectedSeats.size() + " / " + totalAmountOfTickets + " " + getString(R.string.seats));
     }
 }

@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
-            android:text="Hoeveel mensen gaan er mee?"
+            android:text="@string/amount_of_tickets_title"
             android:textColor="@color/tint1"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -129,7 +129,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="40dp"
-            android:text="Kies uw plaatsen"
+            android:text="@string/choose_seats_title"
             android:textColor="@color/tint1"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -866,7 +866,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Beschikbaar"
+                    android:text="@string/available"
                     android:textColor="@color/tint1"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -891,7 +891,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gereserveerd"
+                    android:text="@string/reserved"
                     android:textColor="@color/tint1"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -915,7 +915,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Geselecteerd"
+                    android:text="@string/selected"
                     android:textColor="@color/tint1"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -928,7 +928,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="40dp"
-            android:text="Kies uw datum en tijd"
+            android:text="@string/choose_date_time_title"
             android:textColor="@color/tint1"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -942,7 +942,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="40dp"
-            android:text="DATE"
+            android:text="@string/date"
             android:textColor="@color/tint4"
             android:textFontWeight="600"
             app:layout_constraintEnd_toEndOf="parent"
@@ -1014,7 +1014,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="40dp"
-            android:text="TIME"
+            android:text="@string/time"
             android:textColor="@color/tint4"
             android:textFontWeight="600"
             app:layout_constraintEnd_toEndOf="parent"
