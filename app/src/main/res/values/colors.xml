@@ -13,6 +13,8 @@
     <color name="tint5">#262627</color>
     <color name="tint6">#101012</color>
 
+    <color name="starColor">#FFCC47</color>
+
     <!-- Gradient Colors -->
     <color name="orangeStartcolor">#FCA760</color>
     <color name="orangeEndcolor">#D46155</color>

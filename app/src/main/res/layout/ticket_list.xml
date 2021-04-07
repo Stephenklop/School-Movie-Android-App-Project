@@ -5,64 +5,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/tint6"
-    tools:context=".MainActivity">
+    android:background="@color/tint6">
 
     <include
-        android:id="@+id/homepage_toolbar"
+        android:id="@+id/tickets_toolbar"
         layout="@layout/toolbar_fragment" />
 
     <TextView
-        android:id="@+id/homepage_title"
+        android:id="@+id/tickets_list_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="100dp"
         android:layout_marginEnd="40dp"
-        android:text="@string/explore"
+        android:text="Mijn Tickets"
         android:textColor="@color/tint1"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/homepage_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tickets_list_toolbar" />
 
     <TextView
-        android:id="@+id/homepage_desc"
+        android:id="@+id/tickets_list_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="40dp"
-        android:text="@string/explore_desc"
-        android:textColor="@color/tint1"
+        android:text="Hier kan u al uw tickets vinden"
+        android:textColor="@color/tint4"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homepage_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tickets_list_title" />
 
     <include
-        android:id="@+id/homepage_search"
+        android:id="@+id/tickets_list_search"
         layout="@layout/search_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homepage_desc" />
+        app:layout_constraintTop_toBottomOf="@+id/tickets_list_description" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/homepage_movies"
+        android:id="@+id/tickets_list_items"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="454dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homepage_search" />
+        app:layout_constraintTop_toBottomOf="@+id/tickets_list_search" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

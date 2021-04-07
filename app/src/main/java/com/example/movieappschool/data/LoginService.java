@@ -4,7 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.movieappschool.domain.User;
 
-public class LoginService extends AppCompatActivity {
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class LoginService extends AppCompactActivity {
+
     private CinemaDatabaseService cinemaDatabaseService;
     private User result;
 

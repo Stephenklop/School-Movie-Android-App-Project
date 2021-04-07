@@ -15,12 +15,14 @@
 
         <!-- Hamburger Icon -->
         <ImageView
+            android:id="@+id/hamburger_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_baseline_menu_24" />
 
         <!-- Close Icon -->
         <ImageView
+            android:id="@+id/close_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="invisible"
@@ -29,6 +31,7 @@
 
         <!-- Back Icon -->
         <ImageView
+            android:id="@+id/back_icon"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:visibility="invisible"
@@ -36,6 +39,7 @@
 
         <!-- Flag Icon -->
         <ImageView
+            android:id="@+id/flag_icon"
             android:layout_width="45dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"

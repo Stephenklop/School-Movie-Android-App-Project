@@ -75,6 +75,26 @@ public class CinemaDatabaseService {
         return result;
     }
 
+    public List<Integer> getOccupiedSeats(int showId) {
+        String query = "SELECT chairNr FROM Ticket WHERE showId = '" + showId + "'";
+        List<Integer> result = new ArrayList<>();
+
+        try {
+            connect();
+            executeQuery(query);
+
+            while (resultSet.next()) {
+                result.add(resultSet.getInt(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            disconnect();
+        }
+
+        return result;
+    }
+
     public User doesUserExist(String user, String password) {
         String query = "SELECT * FROM Account WHERE username = '" + user + "' AND password = '" + password + "'";
         Log.d("USER EXIST", query);
