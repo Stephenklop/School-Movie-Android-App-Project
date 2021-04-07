@@ -19,7 +19,6 @@ public class LoginActivity extends AppCompatActivity{
     private Button mLoginButton;
     private EditText mUsernameInput, mPasswordInput;
     private User mUser;
-    private LocalAppStorage localAppStorage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,8 +40,6 @@ public class LoginActivity extends AppCompatActivity{
 
                 mUser = login.executeLogin(Username, Password);
                 if (mUser != null) {
-                    localAppStorage = new LocalAppStorage();
-                    LocalAppStorage.addUser(mUser);
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
                     i.putExtra("userId", mUser.getUserId());
                     i.putExtra("firstName", mUser.getFirstName());

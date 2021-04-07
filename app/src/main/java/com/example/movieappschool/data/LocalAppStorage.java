@@ -10,6 +10,7 @@ import java.util.List;
 
 // Globally accessible data storage class (might be replaced by SQLite later)
 public class LocalAppStorage extends Application {
+    private static boolean isLoggedIn;
     private static List<Movie> movies = new ArrayList<>();
     private static List<User> users = new ArrayList<>();
 
@@ -27,5 +28,9 @@ public class LocalAppStorage extends Application {
 
     public static List<User> getUsers() {
         return users;
+    }
+
+    public static void setLoggedIn() {
+        isLoggedIn = true;
     }
 }

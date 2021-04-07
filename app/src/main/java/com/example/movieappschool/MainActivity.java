@@ -51,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         User mLoggedUser = new User(mUserId, mFirstName, mLastName, mUsername, mAddress, mEmail, mPassword, mDateOfBirth);
 
-        //TODO: Add user to localAppStorage
+        localAppStorage.addUser(mLoggedUser);
+        localAppStorage.setLoggedIn();
 
         // RecyclerView
         recyclerView = findViewById(R.id.homepage_movies);
