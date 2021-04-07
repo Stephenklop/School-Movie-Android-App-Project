@@ -4,12 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SearchView;
 
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
@@ -73,8 +79,28 @@ public class MainActivity extends AppCompatActivity {
             localAppStorage.setMovies(mMovies);
         });
 
+
         Thread adapterThread = new Thread(() -> {
+            Looper.prepare();
             mAdapter = new MovieAdapter(mMovies, MainActivity.this);
+
+            // Setup search function
+            SearchView searchBar = findViewById(R.id.homepage_search);
+
+            searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    System.out.println(newText);
+                    new MovieAdapter(mMovies, MainActivity.this).getFilter().filter(newText);
+                    return false;
+                }
+            });
+
             recyclerView.setAdapter(mAdapter);
         });
 
