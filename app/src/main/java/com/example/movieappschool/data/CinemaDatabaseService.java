@@ -102,4 +102,40 @@ public class CinemaDatabaseService {
 
         return result;
     }
+
+    public User updateUser(int mUserId, String mFirstName, String mLastName, String mUsername, String mAddress, String mEmail, String mPassword, String mDateBirth) {
+        User user;
+        user = doesUserExist(mUsername, mPassword);
+        if (user != null) {
+            return user;
+            //TODO: Show error that the chosen username already exists
+        }
+
+        String query = "UPDATE Account SET username='" + mUsername + "', email='" + mEmail + "', password='" + mPassword + "', firstName='" + mFirstName
+                + "', lastName='" + mLastName + "', dateOfBirth='" + mDateBirth + "', address='" + mAddress + "' WHERE userID='" + mUserId + "'";
+
+        try {
+            connect();
+            executeQuery(query);
+
+            while (resultSet.next()) {
+                mUserId = resultSet.getInt("userID");
+                mUsername = resultSet.getString("username");
+                mFirstName = resultSet.getString("firstName");
+                mLastName = resultSet.getString("lastName");
+                mAddress = resultSet.getString("address");
+                mEmail = resultSet.getString("email");
+                mPassword = resultSet.getString("password");
+                mDateBirth = resultSet.getString("dateOfBirth");
+                user = new User(mUserId, mFirstName, mLastName, mUsername, mAddress, mEmail, mPassword, mDateBirth);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getMessage();
+        } finally {
+            disconnect();
+        }
+
+        return user;
+    }
 }

@@ -40,7 +40,8 @@ public class LoginActivity extends AppCompatActivity{
 
                 mUser = login.executeLogin(Username, Password);
                 if (mUser != null) {
-                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    // Change to main
+                    Intent i = new Intent(LoginActivity.this, AccountActivity.class);
                     i.putExtra("userId", mUser.getUserId());
                     i.putExtra("firstName", mUser.getFirstName());
                     i.putExtra("lastName", mUser.getLastName());

@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         User mLoggedUser = new User(mUserId, mFirstName, mLastName, mUsername, mAddress, mEmail, mPassword, mDateOfBirth);
 
-        localAppStorage.addUser(mLoggedUser);
+        localAppStorage.setUser(mLoggedUser);
         localAppStorage.setLoggedIn();
 
         // RecyclerView

@@ -12,11 +12,7 @@ import java.util.List;
 public class LocalAppStorage extends Application {
     private static boolean isLoggedIn;
     private static List<Movie> movies = new ArrayList<>();
-    private static List<User> users = new ArrayList<>();
-
-    public static void addUser(User user) {
-        users.add(user);
-    }
+    private static User user;
 
     public static void setMovies(List<Movie> movies) {
         LocalAppStorage.movies = movies;
@@ -26,8 +22,16 @@ public class LocalAppStorage extends Application {
         return movies;
     }
 
-    public static List<User> getUsers() {
-        return users;
+    public static User getUser() {
+        return user;
+    }
+
+    public static void setUser(User mUser) {
+        user = mUser;
+    }
+
+    public static void deleteUser() {
+        user = null;
     }
 
     public static void setLoggedIn() {
