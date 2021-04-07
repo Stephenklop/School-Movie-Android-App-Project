@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movieappschool.R;
+import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Movie;
 import com.example.movieappschool.domain.Seat;
 import com.example.movieappschool.domain.Show;
@@ -19,14 +20,15 @@ import java.util.List;
 
 public class TicketListActivity extends AppCompatActivity {
 
-    List<Ticket> ticketList = new ArrayList<Ticket>();
-    List<Movie> movieList = new ArrayList<Movie>();
-    List<Seat> seatList = new ArrayList<Seat>();
-    List<Show> showList = new ArrayList<Show>();
+//    List<Ticket> ticketList = new ArrayList<Ticket>();
+//    List<Movie> movieList = new ArrayList<Movie>();
+//    List<Seat> seatList = new ArrayList<Seat>();
+//    List<Show> showList = new ArrayList<Show>();
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    LocalAppStorage localAppStorage = new LocalAppStorage();
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -37,6 +39,7 @@ public class TicketListActivity extends AppCompatActivity {
         fillMovieList();
         fillSeatList();
         fillShowList();
+
 
         recyclerView = findViewById(R.id.tickets_list_items);
 
@@ -49,7 +52,7 @@ public class TicketListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new RecyclerViewAdapter(ticketList);
+        mAdapter = new RecyclerViewAdapter(this, /*this.getApplication()*/localAppStorage);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -59,12 +62,19 @@ public class TicketListActivity extends AppCompatActivity {
         Ticket T3 = new Ticket(3, 1, 50, 1, 10.0);
         Ticket T4 = new Ticket(4, 2, 15, 1, 10.0);
         Ticket T5 = new Ticket(5, 2, 16, 1, 10.0);
+        List<Ticket> ticketList = new ArrayList<Ticket>();
         ticketList.addAll(Arrays.asList(new Ticket[] { T1, T2, T3, T4, T5 }));
+        localAppStorage.setTicketList(ticketList);
     }
 
     private void fillMovieList() {
         Movie M1 = new Movie(791373, "Zack Snyder's Justice League", "Gevoed door het herstelde vertrouwen in de mensheid en geïnspireerd door de onbaatzuchtige daad van Superman, roept Bruce Wayne de hulp in van zijn nieuwe bondgenoot, Diana Prince, om het hoofd te bieden aan een nog grotere vijand. Samen werken Batman en Wonder Woman snel om een team van meta-mensen te vinden en te rekruteren om deze nieuw ontwaakte dreiging te weerstaan. Maar ondanks de vorming van deze ongekende groep helden - Batman, Wonder Woman, Aquaman, Cyborg en The Flash - is het misschien al te laat om de planeet te redden van een aanval van catastrofale omvang.", "NL", null, "2021", "https://www.themoviedb.org/t/p/w220_and_h330_face/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg", 0.0, 0);
+        Movie M2 = new Movie(123456, "Test", "Gevoed door het herstelde vertrouwen in de mensheid en geïnspireerd door de onbaatzuchtige daad van Superman, roept Bruce Wayne de hulp in van zijn nieuwe bondgenoot, Diana Prince, om het hoofd te bieden aan een nog grotere vijand. Samen werken Batman en Wonder Woman snel om een team van meta-mensen te vinden en te rekruteren om deze nieuw ontwaakte dreiging te weerstaan. Maar ondanks de vorming van deze ongekende groep helden - Batman, Wonder Woman, Aquaman, Cyborg en The Flash - is het misschien al te laat om de planeet te redden van een aanval van catastrofale omvang.", "NL", null, "2021", "https://www.themoviedb.org/t/p/w220_and_h330_face/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg", 0.0, 0);
+
+        List<Movie> movieList = new ArrayList<Movie>();
         movieList.add(M1);
+        movieList.add(M2);
+        localAppStorage.setMovies(movieList);
     }
 
     private void fillSeatList() {
@@ -118,10 +128,14 @@ public class TicketListActivity extends AppCompatActivity {
         Seat S48 = new Seat(48, 6);
         Seat S49 = new Seat(49, 6);
         Seat S50 = new Seat(50, 6);
+        List<Seat> seatList = new ArrayList<Seat>();
         seatList.addAll(Arrays.asList(new Seat[] { S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16, S17, S18, S19, S20, S21, S22, S23, S24, S25, S26, S27, S28, S29, S30, S31, S32, S33, S34, S35, S36, S37, S38, S39, S40, S41, S42, S43, S44, S45, S46, S47, S48, S49, S50}));
+        localAppStorage.setSeatList(seatList);
     }
     private void fillShowList() {
-        Show SH1 = new Show(791373, new Date(2021, 04, 10), 1, 3);
+        Show SH1 = new Show(791373, "2021-04-10 15:10:00", 1, 3);
+        List<Show> showList = new ArrayList<Show>();
         showList.add(SH1);
+        localAppStorage.setShowList(showList);
     }
 }
