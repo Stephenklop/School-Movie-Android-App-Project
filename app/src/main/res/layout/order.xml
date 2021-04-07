@@ -55,36 +55,9 @@
                     android:textColor="@color/tint4"
                     android:textSize="16sp" />
 
-                <LinearLayout
-                    android:layout_width="60dp"
-                    android:layout_height="38dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/purple_gradient_small"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:id="@+id/order_person_picker_child_left"
-                        android:layout_width="22dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="3dp"
-                        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
-
-                    <TextView
-                        android:id="@+id/order_person_picker_child_number"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="@color/tint1"
-                        android:textSize="16sp" />
-
-                    <ImageView
-                        android:id="@+id/order_person_picker_child_right"
-                        android:layout_width="22dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="3dp"
-                        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
-                </LinearLayout>
+                <include
+                    android:id="@+id/child_ticket_picker"
+                    layout="@layout/custom_picker_fragment"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -109,36 +82,9 @@
                     android:textColor="@color/tint4"
                     android:textSize="16sp" />
 
-                <LinearLayout
-                    android:layout_width="60dp"
-                    android:layout_height="38dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/purple_gradient_small"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:id="@+id/order_person_picker_adult_left"
-                        android:layout_width="22dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="3dp"
-                        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
-
-                    <TextView
-                        android:id="@+id/order_person_picker_adult_number"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="@color/tint1"
-                        android:textSize="16sp" />
-
-                    <ImageView
-                        android:id="@+id/order_person_picker_adult_right"
-                        android:layout_width="22dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="3dp"
-                        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
-                </LinearLayout>
+                <include
+                    android:id="@+id/adult_ticket_picker"
+                    layout="@layout/custom_picker_fragment"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -162,36 +108,9 @@
                     android:textColor="@color/tint4"
                     android:textSize="16sp" />
 
-                <LinearLayout
-                    android:layout_width="60dp"
-                    android:layout_height="38dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/purple_gradient_small"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:id="@+id/order_person_picker_senior_left"
-                        android:layout_width="22dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="3dp"
-                        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
-
-                    <TextView
-                        android:id="@+id/order_person_picker_senior_number"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="@color/tint1"
-                        android:textSize="16sp" />
-
-                    <ImageView
-                        android:id="@+id/order_person_picker_senior_right"
-                        android:layout_width="22dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="3dp"
-                        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
-                </LinearLayout>
+                <include
+                    android:id="@+id/senior_ticket_picker"
+                    layout="@layout/custom_picker_fragment"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -237,7 +156,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
             android:gravity="center"
-            android:text="1 / 3 stoelen"
+            android:text="0 / 0 stoelen"
             android:textColor="@color/tint4"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
