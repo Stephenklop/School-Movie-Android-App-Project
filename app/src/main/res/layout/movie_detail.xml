@@ -10,63 +10,8 @@
         android:layout_width="match_parent"
         android:background="@color/tint6">
 
-    <include
-        android:id="@+id/movie_detail_toolbar"
-        layout="@layout/toolbar_fragment" />
-
-    <ImageView
-        android:id="@+id/detail_poster"
-        android:layout_width="190dp"
-        android:layout_height="302dp"
-        android:layout_marginStart="110dp"
-        android:layout_marginEnd="111dp"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
-
-    <TextView
-        android:id="@+id/detail_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="138dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="138dp"
-        android:textSize="20sp"
-        android:text="title"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detail_poster" />
-
-    <TextView
-        android:id="@+id/detail_genres"
-        android:layout_width="match_parent"
-        android:background="@color/tint6">
-
-        <!--    <FrameLayout-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="match_parent"-->
-        <!--        app:layout_constraintBottom_toTopOf="@+id/include"-->
-        <!--        app:layout_constraintEnd_toEndOf="parent"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"-->
-        <!--        app:layout_constraintTop_toTopOf="parent">-->
-
-        <!--        <ImageView-->
-        <!--            android:id="@+id/detail_background_image"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:scaleType="fitXY" />-->
-
-        <!--        <ImageView-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:scaleType="fitXY"-->
-        <!--            app:srcCompat="@drawable/movie_detail_background_fade" />-->
-        <!--    </FrameLayout>-->
-
         <include
-            android:id="@+id/include"
+            android:id="@+id/movie_detail_toolbar"
             layout="@layout/toolbar_fragment" />
 
         <ImageView
@@ -78,7 +23,7 @@
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include" />
+            app:layout_constraintTop_toBottomOf="@+id/movie_detail_toolbar" />
 
         <TextView
             android:id="@+id/detail_title"

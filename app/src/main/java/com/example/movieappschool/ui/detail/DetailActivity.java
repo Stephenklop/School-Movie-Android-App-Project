@@ -25,6 +25,7 @@ public class DetailActivity extends AppCompatActivity {
     private LocalAppStorage localAppStorage;
     private List<Movie> movies;
     private Movie movie;
+    private View toolbar;
     private ImageView backgroundImage, poster, starOne, starTwo, starThree, starFour, starFive, backButton;
     private TextView title, releaseyear, genres, movieLength, rating, description, textRating;
     private Button showMoreButton;
@@ -52,9 +53,9 @@ public class DetailActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.movie_detail_toolbar);
         toolbar.findViewById(R.id.hamburger_icon).setVisibility(View.INVISIBLE);
 
-        backButtton = toolbar.findViewById(R.id.back_icon);
-        backButtton.setVisibility(View.VISIBLE);
-        backButtton.setOnClickListener(v -> {
+        backButton = toolbar.findViewById(R.id.back_icon);
+        backButton.setVisibility(View.VISIBLE);
+        backButton.setOnClickListener(v -> {
             try {
                 Intent backIntent = new Intent(getApplicationContext(), Class.forName(previousActivity));
                 backIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
