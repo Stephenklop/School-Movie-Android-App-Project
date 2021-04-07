@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ticket_image"
+        android:layout_width="107dp"
+        android:layout_height="186dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ticket_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Datum:"
+        app:layout_constraintStart_toEndOf="@+id/ticket_image"
+        app:layout_constraintTop_toTopOf="@+id/ticket_image" />
+
+    <TextView
+        android:id="@+id/ticket_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Rij:"
+        app:layout_constraintStart_toEndOf="@+id/ticket_image"
+        app:layout_constraintTop_toBottomOf="@+id/ticket_time" />
+
+    <TextView
+        android:id="@+id/ticket_chair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Stoel:"
+        app:layout_constraintStart_toEndOf="@+id/ticket_image"
+        app:layout_constraintTop_toBottomOf="@+id/ticket_row" />
+
+    <TextView
+        android:id="@+id/ticket_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Tijd:"
+        app:layout_constraintStart_toEndOf="@+id/ticket_image"
+        app:layout_constraintTop_toBottomOf="@+id/ticket_hall" />
+
+    <TextView
+        android:id="@+id/ticket_hall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Zaal:"
+        app:layout_constraintStart_toEndOf="@+id/ticket_image"
+        app:layout_constraintTop_toBottomOf="@+id/ticket_date" />
+
+    <Button
+        android:id="@+id/ticket_QRcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="QR Code"
+        app:layout_constraintBottom_toBottomOf="@+id/ticket_image"
+        app:layout_constraintStart_toEndOf="@+id/ticket_image" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

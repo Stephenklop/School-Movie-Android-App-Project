@@ -1,4 +1,10 @@
 package com.example.movieappschool.ui.ticket;
 
-public class TicketListActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class TicketListActivity extends AppCompatActivity {
+    @Override
+    public void OnCreate(){
+
+    }
 }
