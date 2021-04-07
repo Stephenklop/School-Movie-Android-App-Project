@@ -1,9 +1,11 @@
 package com.example.movieappschool.ui.order;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +20,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OrderActivity extends AppCompatActivity {
+    private View toolbar;
+    private ImageView backButtton;
     private SeatConfigurator seatConfigurator;
 
     // Input
@@ -35,6 +39,12 @@ public class OrderActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
+
+        toolbar = findViewById(R.id.order_toolbar);
+        toolbar.findViewById(R.id.hamburger_icon).setVisibility(View.INVISIBLE);
+
+        backButtton = toolbar.findViewById(R.id.back_icon);
+        backButtton.setVisibility(View.VISIBLE);
 
         // Disable the seats that are occupied.
         seatConfigurator.setOccupiedSeats();
