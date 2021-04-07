@@ -55,6 +55,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         holder.parentLayout.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailActivity.class);
             intent.putExtra("id", mMovies.get(position).getId());
+            intent.putExtra("prevActivity", "com.example.movieappschool.MainActivity");
 
             context.startActivity(intent);
         });

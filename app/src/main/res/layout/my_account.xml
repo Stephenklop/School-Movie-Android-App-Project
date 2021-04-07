@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView android:layout_height="match_parent" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,11 +10,11 @@
     android:background="@color/tint6">
 
     <include
-        android:id="@+id/register_toolbar"
+        android:id="@+id/my_account_toolbar"
         layout="@layout/toolbar_fragment" />
 
     <TextView
-        android:id="@+id/register_title"
+        android:id="@+id/my_account_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -21,10 +24,10 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_toolbar" />
 
     <TextView
-        android:id="@+id/register_desc"
+        android:id="@+id/my_account_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -35,10 +38,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_title" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_title" />
 
     <TextView
-        android:id="@+id/register_username"
+        android:id="@+id/my_account_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -49,10 +52,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_desc" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_desc" />
 
     <EditText
-        android:id="@+id/register_username_input"
+        android:id="@+id/my_account_username_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -61,10 +64,10 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_username" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_username" />
 
     <TextView
-        android:id="@+id/register_firstname"
+        android:id="@+id/my_account_firstname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -75,10 +78,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_username_input" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_username_input" />
 
     <EditText
-        android:id="@+id/register_firstname_input"
+        android:id="@+id/my_account_firstname_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -87,10 +90,10 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_firstname" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_firstname" />
 
     <TextView
-        android:id="@+id/register_lastname"
+        android:id="@+id/my_account_lastname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -101,10 +104,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_firstname_input" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_firstname_input" />
 
     <EditText
-        android:id="@+id/register_lastname_input"
+        android:id="@+id/my_account_lastname_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -113,10 +116,10 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_lastname" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_lastname" />
 
     <TextView
-        android:id="@+id/register_email"
+        android:id="@+id/my_account_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -127,10 +130,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_lastname_input" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_lastname_input" />
 
     <EditText
-        android:id="@+id/register_email_input"
+        android:id="@+id/my_account_email_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -139,10 +142,10 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_email" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_email" />
 
     <TextView
-        android:id="@+id/register_password"
+        android:id="@+id/my_account_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -153,10 +156,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_email_input" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_email_input" />
 
     <EditText
-        android:id="@+id/register_password_input"
+        android:id="@+id/my_account_password_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -165,10 +168,10 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_password" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_password" />
 
     <TextView
-        android:id="@+id/register_birthdate"
+        android:id="@+id/my_account_birthdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -179,10 +182,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_password_input" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_password_input" />
 
     <EditText
-        android:id="@+id/register_birthdate_input"
+        android:id="@+id/my_account_birthdate_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -195,24 +198,24 @@
         android:focusableInTouchMode="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_birthdate" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_birthdate" />
 
     <TextView
-        android:id="@+id/register_address"
+        android:id="@+id/my_account_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="40dp"
-        android:text="Straat"
+        android:text="Adres"
         android:textColor="@color/tint4"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_birthdate_input" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_birthdate_input" />
 
     <EditText
-        android:id="@+id/register_address_input"
+        android:id="@+id/my_account_address_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -221,109 +224,22 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_address" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_address" />
 
-    <TextView
-        android:id="@+id/register_city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="40dp"
-        android:text="Stad"
-        android:textColor="@color/tint4"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_address_input" />
-
-    <EditText
-        android:id="@+id/register_city_input"
+    <Button
+        android:id="@+id/updateButton"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="40dp"
-        android:background="@drawable/input_background"
+        android:background="@drawable/purple_gradient"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Update"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_city" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_address_input" />
 
-    <TextView
-        android:id="@+id/register_province"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="40dp"
-        android:text="Provincie"
-        android:textColor="@color/tint4"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_city_input" />
-
-    <EditText
-        android:id="@+id/register_province_input"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/input_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_province" />
-
-    <TextView
-        android:id="@+id/register_country"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="40dp"
-        android:text="Land"
-        android:textColor="@color/tint4"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_province_input" />
-
-    <EditText
-        android:id="@+id/register_country_input"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/input_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_country" />
-
-    <TextView
-        android:id="@+id/register_zipcode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="40dp"
-        android:text="Postcode"
-        android:textColor="@color/tint4"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_country_input" />
-
-    <EditText
-        android:id="@+id/register_zipcode_input"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/input_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_zipcode" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
