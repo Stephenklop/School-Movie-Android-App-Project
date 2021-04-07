@@ -123,6 +123,22 @@ public class CinemaDatabaseService {
         return result;
     }
 
+
+    public void createAccount(String username, String firstname, String lastname, String password, String email, String address, String datebirth) {
+        String query = "INSERT INTO Account (username, firstName, lastName, password, email, address, dateOfBirth) VALUES ('" + username + "', '" + firstname +
+                "', ' "+ lastname + "', '" + password + "', '" + email + "', '" + address + "', '" + datebirth + "')";
+
+        try {
+            connect();
+            executeQuery(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            disconnect();
+        }
+    }
+  
     public User updateUser(int mUserId, String mFirstName, String mLastName, String mUsername, String mAddress, String mEmail, String mPassword, String mDateBirth) {
         User user;
         user = doesUserExist(mUsername, mPassword);
@@ -151,7 +167,6 @@ public class CinemaDatabaseService {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            e.getMessage();
         } finally {
             disconnect();
         }
