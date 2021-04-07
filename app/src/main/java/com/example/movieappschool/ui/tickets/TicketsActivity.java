@@ -30,5 +30,15 @@ public class TicketsActivity extends AppCompatActivity {
 
             getApplicationContext().startActivity(intent, options.toBundle());
         });
+
+        hamburgerIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+            intent.putExtra("prevActivity", getClass().getName());
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            ActivityOptions options = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.fade_out);
+
+            getApplicationContext().startActivity(intent, options.toBundle());
+        });
     }
 }
