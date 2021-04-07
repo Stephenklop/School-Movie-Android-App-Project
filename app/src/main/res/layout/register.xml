@@ -191,22 +191,18 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="40dp"
             android:background="@drawable/input_background"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_birthdate" />
 
         <TextView
-            android:id="@+id/register_street"
+            android:id="@+id/register_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="40dp"
-            android:text="Straat"
+            android:text="Adres"
             android:textColor="@color/tint4"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -214,7 +210,7 @@
             app:layout_constraintTop_toBottomOf="@+id/register_birthdate_input" />
 
         <EditText
-            android:id="@+id/register_street_input"
+            android:id="@+id/register_address_input"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="40dp"
@@ -223,118 +219,14 @@
             android:background="@drawable/input_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_street" />
-
-        <TextView
-            android:id="@+id/register_city"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="40dp"
-            android:text="Stad"
-            android:textColor="@color/tint4"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_street_input" />
-
-        <EditText
-            android:id="@+id/register_city_input"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="40dp"
-            android:background="@drawable/input_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_city" />
-
-        <TextView
-            android:id="@+id/register_province"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="40dp"
-            android:text="Provincie"
-            android:textColor="@color/tint4"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_city_input" />
-
-        <EditText
-            android:id="@+id/register_province_input"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="40dp"
-            android:background="@drawable/input_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_province" />
-
-        <TextView
-            android:id="@+id/register_country"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="40dp"
-            android:text="Land"
-            android:textColor="@color/tint4"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_province_input" />
-
-        <EditText
-            android:id="@+id/register_country_input"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="40dp"
-            android:background="@drawable/input_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_country" />
-
-        <TextView
-            android:id="@+id/register_zipcode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="40dp"
-            android:text="Postcode"
-            android:textColor="@color/tint4"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_country_input" />
-
-        <EditText
-            android:id="@+id/register_zipcode_input"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="40dp"
-            android:background="@drawable/input_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_zipcode" />
+            app:layout_constraintTop_toBottomOf="@+id/register_address" />
 
         <Button
             android:id="@+id/register_submit_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="40dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="30dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="40dp"
             android:background="@drawable/purple_gradient"
@@ -343,7 +235,6 @@
             android:text="Registreer"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_zipcode_input" />
+            app:layout_constraintTop_toBottomOf="@+id/register_address_input" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

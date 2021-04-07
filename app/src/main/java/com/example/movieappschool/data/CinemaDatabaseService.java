@@ -9,17 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CinemaDatabaseService {
-    private String connectionUrl;
-    private String user;
-    private String password;
+    private final String connectionUrl = "jdbc:jtds:sqlserver://aei-sql2.avans.nl:1443/CinemaApplicationDB";
+    private final String user = "MovieB2";
+    private final String password = "AnikaWante";
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
 
-    public CinemaDatabaseService(String connectionUrl, String user, String password) {
-        this.connectionUrl = connectionUrl;
-        this.user = user;
-        this.password = password;
+    public CinemaDatabaseService() {
+
     }
 
     private void connect() throws SQLException {
@@ -97,5 +95,20 @@ public class CinemaDatabaseService {
         }
 
         return result;
+    }
+
+    public void createAccount(String username, String firstname, String lastname, String password, String email, String address, String datebirth) {
+        String query = "INSERT INTO Account (username, firstName, lastName, password, email, address, dateOfBirth) VALUES ('" + username + "', '" + firstname +
+                "', ' "+ lastname + "', '" + password + "', '" + email + "', '" + address + "', '" + datebirth + "')";
+
+        try {
+            connect();
+            executeQuery(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            disconnect();
+        }
     }
 }

@@ -198,7 +198,7 @@
         app:layout_constraintTop_toBottomOf="@+id/register_birthdate" />
 
     <TextView
-        android:id="@+id/register_street"
+        android:id="@+id/register_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -212,7 +212,7 @@
         app:layout_constraintTop_toBottomOf="@+id/register_birthdate_input" />
 
     <EditText
-        android:id="@+id/register_street_input"
+        android:id="@+id/register_address_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -221,7 +221,7 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_street" />
+        app:layout_constraintTop_toBottomOf="@+id/register_address" />
 
     <TextView
         android:id="@+id/register_city"
@@ -235,7 +235,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_street_input" />
+        app:layout_constraintTop_toBottomOf="@+id/register_address_input" />
 
     <EditText
         android:id="@+id/register_city_input"

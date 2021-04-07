@@ -36,7 +36,7 @@ public class OrderActivity extends AppCompatActivity {
     private List<Seat> selectedSeats = new ArrayList<>();
 
     public OrderActivity() {
-        cinemaDatabaseService = new CinemaDatabaseService("jdbc:jtds:sqlserver://aei-sql2.avans.nl:1443/CinemaApplicationDB", "MovieB2", "AnikaWante");
+        cinemaDatabaseService = new CinemaDatabaseService();
 
     }
 

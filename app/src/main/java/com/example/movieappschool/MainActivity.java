@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Integer> databaseIdsResult;
 
     public MainActivity() {
-        cinemaDatabaseService = new CinemaDatabaseService("jdbc:jtds:sqlserver://aei-sql2.avans.nl:1443/CinemaApplicationDB", "MovieB2", "AnikaWante");
+        cinemaDatabaseService = new CinemaDatabaseService();
         movieAPIService = new MovieAPIService(API_KEY, "en-US");
         localAppStorage = (LocalAppStorage) this.getApplication();
     }
