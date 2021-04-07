@@ -1,11 +1,13 @@
 package com.example.movieappschool.logic;
 
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.movieappschool.R;
 import com.example.movieappschool.domain.Seat;
+import com.example.movieappschool.domain.Ticket;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,17 +16,23 @@ import static com.example.movieappschool.logic.ResourceHelper.getResId;
 
 public class SeatConfigurator {
     private final List<Seat> selectedSeats;
-    private final int numberOfTickets;
+    private int numberOfTickets;
     private final List<Integer> occupiedSeats;
     private final AppCompatActivity activityView;
     private boolean selectionDisabled;
+    private ConfiguratorListener listener;
 
-    public SeatConfigurator(int numberOfTickets, List<Integer> occupiedSeats, AppCompatActivity activityView) {
+    public SeatConfigurator(int numberOfTickets, List<Integer> occupiedSeats, AppCompatActivity activityView, ConfiguratorListener listener) {
         selectedSeats = new ArrayList<>();
         this.numberOfTickets = numberOfTickets;
         this.occupiedSeats = occupiedSeats;
         this.activityView = activityView;
+        this.listener = listener;
         selectionDisabled = false;
+
+        if (numberOfTickets <= 0) {
+            disableRemainingSeats();
+        }
     }
 
     // Disable the preoccupied seats.
@@ -69,10 +77,30 @@ public class SeatConfigurator {
         }
     }
 
+    public void updateNumberOfTickets(int numberOfTickets) {
+        // There are more or less tickets available.
+        if (numberOfTickets > this.numberOfTickets) {
+            // More tickets available.
+            this.numberOfTickets = numberOfTickets;
+            checkTicketLimit();
+        } else {
+            // Less tickets available.
+
+            // Remove n amount of seats to match the new number of tickets (starting at the last selected).
+            for (int i = this.selectedSeats.size(); i > numberOfTickets; i--) {
+                selectedSeats.remove(i - 1);
+            }
+
+            this.numberOfTickets = numberOfTickets;
+            checkTicketLimit();
+        }
+    }
+
     // Add a seat seat to the selected seats array.
     private void addSeat(int seatNumber) {
         if (selectedSeats.size() < numberOfTickets) {
             selectedSeats.add(new Seat(seatNumber, getRow(seatNumber)));
+            listener.onChange(selectedSeats);
         }
     }
 
@@ -83,6 +111,7 @@ public class SeatConfigurator {
 
             if (seat.getSeatNumber() == seatNumber) {
                 selectedSeats.remove(i);
+                listener.onChange(selectedSeats);
             }
         }
     }
@@ -137,5 +166,9 @@ public class SeatConfigurator {
         }
 
         return (int) Math.ceil((seatNumber - 5.0) * 0.111 + 1);
+    }
+
+    public interface ConfiguratorListener {
+        void onChange(List<Seat> seats);
     }
 }
