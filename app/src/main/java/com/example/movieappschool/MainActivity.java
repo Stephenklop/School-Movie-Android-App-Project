@@ -21,6 +21,7 @@ import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.data.MovieAPIService;
 import com.example.movieappschool.domain.Movie;
+import com.example.movieappschool.domain.User;
 import com.example.movieappschool.ui.detail.DetailActivity;
 import com.example.movieappschool.ui.home.MovieAdapter;
 import com.example.movieappschool.ui.menu.MenuActivity;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Integer> databaseIdsResult;
 
     public MainActivity() {
-        cinemaDatabaseService = new CinemaDatabaseService("jdbc:jtds:sqlserver://aei-sql2.avans.nl:1443/CinemaApplicationDB", "MovieB2", "AnikaWante");
+        cinemaDatabaseService = new CinemaDatabaseService();
         movieAPIService = new MovieAPIService(API_KEY, "en-US");
         localAppStorage = (LocalAppStorage) this.getApplication();
     }
