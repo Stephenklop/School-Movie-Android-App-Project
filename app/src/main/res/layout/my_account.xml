@@ -7,11 +7,11 @@
     android:background="@color/tint6">
 
     <include
-        android:id="@+id/my_account_toolbar"
+        android:id="@+id/register_toolbar"
         layout="@layout/toolbar_fragment" />
 
     <TextView
-        android:id="@+id/my_account_title"
+        android:id="@+id/register_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -21,10 +21,10 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/register_toolbar" />
 
     <TextView
-        android:id="@+id/my_account_desc"
+        android:id="@+id/register_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -35,10 +35,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_title" />
+        app:layout_constraintTop_toBottomOf="@+id/register_title" />
 
     <TextView
-        android:id="@+id/my_account_username"
+        android:id="@+id/register_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -49,10 +49,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_desc" />
+        app:layout_constraintTop_toBottomOf="@+id/register_desc" />
 
     <EditText
-        android:id="@+id/my_account_username_input"
+        android:id="@+id/register_username_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -61,10 +61,10 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_username" />
+        app:layout_constraintTop_toBottomOf="@+id/register_username" />
 
     <TextView
-        android:id="@+id/my_account_firstname"
+        android:id="@+id/register_firstname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -75,10 +75,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_username_input" />
+        app:layout_constraintTop_toBottomOf="@+id/register_username_input" />
 
     <EditText
-        android:id="@+id/my_account_firstname_input"
+        android:id="@+id/register_firstname_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -87,10 +87,10 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_firstname" />
+        app:layout_constraintTop_toBottomOf="@+id/register_firstname" />
 
     <TextView
-        android:id="@+id/my_account_lastname"
+        android:id="@+id/register_lastname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -101,10 +101,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_firstname_input" />
+        app:layout_constraintTop_toBottomOf="@+id/register_firstname_input" />
 
     <EditText
-        android:id="@+id/my_account_lastname_input"
+        android:id="@+id/register_lastname_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -113,10 +113,10 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_lastname" />
+        app:layout_constraintTop_toBottomOf="@+id/register_lastname" />
 
     <TextView
-        android:id="@+id/my_account_email"
+        android:id="@+id/register_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -127,10 +127,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_lastname_input" />
+        app:layout_constraintTop_toBottomOf="@+id/register_lastname_input" />
 
     <EditText
-        android:id="@+id/my_account_email_input"
+        android:id="@+id/register_email_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -139,10 +139,10 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_email" />
+        app:layout_constraintTop_toBottomOf="@+id/register_email" />
 
     <TextView
-        android:id="@+id/my_account_password"
+        android:id="@+id/register_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -153,10 +153,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_email_input" />
+        app:layout_constraintTop_toBottomOf="@+id/register_email_input" />
 
     <EditText
-        android:id="@+id/my_account_password_input"
+        android:id="@+id/register_password_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -165,10 +165,10 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_password" />
+        app:layout_constraintTop_toBottomOf="@+id/register_password" />
 
     <TextView
-        android:id="@+id/my_account_birthdate"
+        android:id="@+id/register_birthdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -179,10 +179,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_password_input" />
+        app:layout_constraintTop_toBottomOf="@+id/register_password_input" />
 
     <EditText
-        android:id="@+id/my_account_birthdate_input"
+        android:id="@+id/register_birthdate_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -195,10 +195,10 @@
         android:focusableInTouchMode="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_birthdate" />
+        app:layout_constraintTop_toBottomOf="@+id/register_birthdate" />
 
     <TextView
-        android:id="@+id/my_account_street"
+        android:id="@+id/register_street"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -209,10 +209,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_birthdate_input" />
+        app:layout_constraintTop_toBottomOf="@+id/register_birthdate_input" />
 
     <EditText
-        android:id="@+id/my_account_street_input"
+        android:id="@+id/register_street_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -221,10 +221,10 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_street" />
+        app:layout_constraintTop_toBottomOf="@+id/register_street" />
 
     <TextView
-        android:id="@+id/my_account_city"
+        android:id="@+id/register_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -235,10 +235,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_street_input" />
+        app:layout_constraintTop_toBottomOf="@+id/register_street_input" />
 
     <EditText
-        android:id="@+id/my_account_city_input"
+        android:id="@+id/register_city_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -247,10 +247,10 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_city" />
+        app:layout_constraintTop_toBottomOf="@+id/register_city" />
 
     <TextView
-        android:id="@+id/my_account_province"
+        android:id="@+id/register_province"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -261,10 +261,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_city_input" />
+        app:layout_constraintTop_toBottomOf="@+id/register_city_input" />
 
     <EditText
-        android:id="@+id/my_account_province_input"
+        android:id="@+id/register_province_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -273,10 +273,10 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_province" />
+        app:layout_constraintTop_toBottomOf="@+id/register_province" />
 
     <TextView
-        android:id="@+id/my_account_country"
+        android:id="@+id/register_country"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -287,10 +287,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_province_input" />
+        app:layout_constraintTop_toBottomOf="@+id/register_province_input" />
 
     <EditText
-        android:id="@+id/my_account_country_input"
+        android:id="@+id/register_country_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -299,10 +299,10 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_country" />
+        app:layout_constraintTop_toBottomOf="@+id/register_country" />
 
     <TextView
-        android:id="@+id/my_account_zipcode"
+        android:id="@+id/register_zipcode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -313,10 +313,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_country_input" />
+        app:layout_constraintTop_toBottomOf="@+id/register_country_input" />
 
     <EditText
-        android:id="@+id/my_account_zipcode_input"
+        android:id="@+id/register_zipcode_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -325,5 +325,5 @@
         android:background="@drawable/input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_zipcode" />
+        app:layout_constraintTop_toBottomOf="@+id/register_zipcode" />
 </androidx.constraintlayout.widget.ConstraintLayout>
