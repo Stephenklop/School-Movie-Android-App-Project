@@ -30,7 +30,8 @@ public class MovieParse {
         String posterPath = "https://image.tmdb.org/t/p/w500" + jsonMovieObject.getString("poster_path");
         double ratingAverage = jsonMovieObject.getDouble("vote_average");
         int ratingCount = jsonMovieObject.getInt("vote_count");
+        int movieLength = jsonMovieObject.getInt("runtime");
 
-        return new Movie(id, title, description, language, genres, releaseDate, posterPath, ratingAverage, ratingCount);
+        return new Movie(id, title, description, language, genres, releaseDate, posterPath, ratingAverage, ratingCount, movieLength);
     }
 }
