@@ -37,4 +37,10 @@ public class LocalAppStorage extends Application {
     public static void setLoggedIn() {
         isLoggedIn = true;
     }
+
+    public static boolean getLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public static void setLoggedOut() { isLoggedIn = false; }
 }

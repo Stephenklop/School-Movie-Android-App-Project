@@ -42,13 +42,21 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/menu_login"
+            android:id="@+id/menu_account_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
             android:layout_marginTop="15dp"
             android:textColor="@color/white"
             android:textSize="30sp" />
+
     </LinearLayout>
 
+    <Button
+        android:id="@+id/menu_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:text="logout"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
