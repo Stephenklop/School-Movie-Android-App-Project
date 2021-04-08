@@ -17,7 +17,7 @@ import static com.example.movieappschool.logic.ResourceHelper.getResId;
 public class SeatConfigurator {
     private final List<Seat> selectedSeats;
     private int numberOfTickets;
-    private final List<Integer> occupiedSeats;
+    private List<Integer> occupiedSeats;
     private final AppCompatActivity activityView;
     private boolean selectionDisabled;
     private ConfiguratorListener listener;
@@ -94,6 +94,12 @@ public class SeatConfigurator {
             this.numberOfTickets = numberOfTickets;
             checkTicketLimit();
         }
+    }
+
+    public void updateOccupiedSeats(List<Integer> occupiedSeats) {
+        this.occupiedSeats = occupiedSeats;
+        setOccupiedSeats();
+        setAvailableSeats();
     }
 
     // Add a seat seat to the selected seats array.

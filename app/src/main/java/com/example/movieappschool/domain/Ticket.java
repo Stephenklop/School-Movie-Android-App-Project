@@ -32,4 +32,15 @@ public class Ticket {
     public int getTicketId() {
         return mTicketId;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "mSeatNumber=" + mSeatNumber +
+                ", mUserId=" + mUserId +
+                ", mTicketId=" + mTicketId +
+                ", mShowId=" + mShowId +
+                ", mPrice=" + mPrice +
+                '}';
+    }
 }
