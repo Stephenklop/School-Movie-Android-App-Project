@@ -1,6 +1,5 @@
 package com.example.movieappschool.ui.detail;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,10 +14,9 @@ import com.bumptech.glide.Glide;
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Movie;
-import com.example.movieappschool.ui.home.MovieAdapter;
+import com.example.movieappschool.ui.OrderSuccessActivity;
+import com.example.movieappschool.ui.order.OrderActivity;
 
-import java.lang.reflect.Array;
-import java.util.Date;
 import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
@@ -202,6 +200,19 @@ public class DetailActivity extends AppCompatActivity {
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starFour);
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starFive);
         }
+
+        Button orderButton = findViewById(R.id.detail_button);
+        orderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent orderSuccessIntent = new Intent(getApplicationContext(), OrderActivity.class);
+                orderSuccessIntent.putExtra("movieId", movieId);
+                orderSuccessIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
+                getApplicationContext().startActivity(orderSuccessIntent);
+            }
+        });
     }
 
     public int[] minutesToHoursAndMinutes(int minutes) {

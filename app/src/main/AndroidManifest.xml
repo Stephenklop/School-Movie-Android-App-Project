@@ -15,6 +15,7 @@
         <activity android:name=".ui.RegisterActivity" />
         <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.AccountActivity" />
+        <activity android:name=".ui.OrderSuccessActivity" android:exported="true"/>
         <activity android:name=".ui.order.OrderActivity" android:exported="true"/>
         <activity android:name=".ui.tickets.TicketsActivity" android:exported="true"/>
         <activity android:name=".ui.menu.MenuActivity" android:exported="true"/>
