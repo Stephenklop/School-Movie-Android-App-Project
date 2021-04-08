@@ -1,7 +1,5 @@
 package com.example.movieappschool.domain;
 
-import java.util.Date;
-
 public class Show {
 
     private int mShowId, mHallId, mMovieId;

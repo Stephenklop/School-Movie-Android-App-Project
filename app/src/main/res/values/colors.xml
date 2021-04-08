@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="tint1">#BFC3CE</color>
+    <color name="tint2">#EFEFEF</color>
     <color name="tint4">#58575D</color>
     <color name="tint5">#262627</color>
     <color name="tint6">#101012</color>

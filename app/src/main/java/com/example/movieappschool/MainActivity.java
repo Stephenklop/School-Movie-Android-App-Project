@@ -85,21 +85,21 @@ public class MainActivity extends AppCompatActivity {
             mAdapter = new MovieAdapter(mMovies, MainActivity.this);
 
             // Setup search function
-            SearchView searchBar = findViewById(R.id.homepage_search);
-
-            searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    System.out.println(newText);
-                    new MovieAdapter(mMovies, MainActivity.this).getFilter().filter(newText);
-                    return false;
-                }
-            });
+//            SearchView searchBar = findViewById(R.id.homepage_search);
+//
+//            searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//                @Override
+//                public boolean onQueryTextSubmit(String query) {
+//                    return false;
+//                }
+//
+//                @Override
+//                public boolean onQueryTextChange(String newText) {
+//                    System.out.println(newText);
+//                    new MovieAdapter(mMovies, MainActivity.this).getFilter().filter(newText);
+//                    return false;
+//                }
+//            });
 
             recyclerView.setAdapter(mAdapter);
         });
