@@ -4,13 +4,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.SearchView;
 
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.data.MovieAPIService;
 import com.example.movieappschool.domain.Movie;
+import com.example.movieappschool.domain.User;
+import com.example.movieappschool.ui.detail.DetailActivity;
 import com.example.movieappschool.ui.home.MovieAdapter;
+import com.example.movieappschool.ui.menu.MenuActivity;
 
 import java.util.List;
 
@@ -26,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Integer> databaseIdsResult;
 
     public MainActivity() {
-        cinemaDatabaseService = new CinemaDatabaseService("jdbc:jtds:sqlserver://aei-sql2.avans.nl:1443/CinemaApplicationDB", "MovieB2", "AnikaWante");
+        cinemaDatabaseService = new CinemaDatabaseService();
         movieAPIService = new MovieAPIService(API_KEY, "en-US");
         localAppStorage = (LocalAppStorage) this.getApplication();
     }
@@ -35,6 +49,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Menu
+        View toolBar = findViewById(R.id.homepage_toolbar);
+        ImageView hamburgerIcon = toolBar.findViewById(R.id.hamburger_icon);
+
+        hamburgerIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+            intent.putExtra("prevActivity", getClass().getName());
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            ActivityOptions options = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.fade_out);
+
+            getApplicationContext().startActivity(intent, options.toBundle());
+        });
 
         // RecyclerView
         recyclerView = findViewById(R.id.homepage_movies);
@@ -51,8 +79,28 @@ public class MainActivity extends AppCompatActivity {
             localAppStorage.setMovies(mMovies);
         });
 
+
         Thread adapterThread = new Thread(() -> {
+            Looper.prepare();
             mAdapter = new MovieAdapter(mMovies, MainActivity.this);
+
+            // Setup search function
+//            SearchView searchBar = findViewById(R.id.homepage_search);
+//
+//            searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//                @Override
+//                public boolean onQueryTextSubmit(String query) {
+//                    return false;
+//                }
+//
+//                @Override
+//                public boolean onQueryTextChange(String newText) {
+//                    System.out.println(newText);
+//                    new MovieAdapter(mMovies, MainActivity.this).getFilter().filter(newText);
+//                    return false;
+//                }
+//            });
+
             recyclerView.setAdapter(mAdapter);
         });
 

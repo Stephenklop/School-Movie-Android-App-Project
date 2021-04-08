@@ -2,11 +2,11 @@ package com.example.movieappschool.ui.home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,14 +19,17 @@ import com.example.movieappschool.R;
 import com.example.movieappschool.domain.Movie;
 import com.example.movieappschool.ui.detail.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> implements Filterable {
     private List<Movie> mMovies;
+    private List<Movie> mMoviesFull;
     private Context context;
 
     public MovieAdapter(List<Movie> mMovies, Context context) {
         this.mMovies = mMovies;
+        mMoviesFull = new ArrayList<>(mMovies);
         this.context = context;
     }
 
@@ -55,6 +58,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         holder.parentLayout.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailActivity.class);
             intent.putExtra("id", mMovies.get(position).getId());
+            intent.putExtra("prevActivity", "com.example.movieappschool.MainActivity");
 
             context.startActivity(intent);
         });
@@ -159,4 +163,43 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             starFive = itemView.findViewById(R.id.item_star_five);
         }
     }
+
+    @Override
+    public Filter getFilter() {
+        return movieFilter;
+    }
+
+    private Filter movieFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Movie> filteredList = new ArrayList<>();
+
+            if(constraint == null || constraint.length() == 0) {
+                filteredList.addAll(mMoviesFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+
+
+                for(Movie movie : mMoviesFull) {
+                    System.out.println(movie.getTitle().toLowerCase().contains(filterPattern));
+                    if(movie.getTitle().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(movie);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mMovies.clear();
+            mMovies.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
