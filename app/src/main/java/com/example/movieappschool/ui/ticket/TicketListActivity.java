@@ -42,7 +42,7 @@ public class TicketListActivity extends AppCompatActivity {
         setContentView(R.layout.ticket_list);
 
         // Menu
-        View toolBar = findViewById(R.id.tickets_toolbar);
+        View toolBar = findViewById(R.id.tickets_list_toolbar);
         ImageView hamburgerIcon = toolBar.findViewById(R.id.hamburger_icon);
 
         hamburgerIcon.setOnClickListener(v -> {
