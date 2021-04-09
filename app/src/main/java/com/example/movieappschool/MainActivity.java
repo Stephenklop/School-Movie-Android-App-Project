@@ -4,25 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.SearchView;
 
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.data.MovieAPIService;
 import com.example.movieappschool.domain.Movie;
-import com.example.movieappschool.domain.User;
-import com.example.movieappschool.ui.detail.DetailActivity;
+import com.example.movieappschool.ui.home.GridSpacingItemDecoration;
 import com.example.movieappschool.ui.home.MovieAdapter;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
@@ -66,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
 
         // RecyclerView
         recyclerView = findViewById(R.id.homepage_movies);
-        recyclerView.setHasFixedSize(true);
 
-        layoutManager = new GridLayoutManager(this, 2);
+        layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 60, false, 0));
 
         // Create three new threads.
         Thread cinemaDatabaseThread = new Thread(() -> databaseIdsResult = cinemaDatabaseService.getAllMovieIds());

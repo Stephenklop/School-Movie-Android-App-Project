@@ -17,7 +17,7 @@ import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.ui.AccountActivity;
 import com.example.movieappschool.ui.LoginActivity;
 import com.example.movieappschool.ui.RegisterActivity;
-import com.example.movieappschool.ui.tickets.TicketsActivity;
+import com.example.movieappschool.ui.ticket.TicketListActivity;
 
 public class MenuActivity extends AppCompatActivity {
     private View toolbar;
@@ -81,7 +81,7 @@ public class MenuActivity extends AppCompatActivity {
 
         myTickets = findViewById(R.id.menu_my_tickets);
         myTickets.setOnClickListener(v -> {
-            Intent myTicketsIntent = new Intent(getApplicationContext(), TicketsActivity.class);
+            Intent myTicketsIntent = new Intent(getApplicationContext(), TicketListActivity.class);
             myTicketsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             ActivityOptions options = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.fade_out);
