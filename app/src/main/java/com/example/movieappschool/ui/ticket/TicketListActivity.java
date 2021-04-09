@@ -1,6 +1,10 @@
 package com.example.movieappschool.ui.ticket;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +17,8 @@ import com.example.movieappschool.domain.Movie;
 import com.example.movieappschool.domain.Seat;
 import com.example.movieappschool.domain.Show;
 import com.example.movieappschool.domain.Ticket;
+import com.example.movieappschool.ui.menu.MenuActivity;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -34,6 +40,20 @@ public class TicketListActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ticket_list);
+
+        // Menu
+        View toolBar = findViewById(R.id.tickets_toolbar);
+        ImageView hamburgerIcon = toolBar.findViewById(R.id.hamburger_icon);
+
+        hamburgerIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+            intent.putExtra("prevActivity", getClass().getName());
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            ActivityOptions options = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.fade_out);
+
+            getApplicationContext().startActivity(intent, options.toBundle());
+        });
 
         fillTicketList();
         fillMovieList();
@@ -68,8 +88,8 @@ public class TicketListActivity extends AppCompatActivity {
     }
 
     private void fillMovieList() {
-        Movie M1 = new Movie(791373, "Zack Snyder's Justice League", "Gevoed door het herstelde vertrouwen in de mensheid en geïnspireerd door de onbaatzuchtige daad van Superman, roept Bruce Wayne de hulp in van zijn nieuwe bondgenoot, Diana Prince, om het hoofd te bieden aan een nog grotere vijand. Samen werken Batman en Wonder Woman snel om een team van meta-mensen te vinden en te rekruteren om deze nieuw ontwaakte dreiging te weerstaan. Maar ondanks de vorming van deze ongekende groep helden - Batman, Wonder Woman, Aquaman, Cyborg en The Flash - is het misschien al te laat om de planeet te redden van een aanval van catastrofale omvang.", "NL", null, "2021", "https://www.themoviedb.org/t/p/w220_and_h330_face/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg", 0.0, 0);
-        Movie M2 = new Movie(123456, "Test", "Gevoed door het herstelde vertrouwen in de mensheid en geïnspireerd door de onbaatzuchtige daad van Superman, roept Bruce Wayne de hulp in van zijn nieuwe bondgenoot, Diana Prince, om het hoofd te bieden aan een nog grotere vijand. Samen werken Batman en Wonder Woman snel om een team van meta-mensen te vinden en te rekruteren om deze nieuw ontwaakte dreiging te weerstaan. Maar ondanks de vorming van deze ongekende groep helden - Batman, Wonder Woman, Aquaman, Cyborg en The Flash - is het misschien al te laat om de planeet te redden van een aanval van catastrofale omvang.", "NL", null, "2021", "https://www.themoviedb.org/t/p/w220_and_h330_face/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg", 0.0, 0);
+        Movie M1 = new Movie(791373, "Zack Snyder's Justice League", "Gevoed door het herstelde vertrouwen in de mensheid en geïnspireerd door de onbaatzuchtige daad van Superman, roept Bruce Wayne de hulp in van zijn nieuwe bondgenoot, Diana Prince, om het hoofd te bieden aan een nog grotere vijand. Samen werken Batman en Wonder Woman snel om een team van meta-mensen te vinden en te rekruteren om deze nieuw ontwaakte dreiging te weerstaan. Maar ondanks de vorming van deze ongekende groep helden - Batman, Wonder Woman, Aquaman, Cyborg en The Flash - is het misschien al te laat om de planeet te redden van een aanval van catastrofale omvang.", "NL", null, "2021", "https://www.themoviedb.org/t/p/w220_and_h330_face/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg", 0.0, 0, 245);
+        Movie M2 = new Movie(123456, "Test", "Gevoed door het herstelde vertrouwen in de mensheid en geïnspireerd door de onbaatzuchtige daad van Superman, roept Bruce Wayne de hulp in van zijn nieuwe bondgenoot, Diana Prince, om het hoofd te bieden aan een nog grotere vijand. Samen werken Batman en Wonder Woman snel om een team van meta-mensen te vinden en te rekruteren om deze nieuw ontwaakte dreiging te weerstaan. Maar ondanks de vorming van deze ongekende groep helden - Batman, Wonder Woman, Aquaman, Cyborg en The Flash - is het misschien al te laat om de planeet te redden van een aanval van catastrofale omvang.", "NL", null, "2021", "https://www.themoviedb.org/t/p/w220_and_h330_face/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg", 0.0, 0, 245);
 
         List<Movie> movieList = new ArrayList<Movie>();
         movieList.add(M1);
