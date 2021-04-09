@@ -222,6 +222,7 @@
         android:cursorVisible="false"
         android:focusable="false"
         android:paddingHorizontal="15dp"
+        android:inputType="date"
         android:focusableInTouchMode="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
