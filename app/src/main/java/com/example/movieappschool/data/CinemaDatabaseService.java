@@ -3,19 +3,13 @@ package com.example.movieappschool.data;
 import android.util.Log;
 
 import com.example.movieappschool.domain.User;
-import com.example.movieappschool.domain.Show;
-
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class CinemaDatabaseService {
@@ -93,32 +87,6 @@ public class CinemaDatabaseService {
 
             while (resultSet.next()) {
                 result.add(resultSet.getInt(1));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            disconnect();
-        }
-
-        return result;
-    }
-
-    public List<Show> getAllShowsOfMovie(int movieId) {
-        String query = "SELECT * FROM Show WHERE movieID = '" + movieId + "'";
-        List<Show> result = new ArrayList<>();
-
-        try {
-            connect();
-            executeQuery(query);
-
-            while (resultSet.next()) {
-                int showShowId = resultSet.getInt(1);
-                int showMovieId = resultSet.getInt(2);
-                int showHallNr = resultSet.getInt(3);
-                String showDateTime = resultSet.getTimestamp(4).toString();
-                Log.d("DATE", showDateTime);
-
-                result.add(new Show(showMovieId, showDateTime, showShowId, showHallNr));
             }
         } catch (SQLException e) {
             e.printStackTrace();

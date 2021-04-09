@@ -28,7 +28,7 @@ public class Show {
     public String getTime() {
         String dateTime[] = mFullDate.split(" ");
         String fullTime[] = dateTime[1].split(":");
-
+        //2021-04-10 16:30:00.0
         return fullTime[0] + ":" + fullTime[1];
     }
 
@@ -38,15 +38,5 @@ public class Show {
 
     public int getHallId() {
         return mHallId;
-    }
-
-    @Override
-    public String toString() {
-        return "Show{" +
-                "mShowId=" + mShowId +
-                ", mHallId=" + mHallId +
-                ", mMovieId=" + mMovieId +
-                ", mFullDate='" + mFullDate + '\'' +
-                '}';
     }
 }

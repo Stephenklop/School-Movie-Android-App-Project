@@ -962,8 +962,65 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/order_datetime_date">
 
-            <!-- Automatically generated -->
+            <RadioButton
+                android:id="@+id/order_datetime_time_picker_btn-1"
+                android:layout_width="60dp"
+                android:layout_height="38dp"
+                android:background="@drawable/radio_button_state"
+                android:button="@android:color/transparent"
+                android:checked="true"
+                android:gravity="center"
+                android:text="2 Apr"
+                android:textColor="@color/tint1"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/order_datetime_date" />
 
+            <RadioButton
+                android:id="@+id/order_datetime_time_picker_btn-2"
+                android:layout_width="60dp"
+                android:layout_height="38dp"
+                android:background="@drawable/radio_button_state"
+                android:button="@android:color/transparent"
+                android:gravity="center"
+                android:text="3 Apr"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/order_datetime_time_picker_btn-3"
+                android:layout_width="60dp"
+                android:layout_height="38dp"
+                android:background="@drawable/radio_button_state"
+                android:button="@android:color/transparent"
+                android:gravity="center"
+                android:text="4 Apr"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/order_datetime_time_picker_btn-4"
+                android:layout_width="60dp"
+                android:layout_height="38dp"
+                android:background="@drawable/radio_button_state"
+                android:button="@android:color/transparent"
+                android:gravity="center"
+                android:text="5 Apr"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/order_datetime_time_picker_btn-5"
+                android:layout_width="60dp"
+                android:layout_height="38dp"
+                android:background="@drawable/radio_button_state"
+                android:button="@android:color/transparent"
+                android:gravity="center"
+                android:text="6 Apr"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
         </RadioGroup>
 
         <TextView
@@ -995,8 +1052,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/order_datetime_time">
 
-            <!-- Automatically generated -->
+            <RadioButton
+                android:id="@+id/order_datetime_time_picker_btn-1"
+                android:layout_width="60dp"
+                android:layout_height="38dp"
+                android:background="@drawable/radio_button_state"
+                android:button="@android:color/transparent"
+                android:checked="true"
+                android:gravity="center"
+                android:text="16:30"
+                android:textColor="@color/tint1"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/order_datetime_date" />
 
+            <RadioButton
+                android:id="@+id/order_datetime_time_picker_btn-2"
+                android:layout_width="60dp"
+                android:layout_height="38dp"
+                android:background="@drawable/radio_button_state"
+                android:button="@android:color/transparent"
+                android:gravity="center"
+                android:text="18:50"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
         </RadioGroup>
 
         <!-- order button -->
@@ -1013,7 +1094,6 @@
             app:layout_constraintTop_toBottomOf="@+id/order_datetime_time_picker">
 
             <TextView
-                android:id="@+id/order_price"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
