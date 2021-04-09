@@ -47,10 +47,10 @@ public class LoginActivity extends AppCompatActivity{
             getApplicationContext().startActivity(intent, options.toBundle());
         });
 
-        mLoginButton = findViewById(R.id.loginButton);
-        mRegisterButton = findViewById(R.id.registerButton);
-        mUsernameInput = findViewById(R.id.editUsername);
-        mPasswordInput = findViewById(R.id.editPassword);
+        mLoginButton = findViewById(R.id.login_button);
+        mRegisterButton = findViewById(R.id.login_register_button);
+        mUsernameInput = findViewById(R.id.login_username_input);
+        mPasswordInput = findViewById(R.id.login_password_input);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
 
