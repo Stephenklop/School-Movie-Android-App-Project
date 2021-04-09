@@ -21,6 +21,7 @@ import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Ticket;
 
 /*Hallo dit is een comment*/
+/*Dit is nog een comment*/
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     Context context;
