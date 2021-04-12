@@ -15,12 +15,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.movieappschool.MainActivity;
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.data.LoginService;
 import com.example.movieappschool.domain.User;
 import com.example.movieappschool.ui.menu.MenuActivity;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class LoginActivity extends AppCompatActivity{
     LoginService login = new LoginService();
@@ -64,6 +66,8 @@ public class LoginActivity extends AppCompatActivity{
 
                 String Username = mUsernameInput.getText().toString();
                 String Password = mPasswordInput.getText().toString();
+                
+                String hashedPassword = hashPassword(Password);
 
                 if(!Username.isEmpty() || !Password.isEmpty()) {
                     mUser = login.executeLogin(Username, Password);
@@ -92,6 +96,24 @@ public class LoginActivity extends AppCompatActivity{
         });
     }
 
+    private String hashPassword(String password) {
+        String hashedPassword = "";
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(password.getBytes());
+            byte[] digest = md.digest();
+            StringBuffer sb = new StringBuffer();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b & 0xff));
+            }
+            hashedPassword = sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return hashedPassword;
+    }
+  
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
