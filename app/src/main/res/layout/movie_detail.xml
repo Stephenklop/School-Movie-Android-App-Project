@@ -189,7 +189,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/detail_button"
+            android:id="@+id/detail_order_tickets"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="40dp"
