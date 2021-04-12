@@ -2,7 +2,8 @@
 <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent" android:layout_width="match_parent" android:fillViewport="true"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:overScrollMode="never">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -217,6 +218,9 @@
             android:layout_marginEnd="40dp"
             android:paddingHorizontal="15dp"
             android:background="@drawable/input_background"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_birthdate" />
@@ -252,7 +256,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_address" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/register_submit_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -264,6 +268,8 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="Registreer"
+            android:textAllCaps="false"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_address_input" />
