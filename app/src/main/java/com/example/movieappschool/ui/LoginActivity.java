@@ -8,11 +8,13 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.movieappschool.MainActivity;
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.data.LoginService;
 import com.example.movieappschool.domain.User;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class LoginActivity extends AppCompatActivity{
     LoginService login = new LoginService();
@@ -32,8 +34,8 @@ public class LoginActivity extends AppCompatActivity{
 
         mLoginButton = findViewById(R.id.loginButton);
         mRegisterButton = findViewById(R.id.registerButton);
-        mUsernameInput = findViewById(R.id.editUsername);
-        mPasswordInput = findViewById(R.id.editPassword);
+        mUsernameInput = findViewById(R.id.oldPassword);
+        mPasswordInput = findViewById(R.id.newPassword);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -42,8 +44,10 @@ public class LoginActivity extends AppCompatActivity{
 
                 String Username = mUsernameInput.getText().toString();
                 String Password = mPasswordInput.getText().toString();
+                
+                String hashedPassword = hashPassword(Password);
 
-                mUser = login.executeLogin(Username, Password);
+                mUser = login.executeLogin(Username, hashedPassword);
                 if (mUser != null) {
                     localAppStorage.setUser(mUser);
                     localAppStorage.setLoggedIn();
@@ -61,6 +65,24 @@ public class LoginActivity extends AppCompatActivity{
                 startActivity(i);
             }
         });
+    }
+
+    private String hashPassword(String password) {
+        String hashedPassword = "";
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(password.getBytes());
+            byte[] digest = md.digest();
+            StringBuffer sb = new StringBuffer();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b & 0xff));
+            }
+            hashedPassword = sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return hashedPassword;
     }
 
 }

@@ -12,6 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class RegisterActivity extends AppCompatActivity {
     private CinemaDatabaseService cinemaDatabaseService;
     private EditText mUsername, mFirstname, mLastname, mPassword, mEmail, mAddress, mDateBirth;
@@ -49,9 +53,11 @@ public class RegisterActivity extends AppCompatActivity {
                 if(checkIfFilled(username, firstname, lastname, password, email, address, datebirth)) {
                     Thread t1 = new Thread(new Runnable() {
                         @Override
-                        public void run() {
-                            cinemaDatabaseService.createAccount(username, firstname, lastname, password, email, address, datebirth);
+                        public void run(){
+                            String hashedPassword = hashPassword(password);
 
+                            System.out.println("Hashed password: " + hashedPassword);
+                            cinemaDatabaseService.createAccount(username, firstname, lastname, hashedPassword, email, address, datebirth);
                         }
                     });
 
@@ -76,5 +82,23 @@ public class RegisterActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    private String hashPassword(String password) {
+        String hashedPassword = "";
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(password.getBytes());
+            byte[] digest = md.digest();
+            StringBuffer sb = new StringBuffer();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b & 0xff));
+            }
+            hashedPassword = sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return hashedPassword;
     }
 }

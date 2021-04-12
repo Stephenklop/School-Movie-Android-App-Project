@@ -11,14 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieAppSchool">
 <!--        <activity android:name=".ui.ticket.TicketListActivity" />-->
+        <activity android:name=".ui.LoginActivity"/>
+        <activity android:name=".ui.PasswordActivity"/>
         <activity android:name=".ui.detail.DetailActivity"/>
         <activity android:name=".ui.RegisterActivity" />
-        <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.AccountActivity" />
         <activity android:name=".ui.order.OrderActivity" android:exported="true"/>
-        <activity android:name=".ui.tickets.TicketsActivity" android:exported="true"/>
+        <activity android:name=".ui.ticket.TicketListActivity" android:exported="true"/>
         <activity android:name=".ui.menu.MenuActivity" android:exported="true"/>
-        <activity android:name=".ui.ticket.TicketListActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
