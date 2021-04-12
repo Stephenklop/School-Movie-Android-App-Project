@@ -17,25 +17,26 @@ public class User {
         } else {
             throw new IllegalArgumentException("Firstname is invalid");
         }
-        // todo: check if username is already in use
+
         if (mUsername != null) {
             this.mUsername = mUsername;
         } else {
             throw new IllegalArgumentException("Username is invalid");
         }
+
         if (mAddress != null) {
             this.mAddress = mAddress;
         } else {
             throw new IllegalArgumentException("Username is invalid");
         }
-
+        //email must be like user@domain.tld
         if (mEmail != null & mEmail.matches("^(.+)@(.+)$")) {
             this.mEmail = mEmail;
         } else {
             throw new IllegalArgumentException("email is invalid");
         }
-        //todo: check if password is strong enough
-        if (mPassword != null) {
+        //mPassword must have minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
+        if (mPassword != null & mPassword.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$") ) {
             this.mPassword = mPassword;
         } else {
             throw new IllegalArgumentException("password is invalid");
