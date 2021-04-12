@@ -22,6 +22,7 @@ import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Show;
 import com.example.movieappschool.domain.Movie;
 import com.example.movieappschool.domain.Ticket;
+import com.example.movieappschool.logic.Converter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +43,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         MyViewHolder holder = new MyViewHolder(view);
 
         return holder;
-    }
-
-    public float convertDpToPx(Context context, float dp) {
-        return dp * context.getResources().getDisplayMetrics().density;
     }
 
     @Override
@@ -106,8 +103,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 View popupView = inflater.inflate(R.layout.ticket_list_qr, null);
 
                 // create the popup window
-                float width = convertDpToPx(context, 275);
-                float height = convertDpToPx(context, 324);
+                float width = Converter.dpToPx(context, 275);
+                float height = Converter.dpToPx(context, 324);
                 boolean focusable = true; // lets taps outside the popup also dismiss it
                 final PopupWindow popupWindow = new PopupWindow(popupView, (int) width, (int) height, focusable);
 
