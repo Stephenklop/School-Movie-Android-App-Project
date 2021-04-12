@@ -10,16 +10,22 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
+import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Seat;
+import com.example.movieappschool.domain.Show;
 import com.example.movieappschool.domain.Ticket;
+import com.example.movieappschool.logic.ConfiguratorListener;
 import com.example.movieappschool.logic.CustomPicker;
 import com.example.movieappschool.logic.SeatConfigurator;
+import com.example.movieappschool.logic.ShowConfigurator;
+import com.example.movieappschool.ui.success.OrderSuccessActivity;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -28,18 +34,19 @@ import java.util.List;
 
 public class OrderActivity extends AppCompatActivity {
     private View toolbar;
-    private ImageView backButtton;
-    CinemaDatabaseService cinemaDatabaseService;
+    private ImageView backButton;
+    private CinemaDatabaseService cinemaDatabaseService;
+    private int movieId;
+    private List<Show> shows;
+    private ShowConfigurator showConfigurator;
     private SeatConfigurator seatConfigurator;
+    private Show selectedShow;
     private int amountOfChildTickets;
     private int amountOfAdultTickets;
     private int amountOfSeniorTickets;
-    private int totalAmountOfTickets;
-    private TextView totalOrderSeatsTextView;
-    private List<Integer> occupiedSeats;
-
-    // Output
-    private List<Seat> selectedSeats = new ArrayList<>();
+    private int totalTicketAmount;
+    private List<Seat> occupiedSeats;
+    private List<Seat> selectedSeats;
 
     public OrderActivity() {
         cinemaDatabaseService = new CinemaDatabaseService();
@@ -50,81 +57,110 @@ public class OrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
 
+        Intent intent = getIntent();
+        // TODO: Check if movieId == -1 (= error)
+        movieId = intent.getIntExtra("movieId", -1);
+        //movieId = 791373;
+
         toolbar = findViewById(R.id.order_toolbar);
         toolbar.findViewById(R.id.hamburger_icon).setVisibility(View.INVISIBLE);
 
-        backButtton = toolbar.findViewById(R.id.back_icon);
-        backButtton.setVisibility(View.VISIBLE);
+        backButton = toolbar.findViewById(R.id.back_icon);
+        backButton.setVisibility(View.VISIBLE);
 
         // Threads.
-        Thread cinemaDatabaseThread = new Thread(() -> occupiedSeats = cinemaDatabaseService.getOccupiedSeats(1));
+        Thread showConfiguratorThread = new Thread(() -> {
+            shows = cinemaDatabaseService.getAllShowsOfMovie(movieId);
 
-        Thread seatConfiguratorThread = new Thread(() -> runOnUiThread(() -> {
-            seatConfigurator = new SeatConfigurator(totalAmountOfTickets, occupiedSeats, OrderActivity.this, seats -> {
-                selectedSeats = seats;
-                updateSeatTextView();
+            showConfigurator = new ShowConfigurator(shows, OrderActivity.this, object -> {
+                selectedShow = (Show) object;
+                Log.d("CURRENT SHOW", object.toString());
+                // Update seat configurator.
+                updateSeats(selectedShow);
             });
 
-            // Disable the seats that are occupied.
-            seatConfigurator.setOccupiedSeats();
+            // Set the selected show to a default.
+            selectedShow = showConfigurator.getSelectedShow();
+        });
 
-            // Handle the seats that are available.
-            seatConfigurator.setAvailableSeats();
-        }));
+        Thread ticketsSelectorThread = new Thread(() -> {
+            new CustomPicker(findViewById(R.id.child_ticket_picker), 0, 10, value -> {
+                int difference = value - amountOfChildTickets;
+                amountOfChildTickets = value;
+
+                updateTotalTicketAmount(difference);
+            });
+
+            new CustomPicker(findViewById(R.id.adult_ticket_picker), 0, 10, value -> {
+                int difference = value - amountOfAdultTickets;
+                amountOfAdultTickets = value;
+
+                updateTotalTicketAmount(difference);
+            });
+
+            new CustomPicker(findViewById(R.id.senior_ticket_picker), 0, 10, value -> {
+                int difference = value - amountOfSeniorTickets;
+                amountOfSeniorTickets = value;
+
+                updateTotalTicketAmount(difference);
+            });
+        });
+
+        Thread seatConfiguratorThread = new Thread(() -> {
+            occupiedSeats = cinemaDatabaseService.getOccupiedSeats(selectedShow.getShowId());
+
+            runOnUiThread(() -> seatConfigurator = new SeatConfigurator(totalTicketAmount, occupiedSeats, OrderActivity.this, object -> selectedSeats = (List<Seat>) object));
+        });
 
         try {
-            cinemaDatabaseThread.start();
-            cinemaDatabaseThread.join();
+            showConfiguratorThread.start();
+            showConfiguratorThread.join();
+
+            ticketsSelectorThread.start();
+            ticketsSelectorThread.join();
 
             seatConfiguratorThread.start();
             seatConfiguratorThread.join();
         } catch (InterruptedException e) {
+            // TODO: Handle error
             e.printStackTrace();
         }
 
-        // Child tickets picker.
-        new CustomPicker(findViewById(R.id.child_ticket_picker), 0, 10, value -> {
-            int difference = value - amountOfChildTickets;
-            amountOfChildTickets = value;
-
-            updateTotalTicketAmount(difference);
-        });
-
-        // Adult tickets picker.
-        new CustomPicker(findViewById(R.id.adult_ticket_picker), 0, 10, value -> {
-            int difference = value - amountOfAdultTickets;
-            amountOfAdultTickets = value;
-
-            updateTotalTicketAmount(difference);
-        });
-
-        // Senior tickets picker.
-        new CustomPicker(findViewById(R.id.senior_ticket_picker), 0, 10, value -> {
-            int difference = value - amountOfSeniorTickets;
-            amountOfSeniorTickets = value;
-
-            updateTotalTicketAmount(difference);
-        });
-
         Button orderButton = findViewById(R.id.order_availability_button);
-
-        orderButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: Go to order activity
+        orderButton.setOnClickListener(v -> {
+            if (selectedSeats != null && selectedSeats.size() > 0 && seatConfigurator.allSeatsSelected()) {
+                Intent orderSuccessIntent = new Intent(getApplicationContext(), OrderSuccessActivity.class);
+                //orderSuccessIntent.putExtra("movieId", movieId);
+                orderSuccessIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Log.d("ORDER BUTTON", "READY TO ORDER!");
+                Log.d("ALL SEATS SELECTED?", String.valueOf(seatConfigurator.allSeatsSelected()));
+                getApplicationContext().startActivity(orderSuccessIntent);
+            } else {
+                Toast.makeText(this, "Controleer uw stoelselectie.", Toast.LENGTH_LONG).show();
             }
+            //Log.d("ORDER BUTTON", selectedSeats.toString());
         });
+    }
+
+    private void updateSeats(Show show) {
+        new Thread(() -> {
+            occupiedSeats = cinemaDatabaseService.getOccupiedSeats(show.getShowId());
+
+            runOnUiThread(() -> {
+                seatConfigurator.setOccupiedSeats(occupiedSeats);
+            });
+        }).start();
     }
 
     private void updateTotalTicketAmount(int difference) {
-        totalAmountOfTickets += difference;
-        seatConfigurator.updateNumberOfTickets(totalAmountOfTickets);
-        updateSeatTextView();
-        Log.d("NEW TICKET AMOUNT", String.valueOf(totalAmountOfTickets));
+        totalTicketAmount += difference;
+        seatConfigurator.setNumberOfTickets(totalTicketAmount);
+        updateTotalPrice();
     }
 
-    private void updateSeatTextView() {
-        totalOrderSeatsTextView = findViewById(R.id.order_seats_total);
-        totalOrderSeatsTextView.setText(selectedSeats.size() + " / " + totalAmountOfTickets + " stoelen");
+    private void updateTotalPrice() {
+        int totalPrice = amountOfChildTickets * 7 + amountOfAdultTickets * 11 + amountOfSeniorTickets * 9;
+        TextView priceTextView = findViewById(R.id.order_total_price);
+        priceTextView.setText("€" + totalPrice + ",-");
     }
 }

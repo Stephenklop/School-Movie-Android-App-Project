@@ -39,4 +39,14 @@ public class Show {
     public int getHallId() {
         return mHallId;
     }
+
+    @Override
+    public String toString() {
+        return "Show{" +
+                "mShowId=" + mShowId +
+                ", mHallId=" + mHallId +
+                ", mMovieId=" + mMovieId +
+                ", mFullDate='" + mFullDate + '\'' +
+                '}';
+    }
 }

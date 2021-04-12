@@ -16,6 +16,7 @@
         <activity android:name=".ui.detail.DetailActivity"/>
         <activity android:name=".ui.RegisterActivity" />
         <activity android:name=".ui.AccountActivity" />
+        <activity android:name=".ui.success.OrderSuccessActivity" android:exported="true"/>
         <activity android:name=".ui.order.OrderActivity" android:exported="true"/>
         <activity android:name=".ui.menu.MenuActivity" android:exported="true"/>
         <activity android:name=".MainActivity">

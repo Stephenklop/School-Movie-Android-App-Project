@@ -91,10 +91,11 @@ public class TicketListActivity extends AppCompatActivity {
         Movie M1 = new Movie(791373, "Zack Snyder's Justice League", "Gevoed door het herstelde vertrouwen in de mensheid en geïnspireerd door de onbaatzuchtige daad van Superman, roept Bruce Wayne de hulp in van zijn nieuwe bondgenoot, Diana Prince, om het hoofd te bieden aan een nog grotere vijand. Samen werken Batman en Wonder Woman snel om een team van meta-mensen te vinden en te rekruteren om deze nieuw ontwaakte dreiging te weerstaan. Maar ondanks de vorming van deze ongekende groep helden - Batman, Wonder Woman, Aquaman, Cyborg en The Flash - is het misschien al te laat om de planeet te redden van een aanval van catastrofale omvang.", "NL", null, "2021", "https://www.themoviedb.org/t/p/w220_and_h330_face/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg", 0.0, 0, 245);
         Movie M2 = new Movie(123456, "Test", "Gevoed door het herstelde vertrouwen in de mensheid en geïnspireerd door de onbaatzuchtige daad van Superman, roept Bruce Wayne de hulp in van zijn nieuwe bondgenoot, Diana Prince, om het hoofd te bieden aan een nog grotere vijand. Samen werken Batman en Wonder Woman snel om een team van meta-mensen te vinden en te rekruteren om deze nieuw ontwaakte dreiging te weerstaan. Maar ondanks de vorming van deze ongekende groep helden - Batman, Wonder Woman, Aquaman, Cyborg en The Flash - is het misschien al te laat om de planeet te redden van een aanval van catastrofale omvang.", "NL", null, "2021", "https://www.themoviedb.org/t/p/w220_and_h330_face/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg", 0.0, 0, 245);
 
+
         List<Movie> movieList = new ArrayList<Movie>();
-        movieList.add(M1);
-        movieList.add(M2);
-        localAppStorage.setMovies(movieList);
+        //movieList.add(M1);
+        //movieList.add(M2);
+        //localAppStorage.setMovies(movieList);
     }
 
     private void fillSeatList() {
