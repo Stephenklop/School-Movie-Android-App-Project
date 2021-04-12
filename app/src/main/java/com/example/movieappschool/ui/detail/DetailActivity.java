@@ -102,9 +102,12 @@ public class DetailActivity extends AppCompatActivity {
             int[] hoursminutes = minutesToHoursAndMinutes(movie.getMovieLength());
             movieLength.setText(String.format("%dh %dm", hoursminutes[0], hoursminutes[1]));
 
-            // Set Genres
-            for(String genre : movie.getGenreIds()) {
-                genres.append(genre + "/");
+            for (int i = 0; i < movie.getGenreIds().size(); i++) {
+                if(i == movie.getGenreIds().size() - 1) {
+                    genres.append(movie.getGenreIds().get(i));
+                } else {
+                    genres.append(movie.getGenreIds().get(i) + "/");
+                }
             }
 
             // Set rating
@@ -135,61 +138,61 @@ public class DetailActivity extends AppCompatActivity {
 
     public void setMovieRating(Double rating) {
         System.out.println(rating);
-        if(rating <= 0) {
+        if(rating <= 0.0) {
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starOne);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starTwo);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starThree);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFour);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFive);
-        } else if(rating > 0 && rating <= 1) {
+        } else if(rating > 0.0 && rating <= 1.0) {
             Glide.with(this).load(R.drawable.ic_baseline_star_half_24).into(starOne);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starTwo);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starThree);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFour);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFive);
-        } else if(rating > 1 && rating <= 2) {
+        } else if(rating > 1.0 && rating <= 2.0) {
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starOne);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starTwo);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starThree);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFour);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFive);
-        } else if(rating > 2 && rating <= 3) {
+        } else if(rating > 2.0 && rating <= 3.0) {
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starOne);
             Glide.with(this).load(R.drawable.ic_baseline_star_half_24).into(starTwo);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starThree);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFour);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFive);
-        } else if(rating > 3 && rating <= 4) {
+        } else if(rating > 3.0 && rating <= 4.0) {
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starOne);
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starTwo);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starThree);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFour);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFive);
-        } else if(rating > 4 && rating <= 5) {
+        } else if(rating > 4.0 && rating <= 5.0) {
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starOne);
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starTwo);
             Glide.with(this).load(R.drawable.ic_baseline_star_half_24).into(starThree);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFour);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFive);
-        } else if(rating > 5 && rating <= 6) {
+        } else if(rating > 5.0 && rating <= 6.0) {
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starOne);
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starTwo);
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starThree);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFour);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFive);
-        } else if(rating > 6 && rating <= 7) {
+        } else if(rating > 6.0 && rating <= 7.0) {
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starOne);
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starTwo);
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starThree);
             Glide.with(this).load(R.drawable.ic_baseline_star_half_24).into(starFour);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFive);
-        } else if(rating > 7 && rating <= 8) {
+        } else if(rating > 7.0 && rating <= 8.0) {
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starOne);
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starTwo);
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starThree);
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starFour);
             Glide.with(this).load(R.drawable.ic_baseline_star_border_24).into(starFive);
-        } else if(rating > 8 && rating <= 9) {
+        } else if(rating > 8.0 && rating <= 9.0) {
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starOne);
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starTwo);
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starThree);
