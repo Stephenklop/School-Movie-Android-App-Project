@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,7 +43,6 @@ public class OrderActivity extends AppCompatActivity {
 
     public OrderActivity() {
         cinemaDatabaseService = new CinemaDatabaseService();
-
     }
 
     @Override
@@ -54,6 +55,16 @@ public class OrderActivity extends AppCompatActivity {
 
         backButtton = toolbar.findViewById(R.id.back_icon);
         backButtton.setVisibility(View.VISIBLE);
+
+        // Set up a touchlistener to remove keyboard
+        findViewById(R.id.login).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                return true;
+            }
+        });
 
         // Threads.
         Thread cinemaDatabaseThread = new Thread(() -> occupiedSeats = cinemaDatabaseService.getOccupiedSeats(1));

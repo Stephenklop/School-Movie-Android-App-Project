@@ -44,6 +44,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return holder;
     }
 
+    public float convertDpToPx(Context context, float dp) {
+        return dp * context.getResources().getDisplayMetrics().density;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
@@ -85,10 +89,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 View popupView = inflater.inflate(R.layout.ticket_list_qr, null);
 
                 // create the popup window
-                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                float width = convertDpToPx(context, 275);
+                float height = convertDpToPx(context, 324);
                 boolean focusable = true; // lets taps outside the popup also dismiss it
-                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+                final PopupWindow popupWindow = new PopupWindow(popupView, (int) width, (int) height, focusable);
 
                 // show the popup window
                 // which view you pass in doesn't matter, it is only used for the window tolken
