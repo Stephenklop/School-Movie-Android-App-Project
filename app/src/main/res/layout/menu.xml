@@ -13,7 +13,10 @@
         android:id="@+id/menu_toolbar"
         layout="@layout/toolbar_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,13 +39,24 @@
             android:id="@+id/menu_my_tickets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mijn tickets"
             android:layout_marginTop="15dp"
+            android:text="Mijn tickets"
             android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:visibility="gone" />
 
         <TextView
-            android:id="@+id/menu_account_text"
+            android:id="@+id/menu_my_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Mijn account"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/menu_account_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
@@ -50,13 +64,15 @@
             android:textColor="@color/white"
             android:textSize="30sp" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/menu_account_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:visibility="gone"/>
 
-    <Button
-        android:id="@+id/menu_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:text="logout"
-        app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

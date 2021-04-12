@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView android:layout_height="match_parent" android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:overScrollMode="never">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/tint6">
@@ -62,6 +63,11 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/input_background"
+        android:paddingHorizontal="15dp"
+        android:maxLines="1"
+        android:inputType="text"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_account_username" />
@@ -88,6 +94,11 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/input_background"
+        android:paddingHorizontal="15dp"
+        android:maxLines="1"
+        android:inputType="text"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_account_firstname" />
@@ -114,6 +125,11 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/input_background"
+        android:paddingHorizontal="15dp"
+        android:maxLines="1"
+        android:inputType="text"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_account_lastname" />
@@ -140,35 +156,45 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/input_background"
+        android:paddingHorizontal="15dp"
+        android:maxLines="1"
+        android:inputType="text"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_account_email" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/my_account_password"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="40dp"-->
-<!--        android:layout_marginTop="15dp"-->
-<!--        android:layout_marginEnd="40dp"-->
-<!--        android:text="Wachtwoord"-->
-<!--        android:textColor="@color/tint4"-->
-<!--        android:textSize="16sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/my_account_email_input" />-->
+    <TextView
+        android:id="@+id/my_account_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="40dp"
+        android:text="Wachtwoord"
+        android:textColor="@color/tint4"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_account_email_input" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/my_account_password_input"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:layout_marginStart="40dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_marginEnd="40dp"-->
-<!--        android:background="@drawable/input_background"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/my_account_password" />-->
+    <EditText
+        android:id="@+id/my_account_password_input"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/input_background"
+        android:paddingHorizontal="15dp"
+        android:maxLines="1"
+        android:inputType="text"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_account_password" />
 
     <TextView
         android:id="@+id/my_account_birthdate"
@@ -182,7 +208,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_account_email_input" />
+        app:layout_constraintTop_toBottomOf="@+id/my_account_password_input" />
 
     <EditText
         android:id="@+id/my_account_birthdate_input"
@@ -195,6 +221,7 @@
         android:clickable="false"
         android:cursorVisible="false"
         android:focusable="false"
+        android:paddingHorizontal="15dp"
         android:focusableInTouchMode="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -222,39 +249,34 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/input_background"
+        android:paddingHorizontal="15dp"
+        android:maxLines="1"
+        android:inputType="text"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_account_address" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/updateButton"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/purple_gradient"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="Update"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:textColor="@color/tint1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_account_address_input" />
-
-    <Button
-        android:id="@+id/changePasswordButton"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/purple_gradient"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="Change password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/updateButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

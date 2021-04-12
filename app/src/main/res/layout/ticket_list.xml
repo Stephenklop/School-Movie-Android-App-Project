@@ -8,7 +8,7 @@
     android:background="@color/tint6">
 
     <include
-        android:id="@+id/tickets_toolbar"
+        android:id="@+id/tickets_list_toolbar"
         layout="@layout/toolbar_fragment" />
 
     <TextView
@@ -51,7 +51,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tickets_list_items"
         android:layout_width="0dp"
-        android:layout_height="454dp"
+        android:layout_height="453dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="40dp"
