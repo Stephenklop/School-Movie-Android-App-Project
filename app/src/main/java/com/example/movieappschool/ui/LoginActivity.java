@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity{
                 String hashedPassword = hashPassword(Password);
 
                 if(!Username.isEmpty() || !Password.isEmpty()) {
-                    mUser = login.executeLogin(Username, Password);
+                    mUser = login.executeLogin(Username, hashedPassword);
                     if (mUser != null) {
                         localAppStorage.setUser(mUser);
                         localAppStorage.setLoggedIn();
