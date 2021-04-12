@@ -13,8 +13,7 @@ public class User {
         this.mEmail = mEmail;
         this.mPassword = mPassword;
         this.mUserId = mUserId;
-        this.mDateBirth = mDateBirth;
-            
+        this.mDateBirth = mDateBirth;          
     }
 
     public int getUserId() {
