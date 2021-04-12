@@ -17,22 +17,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.movieappschool.R;
+import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
+import com.example.movieappschool.domain.Show;
+import com.example.movieappschool.domain.Movie;
 import com.example.movieappschool.domain.Ticket;
 
-/*Hallo dit is een comment*/
-/*Dit is nog een comment*/
+import java.util.ArrayList;
+import java.util.List;
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     Context context;
     LocalAppStorage localAppStorage;
-    int showId;
-    int movieId;
+    CinemaDatabaseService cinemaDatabaseService;
 
-    public RecyclerViewAdapter(Context context, /*Application activity*/LocalAppStorage localAppStorage) {
+    public RecyclerViewAdapter(Context context, LocalAppStorage localAppStorage, CinemaDatabaseService cinemaDatabaseService) {
         this.context = context;
-        this.localAppStorage = /*(LocalAppStorage) activity*/localAppStorage;
-
+        this.cinemaDatabaseService = cinemaDatabaseService;
+        localAppStorage = localAppStorage;
     }
 
     @NonNull
@@ -51,7 +54,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+        int userId = localAppStorage.getUser().getUserId();
+        Ticket ticket = cinemaDatabaseService.getTicketList(userId).get(position);
+        Show show = cinemaDatabaseService.getShow(ticket);
+        Movie movie = getMovie(show.getMovieId());
 
+        String date = show.getDate();
+        int rowNr;
+        rowNr = ticket.getmRowNumber();
+        int chairNr;
+        chairNr = ticket.getSeatNumber();
+        String time;
+        time = show.getTime();
+        int hall;
+        hall = show.getHallId();
+        String URL;
+        URL = movie.getPosterURL();
+
+
+
+        /*
         int showId = getShowId(localAppStorage.getTicketList().get(position));
         this.showId = showId;
         int movieId = getMovieId(getShowId(localAppStorage.getTicketList().get(position)));
@@ -61,10 +83,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         String time = getTime(this.showId);
         int chairNr = getChair(localAppStorage.getTicketList().get(position));
         int rowNr = getRowNr(chairNr);
-
-
-
         String URL = getURL(movieId);
+        */
+
+
+
 
         Glide.with(this.context).load(URL).into(holder.ticket_image);
 
@@ -111,6 +134,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         });
     }
 
+    private Movie getMovie(int movieId) {
+        List<Movie> movieList = localAppStorage.getMovies();
+        for(int i = 0; i < movieList.size(); i++){
+            if(movieList.get(i).getId() == movieId){
+                return movieList.get(i);
+            }
+        }
+        return null;
+    }
+
+    /*
     //returns showid as int
     private int getShowId(Ticket ticket) {
         return ticket.getShow();
@@ -180,10 +214,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
         return null;
     }
+    */
 
     @Override
     public int getItemCount() {
-        return localAppStorage.getTicketList().size();
+        return cinemaDatabaseService.getTicketList(localAppStorage.getUser().getUserId()).size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

@@ -2,6 +2,9 @@ package com.example.movieappschool.data;
 
 import android.util.Log;
 
+import com.example.movieappschool.domain.Movie;
+import com.example.movieappschool.domain.Show;
+import com.example.movieappschool.domain.Ticket;
 import com.example.movieappschool.domain.User;
 
 import java.sql.Connection;
@@ -182,5 +185,74 @@ public class CinemaDatabaseService {
         finally {
             disconnect();
         }
+    }
+
+    public List<Ticket> getTicketList(int userId){
+        List<Ticket> ticketList = new ArrayList<>();
+
+        String query = "SELECT * FROM Ticket WHERE userID = '" + userId + "'";
+
+        int mTicketId;
+        int mUserId;
+        int mSeatNumber;
+        int mRowNumber;
+        int mShowId;
+        double mPrice;
+
+        try {
+            connect();
+            executeQuery(query);
+
+            while (resultSet.next()) {
+                mTicketId = resultSet.getInt("ticketID");
+                mUserId = resultSet.getInt("userID");
+                mSeatNumber = resultSet.getInt("chairNr");
+                mRowNumber = resultSet.getInt("rowNr");
+                mShowId = resultSet.getInt("showID");
+                mPrice = resultSet.getDouble("price");
+                Ticket ticket = new Ticket(mTicketId, mUserId, mSeatNumber, mRowNumber, mShowId, mPrice);
+                ticketList.add(ticket);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            disconnect();
+        }
+
+        return ticketList;
+    }
+
+    public Show getShow(Ticket ticket){
+        String query = "SELECT * FROM Show WHERE ticketID = '" + ticket.getTicketId() + "'";
+        Show show = null;
+        int mMovieId;
+        String mFullDate;
+        int mShowId;
+        int mHallId;
+
+
+        try {
+            connect();
+            executeQuery(query);
+
+            while (resultSet.next()) {
+                mMovieId = resultSet.getInt("movieID");
+                mFullDate = resultSet.getString("dateTime");
+                mShowId = resultSet.getInt("showID");
+                mHallId = resultSet.getInt("hallNr");
+
+                show = new Show(mMovieId, mFullDate, mShowId, mHallId);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            disconnect();
+        }
+
+        return show;
     }
 }
