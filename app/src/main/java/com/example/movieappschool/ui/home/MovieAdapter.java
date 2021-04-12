@@ -69,61 +69,61 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     public void setMovieRating(Double rating, ViewHolder holder) {
         System.out.println(rating);
-        if(rating <= 0) {
+        if(rating <= 0.0) {
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starOne);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starTwo);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starThree);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFour);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFive);
-        } else if(rating > 0 && rating <= 1) {
+        } else if(rating > 0.0 && rating <= 1.0) {
             Glide.with(context).load(R.drawable.ic_baseline_star_half_24).into(holder.starOne);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starTwo);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starThree);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFour);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFive);
-        } else if(rating > 1 && rating <= 2) {
+        } else if(rating > 1.0 && rating <= 2.0) {
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starOne);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starTwo);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starThree);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFour);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFive);
-        } else if(rating > 2 && rating <= 3) {
+        } else if(rating > 2.0 && rating <= 3.0) {
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starOne);
             Glide.with(context).load(R.drawable.ic_baseline_star_half_24).into(holder.starTwo);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starThree);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFour);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFive);
-        } else if(rating > 3 && rating <= 4) {
+        } else if(rating > 3.0 && rating <= 4.0) {
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starOne);
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starTwo);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starThree);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFour);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFive);
-        } else if(rating > 4 && rating <= 5) {
+        } else if(rating > 4.0 && rating <= 5.0) {
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starOne);
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starTwo);
             Glide.with(context).load(R.drawable.ic_baseline_star_half_24).into(holder.starThree);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFour);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFive);
-        } else if(rating > 5 && rating <= 6) {
+        } else if(rating > 5.0 && rating <= 6.0) {
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starOne);
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starTwo);
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starThree);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFour);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFive);
-        } else if(rating > 6 && rating <= 7) {
+        } else if(rating > 6.0 && rating <= 7.0) {
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starOne);
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starTwo);
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starThree);
             Glide.with(context).load(R.drawable.ic_baseline_star_half_24).into(holder.starFour);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFive);
-        } else if(rating > 7 && rating <= 8) {
+        } else if(rating > 7.0 && rating <= 8.0) {
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starOne);
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starTwo);
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starThree);
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starFour);
             Glide.with(context).load(R.drawable.ic_baseline_star_border_24).into(holder.starFive);
-        } else if(rating > 8 && rating <= 9) {
+        } else if(rating > 8.0 && rating <= 9.0) {
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starOne);
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starTwo);
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starThree);
