@@ -187,7 +187,7 @@
                 android:textColor="@color/purpleEndcolor" />
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/detail_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -199,6 +199,8 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="Bekijk Ticket Beschikbaarheid"
+            android:textAllCaps="false"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
