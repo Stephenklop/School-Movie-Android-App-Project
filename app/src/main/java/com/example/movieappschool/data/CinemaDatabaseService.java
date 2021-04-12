@@ -172,4 +172,15 @@ public class CinemaDatabaseService {
 
         return user;
     }
+
+    public void changePassword(String mUsername, String mOldPassword, String mNewPassword) {
+        String query = "Update Account SET password = '" + mNewPassword + "' WHERE username = '" + mUsername + "' AND password = '" + mOldPassword + "'";
+        try {
+            connect();
+            executeQuery(query);
+        }
+        finally {
+            disconnect();
+        }
+    }
 }

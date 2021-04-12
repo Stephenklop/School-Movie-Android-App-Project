@@ -24,7 +24,7 @@ import com.example.movieappschool.ui.menu.MenuActivity;
 
 public class AccountActivity extends AppCompatActivity {
     private EditText mUsername, mFirstname, mLastname, mPassword, mEmail, mDateOfBirth, mAddress;
-    private Button mUpdate;
+    private Button mUpdate, mChangePassword;
     private User user;
     private LocalAppStorage localAppStorage;
     private CinemaDatabaseService cinemaDatabaseService;
@@ -54,11 +54,12 @@ public class AccountActivity extends AppCompatActivity {
         });
 
         mUpdate = findViewById(R.id.updateButton);
+        mChangePassword = findViewById(R.id.changePasswordButton);
 
         mUsername = findViewById(R.id.my_account_username_input);
         mFirstname = findViewById(R.id.my_account_firstname_input);
         mLastname = findViewById(R.id.my_account_lastname_input);
-        mPassword = findViewById(R.id.my_account_password_input);
+        //mPassword = findViewById(R.id.my_account_password_input);
         mEmail = findViewById(R.id.my_account_email_input);
         mDateOfBirth = findViewById(R.id.my_account_birthdate_input);
         mAddress = findViewById(R.id.my_account_address_input);
@@ -76,13 +77,12 @@ public class AccountActivity extends AppCompatActivity {
         mUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Add threads
                 if(checkIfAllFilled()) {
                     Thread t1 = new Thread(new Runnable() {
                         @Override
                         public void run() {
                             user = cinemaDatabaseService.updateUser(user.getUserId(), mFirstname.getText().toString(), mLastname.getText().toString(), mUsername.getText().toString(), mAddress.getText().toString(),
-                                    mEmail.getText().toString(), mPassword.getText().toString(), mDateOfBirth.getText().toString());
+                                    mEmail.getText().toString(), user.getPassword(), mDateOfBirth.getText().toString());
                             localAppStorage.deleteUser();
                             localAppStorage.setUser(user);
 
@@ -100,6 +100,14 @@ public class AccountActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(context, "Account details updated", Toast.LENGTH_LONG);
                     toast.show();
                 }
+            }
+        });
+
+        mChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AccountActivity.this, PasswordActivity.class);
+                startActivity(i);
             }
         });
     }
@@ -122,8 +130,7 @@ public class AccountActivity extends AppCompatActivity {
     }
 
     private boolean checkIfAllFilled() {
-        if (!mUsername.getText().toString().isEmpty() || !mFirstname.getText().toString().isEmpty() || !mLastname.getText().toString().isEmpty() ||
-                !mPassword.getText().toString().isEmpty() || !mEmail.getText().toString().isEmpty() || !mDateOfBirth.getText().toString().isEmpty() ||
+        if (!mUsername.getText().toString().isEmpty() || !mFirstname.getText().toString().isEmpty() || !mLastname.getText().toString().isEmpty() || !mEmail.getText().toString().isEmpty() || !mDateOfBirth.getText().toString().isEmpty() ||
                 !mAddress.getText().toString().isEmpty()) {
             return true;
         }
