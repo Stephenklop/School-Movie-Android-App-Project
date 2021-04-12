@@ -24,7 +24,7 @@ import com.example.movieappschool.ui.menu.MenuActivity;
 
 public class AccountActivity extends AppCompatActivity {
     private EditText mUsername, mFirstname, mLastname, mPassword, mEmail, mDateOfBirth, mAddress;
-    private Button mUpdate, mChangePassword;
+    private Button mUpdate;
     private User user;
     private LocalAppStorage localAppStorage;
     private CinemaDatabaseService cinemaDatabaseService;
@@ -54,7 +54,6 @@ public class AccountActivity extends AppCompatActivity {
         });
 
         mUpdate = findViewById(R.id.updateButton);
-        mChangePassword = findViewById(R.id.changePasswordButton);
 
         mUsername = findViewById(R.id.my_account_username_input);
         mFirstname = findViewById(R.id.my_account_firstname_input);
@@ -103,7 +102,7 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
-        mChangePassword.setOnClickListener(new View.OnClickListener() {
+        mPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(AccountActivity.this, PasswordActivity.class);
