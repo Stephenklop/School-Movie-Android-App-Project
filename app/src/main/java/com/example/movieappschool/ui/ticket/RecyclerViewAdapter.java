@@ -27,15 +27,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+    private List<Ticket> tickets;
+    private Context context;
 
-    Context context;
-    LocalAppStorage localAppStorage;
-    CinemaDatabaseService cinemaDatabaseService;
-
-    public RecyclerViewAdapter(Context context, LocalAppStorage localAppStorage, CinemaDatabaseService cinemaDatabaseService) {
+    public RecyclerViewAdapter(List<Ticket> tickets, Context context) {
+        this.tickets = tickets;
         this.context = context;
-        this.cinemaDatabaseService = cinemaDatabaseService;
-        localAppStorage = localAppStorage;
     }
 
     @NonNull
@@ -53,23 +50,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        Ticket ticket = tickets.get(position);
+        //Movie movie = getMovie(show.getMovieId());
 
-        int userId = localAppStorage.getUser().getUserId();
-        Ticket ticket = cinemaDatabaseService.getTicketList(userId).get(position);
-        Show show = cinemaDatabaseService.getShow(ticket);
-        Movie movie = getMovie(show.getMovieId());
-
-        String date = show.getDate();
+        String date = ticket.getShow().getDate();
         int rowNr;
-        rowNr = ticket.getmRowNumber();
+        rowNr = ticket.getRowNumber();
         int chairNr;
         chairNr = ticket.getSeatNumber();
         String time;
-        time = show.getTime();
+        time = ticket.getShow().getTime();
         int hall;
-        hall = show.getHallId();
+        hall = ticket.getShow().getHallId();
         String URL;
-        URL = movie.getPosterURL();
+        URL = ticket.getShow().getMovie().getPosterURL();
 
 
 
@@ -132,16 +126,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
 
         });
-    }
-
-    private Movie getMovie(int movieId) {
-        List<Movie> movieList = localAppStorage.getMovies();
-        for(int i = 0; i < movieList.size(); i++){
-            if(movieList.get(i).getId() == movieId){
-                return movieList.get(i);
-            }
-        }
-        return null;
     }
 
     /*
@@ -218,7 +202,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return cinemaDatabaseService.getTicketList(localAppStorage.getUser().getUserId()).size();
+        return tickets.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

@@ -209,8 +209,10 @@ public class CinemaDatabaseService {
                 mSeatNumber = resultSet.getInt("chairNr");
                 mRowNumber = resultSet.getInt("rowNr");
                 mShowId = resultSet.getInt("showID");
-                mPrice = resultSet.getDouble("price");
-                Ticket ticket = new Ticket(mTicketId, mUserId, mSeatNumber, mRowNumber, mShowId, mPrice);
+                // TODO: ADD PRICE TO TICKET
+                //mPrice = resultSet.getDouble("price");
+                Ticket ticket = new Ticket(mTicketId, mUserId, mSeatNumber, mRowNumber, 10);
+                ticket.setShow(getShow(mTicketId, false));
                 ticketList.add(ticket);
             }
         }
@@ -224,35 +226,33 @@ public class CinemaDatabaseService {
         return ticketList;
     }
 
-    public Show getShow(Ticket ticket){
-        String query = "SELECT * FROM Show WHERE ticketID = '" + ticket.getTicketId() + "'";
-        Show show = null;
-        int mMovieId;
-        String mFullDate;
-        int mShowId;
-        int mHallId;
-
+    public Show getShow(int showId, boolean disconnect){
+        String query = "SELECT * FROM Show WHERE showID = " + showId;
+        Show result = null;
 
         try {
             connect();
             executeQuery(query);
 
             while (resultSet.next()) {
-                mMovieId = resultSet.getInt("movieID");
-                mFullDate = resultSet.getString("dateTime");
-                mShowId = resultSet.getInt("showID");
-                mHallId = resultSet.getInt("hallNr");
+                int movieId = resultSet.getInt("movieID");
+                String fullDate = resultSet.getString("dateTime");
+                int id = resultSet.getInt("showID");
+                int hallId = resultSet.getInt("hallNr");
 
-                show = new Show(mMovieId, mFullDate, mShowId, mHallId);
+                result = new Show(movieId, fullDate, id, hallId);
+                result.setMovie(LocalAppStorage.getMovie(movieId));
             }
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
         finally {
-            disconnect();
+            if (disconnect) {
+                disconnect();
+            }
         }
 
-        return show;
+        return result;
     }
 }

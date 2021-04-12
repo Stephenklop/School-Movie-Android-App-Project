@@ -36,6 +36,7 @@ public class TicketListActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private LocalAppStorage localAppStorage;
+    private List<Ticket> tickets;
     CinemaDatabaseService cinemaDatabaseService = new CinemaDatabaseService();
 
     public TicketListActivity() {
@@ -66,20 +67,35 @@ public class TicketListActivity extends AppCompatActivity {
 //        fillSeatList();
 //        fillShowList();
 
-
         recyclerView = findViewById(R.id.tickets_list_items);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // specify an adapter (see also next example)
-        mAdapter = new RecyclerViewAdapter(this, localAppStorage, cinemaDatabaseService);
-        recyclerView.setAdapter(mAdapter);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+
+        Thread loadTicketsThread = new Thread(() -> {
+            tickets = cinemaDatabaseService.getTicketList(localAppStorage.getUser().getUserId());
+        });
+
+        Thread adapterThread = new Thread(() -> {
+            // specify an adapter (see also next example)
+            mAdapter = new RecyclerViewAdapter(tickets, this, localAppStorage, cinemaDatabaseService);
+            recyclerView.setAdapter(mAdapter);
+        });
+
+        try {
+            loadTicketsThread.start();
+            loadTicketsThread.join();
+
+            adapterThread.start();
+            adapterThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 //    private void fillTicketList() {
