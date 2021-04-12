@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -68,12 +69,19 @@ public class LoginActivity extends AppCompatActivity{
                 
                 String hashedPassword = hashPassword(Password);
 
-                mUser = login.executeLogin(Username, hashedPassword);
-                if (mUser != null) {
-                    localAppStorage.setUser(mUser);
-                    localAppStorage.setLoggedIn();
-                    Intent i = new Intent(LoginActivity.this, AccountActivity.class);
-                    startActivity(i);
+                if(!Username.isEmpty() || !Password.isEmpty()) {
+                    mUser = login.executeLogin(Username, hashedPassword);
+                    if (mUser != null) {
+                        localAppStorage.setUser(mUser);
+                        localAppStorage.setLoggedIn();
+                        Intent i = new Intent(LoginActivity.this, AccountActivity.class);
+                        startActivity(i);
+                    } else {
+                        System.out.println("not logged in");
+                        Toast.makeText(getApplicationContext(), "User could not be logged in", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "No valid input is given", Toast.LENGTH_LONG).show();
                 }
             }
         });

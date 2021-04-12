@@ -1,10 +1,19 @@
 package com.example.movieappschool.ui;
 
+import android.app.ActivityOptions;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,10 +21,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
+import com.example.movieappschool.ui.menu.MenuActivity;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Calendar;
 
 public class RegisterActivity extends AppCompatActivity {
     private CinemaDatabaseService cinemaDatabaseService;
@@ -31,6 +42,21 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
+        // Menu
+        View toolBar = findViewById(R.id.register_toolbar);
+        ImageView hamburgerIcon = toolBar.findViewById(R.id.hamburger_icon);
+
+        hamburgerIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+            intent.putExtra("prevActivity", getClass().getName());
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            ActivityOptions options = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.fade_out);
+
+            getApplicationContext().startActivity(intent, options.toBundle());
+        });
+
+
         mUsername = findViewById(R.id.register_username_input);
         mFirstname = findViewById(R.id.register_firstname_input);
         mLastname = findViewById(R.id.register_lastname_input);
@@ -40,6 +66,12 @@ public class RegisterActivity extends AppCompatActivity {
         mDateBirth = findViewById(R.id.register_birthdate_input);
         mCreateAccount = findViewById(R.id.register_submit_button);
 
+        mDateBirth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDatePicker();
+            }
+        });
 
         mCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +113,29 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    public void setDatePicker() {
+        int mYear, mMonth, mDay, mHour, mMinute;
+
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                mDateBirth.setText(dayOfMonth + "-" + (month+1) + "-" + year);
+            }
+        }, mYear, mMonth, mDay);
+        datePickerDialog.show();
+    }
+
+    public boolean checkIfFilled(String username, String firstname, String lastname, String password, String email, String address, String datebirth) {
+        if (!username.isEmpty() && !firstname.isEmpty() && !lastname.isEmpty() && !password.isEmpty() && !email.isEmpty() && !address.isEmpty() && !datebirth.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
 
 
     private String hashPassword(String password) {
@@ -152,4 +207,21 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if(v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if(!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event);
+    }
 }

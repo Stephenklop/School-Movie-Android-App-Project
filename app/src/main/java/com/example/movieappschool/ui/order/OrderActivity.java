@@ -56,16 +56,6 @@ public class OrderActivity extends AppCompatActivity {
         backButtton = toolbar.findViewById(R.id.back_icon);
         backButtton.setVisibility(View.VISIBLE);
 
-        // Set up a touchlistener to remove keyboard
-        findViewById(R.id.login).setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-                return true;
-            }
-        });
-
         // Threads.
         Thread cinemaDatabaseThread = new Thread(() -> occupiedSeats = cinemaDatabaseService.getOccupiedSeats(1));
 
