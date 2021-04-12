@@ -59,7 +59,7 @@ public class AccountActivity extends AppCompatActivity {
         mUsername = findViewById(R.id.my_account_username_input);
         mFirstname = findViewById(R.id.my_account_firstname_input);
         mLastname = findViewById(R.id.my_account_lastname_input);
-        //mPassword = findViewById(R.id.my_account_password_input);
+        mPassword = findViewById(R.id.my_account_password_input);
         mEmail = findViewById(R.id.my_account_email_input);
         mDateOfBirth = findViewById(R.id.my_account_birthdate_input);
         mAddress = findViewById(R.id.my_account_address_input);
