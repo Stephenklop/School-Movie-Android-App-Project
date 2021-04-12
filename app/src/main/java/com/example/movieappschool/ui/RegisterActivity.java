@@ -124,18 +124,11 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 mDateBirth.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
+                mDateBirth.setError(null);
             }
         }, mYear, mMonth, mDay);
         datePickerDialog.show();
     }
-
-    public boolean checkIfFilled(String username, String firstname, String lastname, String password, String email, String address, String datebirth) {
-        if (!username.isEmpty() && !firstname.isEmpty() && !lastname.isEmpty() && !password.isEmpty() && !email.isEmpty() && !address.isEmpty() && !datebirth.isEmpty()) {
-            return true;
-        }
-        return false;
-    }
-
 
     private String hashPassword(String password) {
         String hashedPassword = "";
