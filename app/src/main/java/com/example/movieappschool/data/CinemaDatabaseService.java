@@ -21,10 +21,11 @@ public class CinemaDatabaseService {
     private final String password = "AnikaWante";
     private Connection connection;
     private Statement statement;
+    private final List<ResultSet> resultSets;
     private ResultSet resultSet;
 
     public CinemaDatabaseService() {
-
+        resultSets = new ArrayList<>();
     }
 
     private void connect() {
@@ -39,7 +40,8 @@ public class CinemaDatabaseService {
     private void executeQuery(String query) {
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(query);
+            resultSets.add(statement.executeQuery(query));
+            resultSet = resultSets.get(resultSets.size() - 1);
         } catch(SQLException e) {
             e.printStackTrace();
             e.getMessage();
@@ -48,10 +50,16 @@ public class CinemaDatabaseService {
 
     private void disconnect() {
         try {
-            connection.close();
-            if (resultSet != null) {
+            if (resultSets.isEmpty()) {
+                connection.close();
+            } else {
+                int index = resultSets.size() - 1;
+
                 resultSet.close();
+                resultSets.get(index).close();
+                resultSets.remove(index);
             }
+
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
