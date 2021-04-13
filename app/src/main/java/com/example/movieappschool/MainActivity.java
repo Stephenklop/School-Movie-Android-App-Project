@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String search) {
+                    movieList.clear();
                     movieList.addAll(mMovies);
 
                     new MovieAdapter(movieList, MainActivity.this).getFilter().filter(search);
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public boolean onQueryTextChange(String search) {
+                    movieList.clear();
                     movieList.addAll(mMovies);
 
                     new MovieAdapter(movieList, MainActivity.this).getFilter().filter(search);
