@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -65,11 +66,13 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View popupView = inflater.inflate(R.layout.ticket_list_qr, null);
 
+            // Create the popup background blur
+
             // create the popup window
             float width = Converter.dpToPx(context, 275);
             float height = Converter.dpToPx(context, 324);
             boolean focusable = true; // lets taps outside the popup also dismiss it
-            final PopupWindow popupWindow = new PopupWindow(popupView, (int) width, (int) height, focusable);
+            final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, focusable);
 
             // show the popup window
             // which view you pass in doesn't matter, it is only used for the window tolken
