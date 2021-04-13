@@ -1,8 +1,12 @@
 package com.example.movieappschool.ui.ticket;
 
 import android.app.ActivityOptions;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -17,6 +21,7 @@ import com.example.movieappschool.domain.Movie;
 import com.example.movieappschool.domain.Seat;
 import com.example.movieappschool.domain.Show;
 import com.example.movieappschool.domain.Ticket;
+import com.example.movieappschool.ui.LoginActivity;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
 import java.util.ArrayList;
@@ -40,6 +45,9 @@ public class TicketListActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ticket_list);
+
+        // Set logout receiver
+        setLogoutReceiver();
 
         // Menu
         View toolBar = findViewById(R.id.tickets_list_toolbar);
@@ -152,10 +160,25 @@ public class TicketListActivity extends AppCompatActivity {
         seatList.addAll(Arrays.asList(new Seat[] { S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16, S17, S18, S19, S20, S21, S22, S23, S24, S25, S26, S27, S28, S29, S30, S31, S32, S33, S34, S35, S36, S37, S38, S39, S40, S41, S42, S43, S44, S45, S46, S47, S48, S49, S50}));
         localAppStorage.setSeatList(seatList);
     }
+
     private void fillShowList() {
         Show SH1 = new Show(791373, "2021-04-10 15:10:00", 1, 3);
         List<Show> showList = new ArrayList<Show>();
         showList.add(SH1);
         localAppStorage.setShowList(showList);
+    }
+
+    private void setLogoutReceiver() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("onReceive", "Logout in progress");
+                finish();
+                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(login);
+            }
+        }, intentFilter);
     }
 }
