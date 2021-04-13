@@ -2,14 +2,15 @@ package com.example.movieappschool.domain;
 
 public class Ticket {
 
-    private int mSeatNumber, mUserId, mTicketId, mShowId;
+    private int mSeatNumber, mRowNumber, mUserId, mTicketId;
     private double mPrice;
+    private Show mShow;
 
-    public Ticket(int mTicketId, int mUserId, int mSeatNumber, int mShowId, double mPrice) {
+    public Ticket(int mTicketId, int mUserId, int mSeatNumber, int mRowNumber, double mPrice) {
         this.mTicketId = mTicketId;
         this.mUserId = mUserId;
         this.mSeatNumber = mSeatNumber;
-        this.mShowId = mShowId;
+        this.mRowNumber = mRowNumber;
         this.mPrice = mPrice;
     }
 
@@ -17,12 +18,12 @@ public class Ticket {
         return mSeatNumber;
     }
 
-    public int getUserId() {
-        return mUserId;
+    public int getRowNumber() {
+        return mRowNumber;
     }
 
-    public int getShow() {
-        return mShowId;
+    public int getUserId() {
+        return mUserId;
     }
 
     public double getPrice() {
@@ -31,5 +32,25 @@ public class Ticket {
 
     public int getTicketId() {
         return mTicketId;
+    }
+
+    public Show getShow() {
+        return mShow;
+    }
+
+    public void setShow(Show show) {
+        this.mShow = show;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "mSeatNumber=" + mSeatNumber +
+                ", mRowNumber=" + mRowNumber +
+                ", mUserId=" + mUserId +
+                ", mTicketId=" + mTicketId +
+                ", mPrice=" + mPrice +
+                ", mShow=" + mShow +
+                '}';
     }
 }

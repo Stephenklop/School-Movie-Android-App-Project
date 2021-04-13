@@ -25,6 +25,16 @@ public class LocalAppStorage extends Application {
         return movies;
     }
 
+    public static Movie getMovie(int movieId) {
+        for (Movie movie : movies) {
+            if (movie.getId() == movieId) {
+                return movie;
+            }
+        }
+
+        return null;
+    }
+
     //ticketList
     public static List<Ticket> ticketList = new ArrayList<Ticket>();
 

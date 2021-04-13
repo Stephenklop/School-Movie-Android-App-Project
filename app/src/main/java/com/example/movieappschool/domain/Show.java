@@ -4,6 +4,7 @@ public class Show {
 
     private int mShowId, mHallId, mMovieId;
     private String mFullDate;
+    private Movie mMovie;
 
     public Show(int mMovieId, String mFullDate, int mShowId, int mHallId) {
         this.mMovieId = mMovieId;
@@ -38,5 +39,13 @@ public class Show {
 
     public int getHallId() {
         return mHallId;
+    }
+
+    public Movie getMovie() {
+        return mMovie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.mMovie = movie;
     }
 }
