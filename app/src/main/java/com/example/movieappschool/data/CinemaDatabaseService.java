@@ -50,12 +50,16 @@ public class CinemaDatabaseService {
 
     private void disconnect() {
         try {
-            if (resultSets.isEmpty()) {
+            if (resultSets.size() < 2) {
                 connection.close();
+                resultSet.close();
+                resultSets.get(0).close();
             } else {
                 int index = resultSets.size() - 1;
 
                 resultSet.close();
+                resultSet = resultSets.get(index - 1);
+
                 resultSets.get(index).close();
                 resultSets.remove(index);
             }
@@ -220,7 +224,7 @@ public class CinemaDatabaseService {
                 // TODO: ADD PRICE TO TICKET
                 //mPrice = resultSet.getDouble("price");
                 Ticket ticket = new Ticket(mTicketId, mUserId, mSeatNumber, mRowNumber, 10);
-                ticket.setShow(getShow(mTicketId, false));
+                ticket.setShow(getShow(mTicketId));
                 ticketList.add(ticket);
             }
         }
@@ -234,7 +238,7 @@ public class CinemaDatabaseService {
         return ticketList;
     }
 
-    public Show getShow(int showId, boolean disconnect){
+    public Show getShow(int showId){
         String query = "SELECT * FROM Show WHERE showID = " + showId;
         Show result = null;
 
@@ -256,9 +260,7 @@ public class CinemaDatabaseService {
             e.printStackTrace();
         }
         finally {
-            if (disconnect) {
-                disconnect();
-            }
+            disconnect();
         }
 
         return result;
