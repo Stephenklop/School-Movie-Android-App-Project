@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
+import com.example.movieappschool.logic.validator;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
 import java.nio.charset.StandardCharsets;
@@ -151,39 +152,38 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean validate() {
         boolean valid = true;
 
-        if (mUsername.getText().toString().isEmpty()) {
+        if (!validator.global(mUsername.getText().toString())) {
             mUsername.setError("Controleer gebruikersnaam");
             valid = false;
         }
 
-        if (mFirstname.getText().toString().isEmpty()) {
+        if (!validator.global(mFirstname.getText().toString())) {
             mFirstname.setError("Controleer voornaam");
             valid = false;
         }
 
-        if (mLastname.getText().toString().isEmpty()) {
+        if (!validator.global(mLastname.getText().toString())) {
             mLastname.setError("Controleer achternaam");
             valid = false;
         }
-
-        //email must be like user@domain.tld
-        if (!mEmail.getText().toString().matches("^(.+)@(.+)$")) {
+        
+        if (!validator.email(mEmail.getText().toString())) {
             mEmail.setError("Controleer email");
             valid = false;
         }
-        //mPassword must have minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
-        if (!mPassword.getText().toString().matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")) {
+
+        if (!validator.password(mPassword.getText().toString())) {
             mPassword.setError("Wachtwoord moet minimaal uit 8 tekens bestaan waarvan 1 hoofdletter, 1 special character en 1 cijfer");
             valid = false;
         }
 
-        //mDateBirth is allowed to be dd/mm/yyyy
-        if (mDateBirth.getText().toString().isEmpty()) {
+
+        if (!validator.global(mDateBirth.getText().toString())) {
             mDateBirth.setError("Controlleer geboortedatum");
             valid = false;
         }
 
-        if (mAddress.getText().toString().isEmpty()) {
+        if (!validator.global(mAddress.getText().toString())) {
             mAddress.setError("Controleer Adres");
             valid = false;
         }
