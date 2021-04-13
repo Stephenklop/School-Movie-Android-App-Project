@@ -21,6 +21,7 @@ import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.User;
+import com.example.movieappschool.logic.validator;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -77,7 +78,7 @@ public class PasswordActivity extends AppCompatActivity {
         mChangePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkIfNotEmpty()) {
+                if (validate()) {
                     Thread t1 = new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -94,17 +95,30 @@ public class PasswordActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     Context context = getApplicationContext();
-                    Toast.makeText(context, getResources().getString(R.string.change_password_password_changed_notification), Toast.LENGTH_LONG).show();
+                    Toast toast = Toast.makeText(context, "Password changed", Toast.LENGTH_LONG);
+                    toast.show();
                 }
             }
         });
     }
 
-    private boolean checkIfNotEmpty() {
-        if (!mOldPasswordEdit.getText().toString().isEmpty() && !mNewPasswordEdit.getText().toString().isEmpty()) {
+    private boolean validate() {
+        boolean valid = true;
+
+        if (!validator.global(mOldPasswordEdit.getText().toString())) {
+            mOldPasswordEdit.setError("Controleer oud wachtwoord");
+            valid = false;
+        }
+
+        if (!validator.password(mNewPasswordEdit.getText().toString())) {
+            mNewPasswordEdit.setError("Wachtwoord moet minimaal uit 8 tekens bestaan waarvan 1 hoofdletter, 1 special character en 1 cijfer");
+            valid = false;
+        }
+        if (!valid) {
+            return false;
+        } else {
             return true;
         }
-        return false;
     }
 
     private String hashPassword(String password) {
@@ -141,12 +155,12 @@ public class PasswordActivity extends AppCompatActivity {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
             View v = getCurrentFocus();
-            if(v instanceof EditText) {
+            if (v instanceof EditText) {
                 Rect outRect = new Rect();
                 v.getGlobalVisibleRect(outRect);
-                if(!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                     v.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
