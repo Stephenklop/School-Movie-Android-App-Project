@@ -32,7 +32,7 @@ public class DetailActivity extends AppCompatActivity {
     private Movie movie;
     private View toolbar;
     private ImageView backgroundImage, poster, starOne, starTwo, starThree, starFour, starFive, backButton;
-    private TextView title, releaseyear, genres, movieLength, rating, description, textRating;
+    private TextView title, releaseyear, genres, movieLength, rating, description, textRating, loggedIn;
     private Button showMoreButton, orderButton;
     private int movieId;
     private String previousActivity;
@@ -213,9 +213,14 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         orderButton = findViewById(R.id.detail_order_tickets);
+        loggedIn = findViewById(R.id.not_logged_in);
+        loggedIn.setVisibility(View.INVISIBLE);
+
         if (!localAppStorage.getLoggedIn()) {
             orderButton.setVisibility(View.INVISIBLE);
+            loggedIn.setVisibility(View.VISIBLE);
         }
+
         orderButton.setOnClickListener(v -> {
             new Thread(() -> {
                 if (cinemaDatabaseService.doShowsExist(movieId)) {
