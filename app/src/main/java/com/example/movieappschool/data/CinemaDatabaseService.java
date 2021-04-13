@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class CinemaDatabaseService {
     private final String connectionUrl = "jdbc:jtds:sqlserver://aei-sql2.avans.nl:1443/CinemaApplicationDB";
@@ -21,11 +22,10 @@ public class CinemaDatabaseService {
     private final String password = "AnikaWante";
     private Connection connection;
     private Statement statement;
-    private final List<ResultSet> resultSets;
-    private ResultSet resultSet;
+    private Stack<ResultSet> resultSet;
 
     public CinemaDatabaseService() {
-        resultSets = new ArrayList<>();
+        resultSet = new Stack<>();
     }
 
     private void connect() {
@@ -40,8 +40,7 @@ public class CinemaDatabaseService {
     private void executeQuery(String query) {
         try {
             statement = connection.createStatement();
-            resultSets.add(statement.executeQuery(query));
-            resultSet = resultSets.get(resultSets.size() - 1);
+            resultSet.push(statement.executeQuery(query));
         } catch(SQLException e) {
             e.printStackTrace();
             e.getMessage();
@@ -50,18 +49,10 @@ public class CinemaDatabaseService {
 
     private void disconnect() {
         try {
-            if (resultSets.size() < 2) {
+            if (resultSet.empty()) {
                 connection.close();
-                resultSet.close();
-                resultSets.get(0).close();
             } else {
-                int index = resultSets.size() - 1;
-
-                resultSet.close();
-                resultSet = resultSets.get(index - 1);
-
-                resultSets.get(index).close();
-                resultSets.remove(index);
+                resultSet.pop().close();
             }
 
             statement.close();
@@ -79,8 +70,10 @@ public class CinemaDatabaseService {
             connect();
             executeQuery(query);
 
-            while (resultSet.next()) {
-                result.add(resultSet.getInt(1));
+            ResultSet rs = resultSet.peek();
+
+            while (rs.next()) {
+                result.add(rs.getInt(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,8 +93,10 @@ public class CinemaDatabaseService {
             connect();
             executeQuery(query);
 
-            while (resultSet.next()) {
-                result.add(new Show(resultSet.getInt(2), resultSet.getString(4), resultSet.getInt(1), resultSet.getInt(3)));
+            ResultSet rs = resultSet.peek();
+
+            while (resultSet.peek().next()) {
+                result.add(new Show(rs.getInt(2), rs.getString(4), rs.getInt(1), rs.getInt(3)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -120,7 +115,9 @@ public class CinemaDatabaseService {
             connect();
             executeQuery(query);
 
-            while (resultSet.next()) {
+            ResultSet rs = resultSet.peek();
+
+            while (rs.next()) {
                 result = true;
             }
         } catch (SQLException e) {
@@ -140,8 +137,10 @@ public class CinemaDatabaseService {
             connect();
             executeQuery(query);
 
-            while (resultSet.next()) {
-                result.add(new Seat(resultSet.getInt(1), resultSet.getInt(2)));
+            ResultSet rs = resultSet.peek();
+
+            while (rs.next()) {
+                result.add(new Seat(rs.getInt(1), rs.getInt(2)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -161,13 +160,15 @@ public class CinemaDatabaseService {
             connect();
             executeQuery(query);
 
-            while (resultSet.next()) {
-                int mUserId = resultSet.getInt("userID");
-                String mFirstName = resultSet.getString("firstName");
-                String mLastName = resultSet.getString("lastName");
-                String mAddress = resultSet.getString("address");
-                String mEmail = resultSet.getString("email");
-                String mDateOfBirth = resultSet.getString("dateOfBirth");
+            ResultSet rs = resultSet.peek();
+
+            while (rs.next()) {
+                int mUserId = rs.getInt("userID");
+                String mFirstName = rs.getString("firstName");
+                String mLastName = rs.getString("lastName");
+                String mAddress = rs.getString("address");
+                String mEmail = rs.getString("email");
+                String mDateOfBirth = rs.getString("dateOfBirth");
                 result = new User(mUserId, mFirstName, mLastName, user, mAddress, mEmail, password, mDateOfBirth);
             }
         } catch (SQLException e) {
@@ -208,15 +209,17 @@ public class CinemaDatabaseService {
             connect();
             executeQuery(query);
 
-            while (resultSet.next()) {
-                mUserId = resultSet.getInt("userID");
-                mUsername = resultSet.getString("username");
-                mFirstName = resultSet.getString("firstName");
-                mLastName = resultSet.getString("lastName");
-                mAddress = resultSet.getString("address");
-                mEmail = resultSet.getString("email");
-                mPassword = resultSet.getString("password");
-                mDateBirth = resultSet.getString("dateOfBirth");
+            ResultSet rs = resultSet.peek();
+
+            while (rs.next()) {
+                mUserId = rs.getInt("userID");
+                mUsername = rs.getString("username");
+                mFirstName = rs.getString("firstName");
+                mLastName = rs.getString("lastName");
+                mAddress = rs.getString("address");
+                mEmail = rs.getString("email");
+                mPassword = rs.getString("password");
+                mDateBirth = rs.getString("dateOfBirth");
                 user = new User(mUserId, mFirstName, mLastName, mUsername, mAddress, mEmail, mPassword, mDateBirth);
             }
         } catch (SQLException e) {
@@ -255,12 +258,14 @@ public class CinemaDatabaseService {
             connect();
             executeQuery(query);
 
-            while (resultSet.next()) {
-                mTicketId = resultSet.getInt("ticketID");
-                mUserId = resultSet.getInt("userID");
-                mSeatNumber = resultSet.getInt("chairNr");
-                mRowNumber = resultSet.getInt("rowNr");
-                mShowId = resultSet.getInt("showID");
+            ResultSet rs = resultSet.peek();
+
+            while (rs.next()) {
+                mTicketId = rs.getInt("ticketID");
+                mUserId = rs.getInt("userID");
+                mSeatNumber = rs.getInt("chairNr");
+                mRowNumber = rs.getInt("rowNr");
+                mShowId = rs.getInt("showID");
                 // TODO: ADD PRICE TO TICKET
                 //mPrice = resultSet.getDouble("price");
                 Ticket ticket = new Ticket(mTicketId, mUserId, mSeatNumber, mRowNumber, 10);
@@ -286,11 +291,13 @@ public class CinemaDatabaseService {
             connect();
             executeQuery(query);
 
-            while (resultSet.next()) {
-                int movieId = resultSet.getInt("movieID");
-                String fullDate = resultSet.getString("dateTime");
-                int id = resultSet.getInt("showID");
-                int hallId = resultSet.getInt("hallNr");
+            ResultSet rs = resultSet.peek();
+
+            while (rs.next()) {
+                int movieId = rs.getInt("movieID");
+                String fullDate = rs.getString("dateTime");
+                int id = rs.getInt("showID");
+                int hallId = rs.getInt("hallNr");
 
                 result = new Show(movieId, fullDate, id, hallId);
                 result.setMovie(LocalAppStorage.getMovie(movieId));
