@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter<MovieAdapter.ViewHolder> mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Integer> databaseIdsResult;
+    private List<Movie> movieList = new ArrayList<>();
 
     public MainActivity() {
         cinemaDatabaseService = new CinemaDatabaseService();
@@ -79,14 +80,11 @@ public class MainActivity extends AppCompatActivity {
         Thread movieAPIThread = new Thread(() -> {
             mMovies = movieAPIService.getMoviesByIds(databaseIdsResult);
             localAppStorage.setMovies(mMovies);
-
-
         });
 
 
         Thread adapterThread = new Thread(() -> {
             Looper.prepare();
-            List<Movie> movieList = new ArrayList<>();
             movieList.addAll(mMovies);
             mAdapter = new MovieAdapter(movieList, MainActivity.this);
 
@@ -97,9 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onQueryTextSubmit(String search) {
                     movieList.clear();
                     movieList.addAll(mMovies);
-
                     new MovieAdapter(movieList, MainActivity.this).getFilter().filter(search);
-
                     mAdapter.notifyDataSetChanged();
 
                     return true;
@@ -109,15 +105,10 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onQueryTextChange(String search) {
                     movieList.clear();
                     movieList.addAll(mMovies);
-
                     new MovieAdapter(movieList, MainActivity.this).getFilter().filter(search);
-
                     mAdapter.notifyDataSetChanged();
 
-
                     return true;
-
-
                 }
 
 
