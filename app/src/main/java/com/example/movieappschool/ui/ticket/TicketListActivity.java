@@ -3,8 +3,11 @@ package com.example.movieappschool.ui.ticket;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -66,8 +69,14 @@ public class TicketListActivity extends AppCompatActivity {
 
         Thread adapterThread = new Thread(() -> {
             // specify an adapter (see also next example)
-            mAdapter = new TicketAdapter(tickets, this);
-            recyclerView.setAdapter(mAdapter);
+            if(tickets.isEmpty()){
+                System.out.println("No data");
+                recyclerView.setVisibility(View.GONE);
+                findViewById(R.id.tickets_list_no_tickets_found).setVisibility(View.VISIBLE);
+            } else {
+                mAdapter = new TicketAdapter(tickets, this);
+                recyclerView.setAdapter(mAdapter);
+            }
         });
 
         try {

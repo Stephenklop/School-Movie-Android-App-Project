@@ -59,4 +59,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tickets_list_search" />
 
+    <TextView
+        android:id="@+id/tickets_list_no_tickets_found"
+        android:layout_width="match_parent"
+        android:layout_height="453dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="center"
+        android:text="No tickets found"
+        android:textColor="@color/tint1"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tickets_list_search" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
