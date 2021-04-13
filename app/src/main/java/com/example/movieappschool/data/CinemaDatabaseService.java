@@ -223,7 +223,7 @@ public class CinemaDatabaseService {
                 // TODO: ADD PRICE TO TICKET
                 //mPrice = resultSet.getDouble("price");
                 Ticket ticket = new Ticket(mTicketId, mUserId, mSeatNumber, mRowNumber, 10);
-                ticket.setShow(getShow(mTicketId));
+                ticket.setShow(getShow(mShowId));
                 ticketList.add(ticket);
             }
         }
