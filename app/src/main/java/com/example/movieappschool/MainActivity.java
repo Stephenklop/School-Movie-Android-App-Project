@@ -79,29 +79,39 @@ public class MainActivity extends AppCompatActivity {
         Thread movieAPIThread = new Thread(() -> {
             mMovies = movieAPIService.getMoviesByIds(databaseIdsResult);
             localAppStorage.setMovies(mMovies);
+
+
         });
 
 
         Thread adapterThread = new Thread(() -> {
             Looper.prepare();
-            mAdapter = new MovieAdapter(mMovies, MainActivity.this);
+            List<Movie> movieList = new ArrayList<>();
+            movieList.addAll(mMovies);
+            mAdapter = new MovieAdapter(movieList, MainActivity.this);
 
             SearchView searchBar = findViewById(R.id.homepage_search);
 
             searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
-                public boolean onQueryTextSubmit(String query) {
+                public boolean onQueryTextSubmit(String search) {
+                    movieList.addAll(mMovies);
+
+                    new MovieAdapter(movieList, MainActivity.this).getFilter().filter(search);
+
+                    mAdapter.notifyDataSetChanged();
 
                     return true;
                 }
 
                 @Override
                 public boolean onQueryTextChange(String search) {
+                    movieList.addAll(mMovies);
 
-
-                    new MovieAdapter(mMovies, MainActivity.this).getFilter().filter(search);
+                    new MovieAdapter(movieList, MainActivity.this).getFilter().filter(search);
 
                     mAdapter.notifyDataSetChanged();
+
 
                     return true;
 
@@ -125,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
 
             adapterThread.start();
             adapterThread.join();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
