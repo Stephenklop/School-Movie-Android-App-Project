@@ -102,7 +102,7 @@ public class AccountActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     Context context = getApplicationContext();
-                    Toast toast = Toast.makeText(context, "Account details updated", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(context, getResources().getString(R.string.my_account_details_updated), Toast.LENGTH_LONG);
                     toast.show();
                 }
             }

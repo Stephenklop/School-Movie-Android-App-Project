@@ -39,6 +39,9 @@ public class SeatConfigurator {
 
         // Check the ticket amount.
         checkTicketLimit();
+
+        // Update the seats text
+        updateSeatAmountText();
     }
 
     // Disable the preoccupied seats.
@@ -176,7 +179,7 @@ public class SeatConfigurator {
     // Update the text field that displays the selected and total ticket amount.
     private void updateSeatAmountText() {
         TextView seatAmountTextView = activity.findViewById(R.id.order_seats_total);
-        seatAmountTextView.setText(selectedSeats.size() + " / " + numberOfTickets + " stoelen");
+        seatAmountTextView.setText(selectedSeats.size() + " / " + numberOfTickets + " " + activity.getResources().getString(R.string.order_selected_seats));
     }
 
     // Calculate the correct row based on the seat number.

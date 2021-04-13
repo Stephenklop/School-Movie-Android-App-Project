@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
-            android:text="Kies uw datum en tijd"
+            android:text="@string/order_date_time_title"
             android:textColor="@color/tint1"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,8 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="40dp"
-            android:text="DATE"
+            android:text="@string/order_date"
+            android:textAllCaps="true"
             android:textColor="@color/tint4"
             android:textFontWeight="600"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +68,8 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="40dp"
-            android:text="TIME"
+            android:text="@string/order_time"
+            android:textAllCaps="true"
             android:textColor="@color/tint4"
             android:textFontWeight="600"
             app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +102,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="40dp"
-            android:text="Hoeveel mensen gaan er mee?"
+            android:text="@string/order_ticket_amount_title"
             android:textColor="@color/tint1"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -129,7 +131,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kind"
+                    android:text="@string/order_ticket_child"
                     android:textColor="@color/tint4"
                     android:textSize="16sp" />
 
@@ -156,7 +158,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Volwassen"
+                    android:text="@string/order_ticket_adult"
                     android:textColor="@color/tint4"
                     android:textSize="16sp" />
 
@@ -182,7 +184,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Senior"
+                    android:text="@string/order_ticket_senior"
                     android:textColor="@color/tint4"
                     android:textSize="16sp" />
 
@@ -207,7 +209,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="40dp"
-            android:text="Kies uw plaatsen"
+            android:text="@string/order_seats_title"
             android:textColor="@color/tint1"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -234,7 +236,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
             android:gravity="center"
-            android:text="0 / 0 stoelen"
+            android:text="@string/order_selected_seats"
             android:textColor="@color/tint4"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -944,7 +946,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Beschikbaar"
+                    android:text="@string/order_available"
                     android:textColor="@color/tint1"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -969,7 +971,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gereserveerd"
+                    android:text="@string/order_reserved"
                     android:textColor="@color/tint1"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -993,7 +995,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Geselecteerd"
+                    android:text="@string/order_selected"
                     android:textColor="@color/tint1"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -1030,7 +1032,7 @@
                 android:background="@drawable/orange_gradient"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:text="Bestel"
+                android:text="@string/order_order"
                 android:textAllCaps="false"
                 android:textColor="@color/tint1"
                 android:textSize="20sp"/>

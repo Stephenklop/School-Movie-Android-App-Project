@@ -105,9 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     Context context = getApplicationContext();
-                    Toast toast = Toast.makeText(context, "Account created", Toast.LENGTH_LONG);
-                    toast.show();
-
+                    Toast.makeText(context, getResources().getString(R.string.register_account_created_notification), Toast.LENGTH_LONG).show();
                 }
             }
         });

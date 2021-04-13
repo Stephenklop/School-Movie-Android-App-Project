@@ -53,7 +53,7 @@ public class TicketListActivity extends AppCompatActivity {
             getApplicationContext().startActivity(intent, options.toBundle());
         });
 
-        recyclerView = findViewById(R.id.tickets_list_items);
+        recyclerView = findViewById(R.id.ticket_list_items);
 
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);

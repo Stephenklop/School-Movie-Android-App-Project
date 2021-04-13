@@ -39,19 +39,21 @@ public class OrderSuccessActivity extends AppCompatActivity {
         }
 
         TextView movieTitle = findViewById(R.id.order_success_movie_title);
-        movieTitle.setText(movie.getTitle());
+        if (movie != null) {
+            movieTitle.setText(movie.getTitle());
+        }
 
         TextView dateText = findViewById(R.id.order_success_date);
-        dateText.setText("Datum: " + date);
+        dateText.setText(getResources().getString(R.string.order_success_date) + " " + date);
 
         TextView timeText = findViewById(R.id.order_success_time);
-        timeText.setText("Tijd: " + time);
+        timeText.setText(getResources().getString(R.string.order_success_time) + " " + time);
 
         TextView totalTicketsText = findViewById(R.id.order_success_total_ticket_amount);
-        totalTicketsText.setText("Aantal tickets: " + totalTickets);
+        totalTicketsText.setText(getResources().getString(R.string.order_success_tickets) + " " + totalTickets);
 
         TextView totalPriceText = findViewById(R.id.order_success_total_price);
-        totalPriceText.setText("Prijs totaal: €" + totalPrice + ",-");
+        totalPriceText.setText(getResources().getString(R.string.order_success_price) + " €" + totalPrice + ",-");
 
         Button homeButton = findViewById(R.id.order_success_back_home_button);
         homeButton.setOnClickListener(v -> {

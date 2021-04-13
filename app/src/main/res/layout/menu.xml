@@ -31,7 +31,7 @@
             android:id="@+id/menu_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Home"
+            android:text="@string/menu_home"
             android:textColor="@color/white"
             android:textSize="30sp" />
 
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Mijn tickets"
+            android:text="@string/menu_my_tickets"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:visibility="gone" />
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Mijn account"
+            android:text="@string/menu_my_account"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:visibility="gone" />
@@ -59,7 +59,7 @@
             android:id="@+id/menu_account_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="@string/menu_account_login"
             android:layout_marginTop="15dp"
             android:textColor="@color/white"
             android:textSize="30sp" />
@@ -68,7 +68,7 @@
             android:id="@+id/menu_account_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Logout"
+            android:text="@string/menu_account_logout"
             android:layout_marginTop="15dp"
             android:textColor="@color/white"
             android:textSize="30sp"

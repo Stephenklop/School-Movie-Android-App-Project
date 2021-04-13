@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity{
                 
                 String hashedPassword = hashPassword(Password);
 
-                if(!Username.isEmpty() || !Password.isEmpty()) {
+                if(!Username.isEmpty() && !Password.isEmpty()) {
                     mUser = login.executeLogin(Username, hashedPassword);
                     if (mUser != null) {
                         localAppStorage.setUser(mUser);
@@ -78,11 +78,10 @@ public class LoginActivity extends AppCompatActivity{
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(i);
                     } else {
-                        System.out.println("not logged in");
-                        Toast.makeText(getApplicationContext(), "User could not be logged in", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.login_wrong_credentials_error), Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "No valid input is given", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.login_empty_input_fields_error), Toast.LENGTH_LONG).show();
                 }
             }
         });
