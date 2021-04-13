@@ -7,14 +7,12 @@ import android.widget.TextView;
 import com.example.movieappschool.R;
 
 public class CustomPicker {
-    private View picker;
+    private final View picker;
+    private final int min;
+    private final int max;
+    private final PickerListener listener;
     private int value;
-    private int min;
-    private int max;
-    private ImageView increaseView;
     private TextView valueView;
-    private ImageView decreaseView;
-    private PickerListener listener;
 
     public CustomPicker(View picker, int min, int max, PickerListener listener) {
         this.picker = picker;
@@ -22,25 +20,17 @@ public class CustomPicker {
         this.min = min;
         this.max = max;
         this.listener = listener;
-        setPicker();
+        setup();
     }
 
-    public int getValue() {
-        return value;
-    }
-
-    private void setPicker() {
-        increaseView = picker.findViewById(R.id.picker_increase);
-        increaseView.setOnClickListener(v -> {
-            increaseValue();
-        });
+    private void setup() {
+        ImageView increaseView = picker.findViewById(R.id.picker_increase);
+        increaseView.setOnClickListener(v -> increaseValue());
 
         valueView = picker.findViewById(R.id.picker_value);
 
-        decreaseView = picker.findViewById(R.id.picker_decrease);
-        decreaseView.setOnClickListener(v -> {
-            decreaseValue();
-        });
+        ImageView decreaseView = picker.findViewById(R.id.picker_decrease);
+        decreaseView.setOnClickListener(v -> decreaseValue());
     }
 
     private void increaseValue() {

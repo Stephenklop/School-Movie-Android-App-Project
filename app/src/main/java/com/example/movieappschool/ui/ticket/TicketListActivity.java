@@ -63,6 +63,7 @@ public class TicketListActivity extends AppCompatActivity {
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
 
+
         Thread loadTicketsThread = new Thread(() -> {
             tickets = cinemaDatabaseService.getTicketList(localAppStorage.getUser().getUserId());
         });

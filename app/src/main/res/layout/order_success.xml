@@ -7,148 +7,129 @@
     android:layout_height="match_parent"
     android:background="@color/tint6">
 
-    <TextView
-        android:id="@+id/order_success_title"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:text="Aankoop succesvol"
-        android:textSize="30sp"
-        android:textColor="@color/tint1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/order_success_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="40dp"
-        android:text="Bekijk hieronder de details van uw bestelde ticket"
-        android:textSize="16sp"
-        android:textColor="@color/tint4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_success_title" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <ImageView
-        android:id="@+id/order_success_image"
-        android:layout_width="190dp"
-        android:layout_height="302dp"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="111dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_success_description" />
+            <TextView
+                android:id="@+id/order_success_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="40dp"
+                android:text="Aankoop succesvol"
+                android:textColor="@color/tint1"
+                android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/order_success_movie_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="40dp"
-        android:gravity="center"
-        android:text="Iron Man"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_success_image" />
+            <TextView
+                android:id="@+id/order_success_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="40dp"
+                android:text="Bedankt voor uw aankoop! Bekijk hieronder de details van uw bestelling."
+                android:textColor="@color/tint4"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/order_success_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="40dp"
-        android:gravity="center"
-        android:text="Datum: 6 maart 2021"
-        android:textSize="16sp"
-        android:textColor="@color/tint1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_success_movie_title" />
+            <ImageView
+                android:id="@+id/order_success_image"
+                android:layout_width="190dp"
+                android:layout_height="302dp"
+                android:layout_marginStart="110dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="111dp" />
 
-    <TextView
-        android:id="@+id/order_success_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="40dp"
-        android:gravity="center"
-        android:text="Tijd: 16:30"
-        android:textColor="@color/tint1"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_success_date" />
+            <TextView
+                android:id="@+id/order_success_movie_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="40dp"
+                android:gravity="center"
+                android:text="Iron Man"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/order_success_row"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="40dp"
-        android:gravity="center"
-        android:text="Rij: 5"
-        android:textSize="16sp"
-        android:textColor="@color/tint1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_success_time" />
+            <TextView
+                android:id="@+id/order_success_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="40dp"
+                android:gravity="center"
+                android:text="Datum: 6 maart 2021"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/order_success_seats"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="40dp"
-        android:gravity="center"
-        android:text="Stoel: 4"
-        android:textColor="@color/tint1"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_success_row" />
+            <TextView
+                android:id="@+id/order_success_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="40dp"
+                android:gravity="center"
+                android:text="Tijd: 16:30"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/order_success_back_home_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/purple_gradient"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="Terug naar home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_success_seats" />
+            <TextView
+                android:id="@+id/order_success_total_ticket_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="40dp"
+                android:gravity="center"
+                android:text="Aantal tickets: 5"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/order_success_view_tickets_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/purple_gradient"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="Bekijk mijn tickets"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_success_back_home_button" />
+            <TextView
+                android:id="@+id/order_success_total_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="40dp"
+                android:gravity="center"
+                android:text="Prijs totaal: €55,-"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/order_success_back_home_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/purple_gradient"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Terug naar home" />
+
+            <Button
+                android:id="@+id/order_success_view_tickets_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/purple_gradient"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Bekijk mijn tickets" />
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

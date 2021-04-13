@@ -41,6 +41,16 @@ public class Show {
         return mHallId;
     }
 
+    @Override
+    public String toString() {
+        return "Show{" +
+                "mShowId=" + mShowId +
+                ", mHallId=" + mHallId +
+                ", mMovieId=" + mMovieId +
+                ", mFullDate='" + mFullDate + '\'' +
+                '}';
+    }
+
     public Movie getMovie() {
         return mMovie;
     }

@@ -186,10 +186,19 @@
                 android:background="@android:color/transparent"
                 android:text="Show more"
                 android:textColor="@color/purpleEndcolor" />
+
+            <TextView
+                android:id="@+id/not_logged_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Log in to order a ticket"
+                android:textColor="@color/tint1"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/detail_button"
+            android:id="@+id/detail_order_tickets"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="40dp"

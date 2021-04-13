@@ -17,5 +17,11 @@ public class Seat {
         return mRowNumber;
     }
 
-
+    @Override
+    public String toString() {
+        return "Seat{" +
+                "mSeatNumber=" + mSeatNumber +
+                ", mRowNumber=" + mRowNumber +
+                '}';
+    }
 }
