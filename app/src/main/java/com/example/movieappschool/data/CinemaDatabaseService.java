@@ -327,4 +327,15 @@ public class CinemaDatabaseService {
             disconnect();
         }
     }
+
+    public void deleteExpiredTickets() {
+        String query = "EXEC DeleteExpiredTickets;";
+
+        try {
+            connect();
+            executeQuery(query);
+        } finally {
+            disconnect();
+        }
+    }
 }
