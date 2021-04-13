@@ -89,7 +89,7 @@ public class CinemaDatabaseService {
     }
 
     public List<Show> getAllShowsOfMovie(int movieId) {
-        String query = "SELECT * FROM Show WHERE movieID = " + movieId;
+        String query = "SELECT * FROM Show WHERE movieID = " + movieId + " ORDER BY dateTime";
         List<Show> result = new ArrayList<>();
 
         try {
