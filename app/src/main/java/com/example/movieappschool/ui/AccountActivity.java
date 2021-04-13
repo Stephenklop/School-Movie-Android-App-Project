@@ -23,6 +23,7 @@ import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.User;
+import com.example.movieappschool.logic.validator;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
 public class AccountActivity extends AppCompatActivity {
@@ -82,7 +83,7 @@ public class AccountActivity extends AppCompatActivity {
         mUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkIfAllFilled()) {
+                if (validate()) {
                     Thread t1 = new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -120,12 +121,12 @@ public class AccountActivity extends AppCompatActivity {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
             View v = getCurrentFocus();
-            if(v instanceof EditText) {
+            if (v instanceof EditText) {
                 Rect outRect = new Rect();
                 v.getGlobalVisibleRect(outRect);
-                if(!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                     v.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -135,12 +136,39 @@ public class AccountActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(event);
     }
 
-    private boolean checkIfAllFilled() {
-        if (!mUsername.getText().toString().isEmpty() || !mFirstname.getText().toString().isEmpty() || !mLastname.getText().toString().isEmpty() || !mEmail.getText().toString().isEmpty() || !mDateOfBirth.getText().toString().isEmpty() ||
-                !mAddress.getText().toString().isEmpty()) {
+    private boolean validate() {
+        boolean valid = true;
+
+        if (!validator.global(mUsername.getText().toString())) {
+            mUsername.setError(getResources().getString(R.string.textfield_wrong));
+            valid = false;
+        }
+
+        if (!validator.global(mFirstname.getText().toString())) {
+            mFirstname.setError(getResources().getString(R.string.textfield_wrong));
+            valid = false;
+        }
+
+        if (!validator.global(mLastname.getText().toString())) {
+            mLastname.setError(getResources().getString(R.string.textfield_wrong));
+            valid = false;
+        }
+
+        if (!validator.email(mEmail.getText().toString())) {
+            mEmail.setError(getResources().getString(R.string.textfield_wrong));
+            valid = false;
+        }
+
+        if (!validator.global(mAddress.getText().toString())) {
+            mAddress.setError(getResources().getString(R.string.textfield_wrong));
+            valid = false;
+        }
+
+        if (!valid) {
+            return false;
+        } else {
             return true;
         }
-        return false;
     }
 
     private void setLogoutReceiver() {
