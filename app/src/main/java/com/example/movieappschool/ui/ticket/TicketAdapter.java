@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -18,21 +17,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.movieappschool.R;
-import com.example.movieappschool.data.CinemaDatabaseService;
-import com.example.movieappschool.data.LocalAppStorage;
-import com.example.movieappschool.domain.Show;
-import com.example.movieappschool.domain.Movie;
 import com.example.movieappschool.domain.Ticket;
 import com.example.movieappschool.logic.Converter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHolder> {
     private List<Ticket> tickets;
     private Context context;
 
-    public RecyclerViewAdapter(List<Ticket> tickets, Context context) {
+    public TicketAdapter(List<Ticket> tickets, Context context) {
         this.tickets = tickets;
         this.context = context;
         Log.d("RECYCLERVIEWADAPTER", tickets.toString());

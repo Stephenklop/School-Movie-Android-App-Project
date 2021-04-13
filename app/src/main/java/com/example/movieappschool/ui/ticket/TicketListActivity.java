@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,15 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
-import com.example.movieappschool.domain.Movie;
-import com.example.movieappschool.domain.Seat;
-import com.example.movieappschool.domain.Show;
 import com.example.movieappschool.domain.Ticket;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 public class TicketListActivity extends AppCompatActivity {
@@ -83,7 +76,7 @@ public class TicketListActivity extends AppCompatActivity {
 
         Thread adapterThread = new Thread(() -> {
             // specify an adapter (see also next example)
-            mAdapter = new RecyclerViewAdapter(tickets, this);
+            mAdapter = new TicketAdapter(tickets, this);
             recyclerView.setAdapter(mAdapter);
         });
 
