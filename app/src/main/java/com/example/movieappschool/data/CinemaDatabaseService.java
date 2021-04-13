@@ -2,9 +2,9 @@ package com.example.movieappschool.data;
 
 import android.util.Log;
 
-import com.example.movieappschool.domain.Movie;
 import com.example.movieappschool.domain.Seat;
 import com.example.movieappschool.domain.Show;
+import com.example.movieappschool.domain.Ticket;
 import com.example.movieappschool.domain.User;
 
 import java.sql.Connection;
@@ -21,10 +21,11 @@ public class CinemaDatabaseService {
     private final String password = "AnikaWante";
     private Connection connection;
     private Statement statement;
+    private final List<ResultSet> resultSets;
     private ResultSet resultSet;
 
     public CinemaDatabaseService() {
-
+        resultSets = new ArrayList<>();
     }
 
     private void connect() {
@@ -39,7 +40,8 @@ public class CinemaDatabaseService {
     private void executeQuery(String query) {
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(query);
+            resultSets.add(statement.executeQuery(query));
+            resultSet = resultSets.get(resultSets.size() - 1);
         } catch(SQLException e) {
             e.printStackTrace();
             e.getMessage();
@@ -48,10 +50,20 @@ public class CinemaDatabaseService {
 
     private void disconnect() {
         try {
-            connection.close();
-            if (resultSet != null) {
+            if (resultSets.size() < 2) {
+                connection.close();
                 resultSet.close();
+                resultSets.get(0).close();
+            } else {
+                int index = resultSets.size() - 1;
+
+                resultSet.close();
+                resultSet = resultSets.get(index - 1);
+
+                resultSets.get(index).close();
+                resultSets.remove(index);
             }
+
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -225,5 +237,72 @@ public class CinemaDatabaseService {
         finally {
             disconnect();
         }
+    }
+
+    public List<Ticket> getTicketList(int userId){
+        List<Ticket> ticketList = new ArrayList<>();
+
+        String query = "SELECT * FROM Ticket WHERE userID = '" + userId + "'";
+
+        int mTicketId;
+        int mUserId;
+        int mSeatNumber;
+        int mRowNumber;
+        int mShowId;
+        double mPrice;
+
+        try {
+            connect();
+            executeQuery(query);
+
+            while (resultSet.next()) {
+                mTicketId = resultSet.getInt("ticketID");
+                mUserId = resultSet.getInt("userID");
+                mSeatNumber = resultSet.getInt("chairNr");
+                mRowNumber = resultSet.getInt("rowNr");
+                mShowId = resultSet.getInt("showID");
+                // TODO: ADD PRICE TO TICKET
+                //mPrice = resultSet.getDouble("price");
+                Ticket ticket = new Ticket(mTicketId, mUserId, mSeatNumber, mRowNumber, 10);
+                ticket.setShow(getShow(mShowId));
+                ticketList.add(ticket);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            disconnect();
+        }
+
+        return ticketList;
+    }
+
+    public Show getShow(int showId){
+        String query = "SELECT * FROM Show WHERE showID = " + showId;
+        Show result = null;
+
+        try {
+            connect();
+            executeQuery(query);
+
+            while (resultSet.next()) {
+                int movieId = resultSet.getInt("movieID");
+                String fullDate = resultSet.getString("dateTime");
+                int id = resultSet.getInt("showID");
+                int hallId = resultSet.getInt("hallNr");
+
+                result = new Show(movieId, fullDate, id, hallId);
+                result.setMovie(LocalAppStorage.getMovie(movieId));
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            disconnect();
+        }
+
+        return result;
     }
 }

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.movieappschool.MainActivity;
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.data.LoginService;
@@ -74,7 +75,7 @@ public class LoginActivity extends AppCompatActivity{
                     if (mUser != null) {
                         localAppStorage.setUser(mUser);
                         localAppStorage.setLoggedIn();
-                        Intent i = new Intent(LoginActivity.this, AccountActivity.class);
+                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(i);
                     } else {
                         System.out.println("not logged in");

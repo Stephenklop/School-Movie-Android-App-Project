@@ -1,35 +1,29 @@
 package com.example.movieappschool.ui.order;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
-import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Seat;
 import com.example.movieappschool.domain.Show;
-import com.example.movieappschool.domain.Ticket;
-import com.example.movieappschool.logic.ConfiguratorListener;
 import com.example.movieappschool.logic.CustomPicker;
 import com.example.movieappschool.logic.SeatConfigurator;
 import com.example.movieappschool.logic.ShowConfigurator;
 import com.example.movieappschool.ui.success.OrderSuccessActivity;
+import com.example.movieappschool.ui.LoginActivity;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class OrderActivity extends AppCompatActivity {
@@ -61,6 +55,9 @@ public class OrderActivity extends AppCompatActivity {
         // TODO: Check if movieId == -1 (= error)
         movieId = intent.getIntExtra("movieId", -1);
         //movieId = 791373;
+
+        // Set logout receiver
+        setLogoutReceiver();
 
         toolbar = findViewById(R.id.order_toolbar);
         toolbar.findViewById(R.id.hamburger_icon).setVisibility(View.INVISIBLE);
@@ -162,5 +159,19 @@ public class OrderActivity extends AppCompatActivity {
         int totalPrice = amountOfChildTickets * 7 + amountOfAdultTickets * 11 + amountOfSeniorTickets * 9;
         TextView priceTextView = findViewById(R.id.order_total_price);
         priceTextView.setText("€" + totalPrice + ",-");
+    }
+
+    private void setLogoutReceiver() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("onReceive", "Logout in progress");
+                finish();
+                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(login);
+            }
+        }, intentFilter);
     }
 }

@@ -115,6 +115,11 @@ public class MenuActivity extends AppCompatActivity {
 
                     getApplicationContext().startActivity(loginIntent, options.toBundle());
                 });
+
+                // Disable back button to pages where you need login
+                Intent broadcastIntent = new Intent();
+                broadcastIntent.setAction("com.package.ACTION_LOGOUT");
+                sendBroadcast(broadcastIntent);
             });
 
             // Show my account

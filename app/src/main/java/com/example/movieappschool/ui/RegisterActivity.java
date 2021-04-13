@@ -14,12 +14,14 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
+import com.example.movieappschool.logic.validator;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
 import java.nio.charset.StandardCharsets;
@@ -83,10 +85,11 @@ public class RegisterActivity extends AppCompatActivity {
                 String address = mAddress.getText().toString();
                 String datebirth = mDateBirth.getText().toString();
 
-                if(checkIfFilled(username, firstname, lastname, password, email, address, datebirth)) {
+
+                if (validate()) {
                     Thread t1 = new Thread(new Runnable() {
                         @Override
-                        public void run(){
+                        public void run() {
                             String hashedPassword = hashPassword(password);
 
                             System.out.println("Hashed password: " + hashedPassword);
@@ -121,17 +124,11 @@ public class RegisterActivity extends AppCompatActivity {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                mDateBirth.setText(dayOfMonth + "-" + (month+1) + "-" + year);
+                mDateBirth.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
+                mDateBirth.setError(null);
             }
         }, mYear, mMonth, mDay);
         datePickerDialog.show();
-    }
-
-    public boolean checkIfFilled(String username, String firstname, String lastname, String password, String email, String address, String datebirth) {
-        if (!username.isEmpty() && !firstname.isEmpty() && !lastname.isEmpty() && !password.isEmpty() && !email.isEmpty() && !address.isEmpty() && !datebirth.isEmpty()) {
-            return true;
-        }
-        return false;
     }
 
     private String hashPassword(String password) {
@@ -152,14 +149,62 @@ public class RegisterActivity extends AppCompatActivity {
         return hashedPassword;
     }
 
+    private boolean validate() {
+        boolean valid = true;
+
+        if (!validator.global(mUsername.getText().toString())) {
+            mUsername.setError("Controleer gebruikersnaam");
+            valid = false;
+        }
+
+        if (!validator.global(mFirstname.getText().toString())) {
+            mFirstname.setError("Controleer voornaam");
+            valid = false;
+        }
+
+        if (!validator.global(mLastname.getText().toString())) {
+            mLastname.setError("Controleer achternaam");
+            valid = false;
+        }
+        
+        if (!validator.email(mEmail.getText().toString())) {
+            mEmail.setError("Controleer email");
+            valid = false;
+        }
+
+        if (!validator.password(mPassword.getText().toString())) {
+            mPassword.setError("Wachtwoord moet minimaal uit 8 tekens bestaan waarvan 1 hoofdletter, 1 special character en 1 cijfer");
+            valid = false;
+        }
+
+
+        if (!validator.global(mDateBirth.getText().toString())) {
+            mDateBirth.setError("Controlleer geboortedatum");
+            valid = false;
+        }
+
+        if (!validator.global(mAddress.getText().toString())) {
+            mAddress.setError("Controleer Adres");
+            valid = false;
+        }
+
+        if (!valid) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
             View v = getCurrentFocus();
-            if(v instanceof EditText) {
+            if (v instanceof EditText) {
                 Rect outRect = new Rect();
                 v.getGlobalVisibleRect(outRect);
-                if(!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                     v.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
