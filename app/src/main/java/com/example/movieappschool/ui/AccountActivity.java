@@ -1,10 +1,13 @@
 package com.example.movieappschool.ui;
 
 import android.app.ActivityOptions;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -24,7 +27,7 @@ import com.example.movieappschool.ui.menu.MenuActivity;
 
 public class AccountActivity extends AppCompatActivity {
     private EditText mUsername, mFirstname, mLastname, mPassword, mEmail, mDateOfBirth, mAddress;
-    private Button mUpdate, mChangePassword;
+    private Button mUpdate;
     private User user;
     private LocalAppStorage localAppStorage;
     private CinemaDatabaseService cinemaDatabaseService;
@@ -38,6 +41,9 @@ public class AccountActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_account);
+
+        // Set logout receiver
+        setLogoutReceiver();
 
         // Menu
         View toolBar = findViewById(R.id.my_account_toolbar);
@@ -54,7 +60,6 @@ public class AccountActivity extends AppCompatActivity {
         });
 
         mUpdate = findViewById(R.id.updateButton);
-        mChangePassword = findViewById(R.id.changePasswordButton);
 
         mUsername = findViewById(R.id.my_account_username_input);
         mFirstname = findViewById(R.id.my_account_firstname_input);
@@ -103,7 +108,7 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
-        mChangePassword.setOnClickListener(new View.OnClickListener() {
+        mPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(AccountActivity.this, PasswordActivity.class);
@@ -135,5 +140,19 @@ public class AccountActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    private void setLogoutReceiver() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("onReceive", "Logout in progress");
+                finish();
+                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(login);
+            }
+        }, intentFilter);
     }
 }
