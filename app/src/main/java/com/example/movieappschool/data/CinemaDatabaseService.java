@@ -51,6 +51,9 @@ public class CinemaDatabaseService {
         try {
             if (resultSet.empty()) {
                 connection.close();
+            } else if (resultSet.peek() == null) {
+                resultSet.pop();
+                connection.close();
             } else {
                 resultSet.pop().close();
             }
