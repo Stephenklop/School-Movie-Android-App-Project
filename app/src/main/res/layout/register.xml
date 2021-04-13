@@ -188,7 +188,7 @@
             android:background="@drawable/input_background"
             android:paddingHorizontal="15dp"
             android:maxLines="1"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:scrollHorizontally="true"
             android:ellipsize="end"
             app:layout_constraintEnd_toEndOf="parent"
