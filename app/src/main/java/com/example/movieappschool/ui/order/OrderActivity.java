@@ -16,8 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
+import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Seat;
 import com.example.movieappschool.domain.Show;
+import com.example.movieappschool.domain.Ticket;
 import com.example.movieappschool.logic.CustomPicker;
 import com.example.movieappschool.logic.SeatConfigurator;
 import com.example.movieappschool.logic.ShowConfigurator;
@@ -41,6 +43,7 @@ public class OrderActivity extends AppCompatActivity {
     private int totalTicketAmount;
     private List<Seat> occupiedSeats;
     private List<Seat> selectedSeats;
+    private int totalPrice;
 
     public OrderActivity() {
         cinemaDatabaseService = new CinemaDatabaseService();
@@ -54,7 +57,6 @@ public class OrderActivity extends AppCompatActivity {
         Intent intent = getIntent();
         // TODO: Check if movieId == -1 (= error)
         movieId = intent.getIntExtra("movieId", -1);
-        //movieId = 791373;
 
         // Set logout receiver
         setLogoutReceiver();
@@ -126,16 +128,43 @@ public class OrderActivity extends AppCompatActivity {
         Button orderButton = findViewById(R.id.order_availability_button);
         orderButton.setOnClickListener(v -> {
             if (selectedSeats != null && selectedSeats.size() > 0 && seatConfigurator.allSeatsSelected()) {
-                Intent orderSuccessIntent = new Intent(getApplicationContext(), OrderSuccessActivity.class);
-                //orderSuccessIntent.putExtra("movieId", movieId);
-                orderSuccessIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                Log.d("ORDER BUTTON", "READY TO ORDER!");
-                Log.d("ALL SEATS SELECTED?", String.valueOf(seatConfigurator.allSeatsSelected()));
-                getApplicationContext().startActivity(orderSuccessIntent);
+                // Add ticket(s) to database.
+                Thread databaseThread = new Thread(() -> {
+                    for (int i = 0; i < totalTicketAmount; i++) {
+//                    Ticket ticket = new Ticket();
+                        cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "child");
+                    }
+
+                    Log.d("SHOW", "TICKET INFO "+  LocalAppStorage.getUser().getUserId() + " " + selectedShow.getShowId() + " " + selectedSeats.get(0).getSeatNumber());
+                });
+
+                Thread intentThread = new Thread(() -> {
+                    // Intent
+                    Intent orderSuccessIntent = new Intent(getApplicationContext(), OrderSuccessActivity.class);
+                    orderSuccessIntent.putExtra("movieId", movieId);
+                    orderSuccessIntent.putExtra("date", selectedShow.getDate());
+                    orderSuccessIntent.putExtra("time", selectedShow.getTime());
+                    orderSuccessIntent.putExtra("totalTickets", totalTicketAmount);
+                    orderSuccessIntent.putExtra("totalPrice", totalPrice);
+                    orderSuccessIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Log.d("ORDER BUTTON", "READY TO ORDER!");
+                    Log.d("ALL SEATS SELECTED?", String.valueOf(seatConfigurator.allSeatsSelected()));
+                    getApplicationContext().startActivity(orderSuccessIntent);
+                });
+
+                try {
+                    databaseThread.start();
+                    databaseThread.join();
+
+                    intentThread.start();
+                    intentThread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             } else {
                 Toast.makeText(this, "Controleer uw stoelselectie.", Toast.LENGTH_LONG).show();
             }
-            //Log.d("ORDER BUTTON", selectedSeats.toString());
         });
     }
 
@@ -156,7 +185,7 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     private void updateTotalPrice() {
-        int totalPrice = amountOfChildTickets * 7 + amountOfAdultTickets * 11 + amountOfSeniorTickets * 9;
+        totalPrice = amountOfChildTickets * 7 + amountOfAdultTickets * 11 + amountOfSeniorTickets * 9;
         TextView priceTextView = findViewById(R.id.order_total_price);
         priceTextView.setText("€" + totalPrice + ",-");
     }

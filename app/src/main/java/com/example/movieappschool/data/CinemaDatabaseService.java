@@ -305,4 +305,16 @@ public class CinemaDatabaseService {
 
         return result;
     }
+
+    public void createTicket(int userId, int chairNr, int rowNr, int showId, String ticketType) {
+        String query = "INSERT INTO Ticket (userID, chairNr, rowNr, showID, ticketType) VALUES ('" + userId + "', '" + chairNr +
+                "', ' "+ rowNr + "', '" + showId + "', '" + ticketType + "')";
+
+        try {
+            connect();
+            executeQuery(query);
+        } finally {
+            disconnect();
+        }
+    }
 }
