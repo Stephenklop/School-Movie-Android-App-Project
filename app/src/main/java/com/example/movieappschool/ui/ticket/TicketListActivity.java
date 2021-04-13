@@ -46,9 +46,6 @@ public class TicketListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ticket_list);
 
-        // Set logout receiver
-        setLogoutReceiver();
-
         // Menu
         View toolBar = findViewById(R.id.tickets_list_toolbar);
         ImageView hamburgerIcon = toolBar.findViewById(R.id.hamburger_icon);
