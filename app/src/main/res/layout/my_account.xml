@@ -189,9 +189,11 @@
         android:background="@drawable/input_background"
         android:paddingHorizontal="15dp"
         android:maxLines="1"
-        android:inputType="text"
+        android:inputType="none"
         android:scrollHorizontally="true"
         android:ellipsize="end"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_account_password" />
@@ -222,6 +224,7 @@
         android:cursorVisible="false"
         android:focusable="false"
         android:paddingHorizontal="15dp"
+        android:inputType="date"
         android:focusableInTouchMode="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -277,21 +280,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_account_address_input" />
-
-    <Button
-        android:id="@+id/changePasswordButton"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/purple_gradient"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="Change password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/updateButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -1,8 +1,12 @@
 package com.example.movieappschool.ui.ticket;
 
 import android.app.ActivityOptions;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -18,6 +22,7 @@ import com.example.movieappschool.domain.Movie;
 import com.example.movieappschool.domain.Seat;
 import com.example.movieappschool.domain.Show;
 import com.example.movieappschool.domain.Ticket;
+import com.example.movieappschool.ui.LoginActivity;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
 import java.util.ArrayList;
@@ -47,6 +52,9 @@ public class TicketListActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ticket_list);
+
+        // Set logout receiver
+        setLogoutReceiver();
 
         // Menu
         View toolBar = findViewById(R.id.tickets_list_toolbar);
