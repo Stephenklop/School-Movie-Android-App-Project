@@ -26,6 +26,7 @@ import com.example.movieappschool.ui.home.GridSpacingItemDecoration;
 import com.example.movieappschool.ui.home.MovieAdapter;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,11 +39,13 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Integer> databaseIdsResult;
+    private List<Movie> movieList = new ArrayList<>();
 
     public MainActivity() {
         cinemaDatabaseService = new CinemaDatabaseService();
         movieAPIService = new MovieAPIService(API_KEY, "en-US");
         localAppStorage = (LocalAppStorage) this.getApplication();
+
     }
 
     @Override
@@ -81,27 +84,30 @@ public class MainActivity extends AppCompatActivity {
             localAppStorage.setMovies(mMovies);
         });
 
-
         Thread adapterThread = new Thread(() -> {
             Looper.prepare();
-            mAdapter = new MovieAdapter(mMovies, MainActivity.this);
+            movieList.addAll(mMovies);
+            mAdapter = new MovieAdapter(movieList, MainActivity.this);
 
-            // Setup search function
-//            SearchView searchBar = findViewById(R.id.homepage_search);
-//
-//            searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//                @Override
-//                public boolean onQueryTextSubmit(String query) {
-//                    return false;
-//                }
-//
-//                @Override
-//                public boolean onQueryTextChange(String newText) {
-//                    System.out.println(newText);
-//                    new MovieAdapter(mMovies, MainActivity.this).getFilter().filter(newText);
-//                    return false;
-//                }
-//            });
+            SearchView searchBar = findViewById(R.id.homepage_search);
+
+            searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String search) {
+                    mAdapter.notifyDataSetChanged();
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String search) {
+                    movieList.clear();
+                    movieList.addAll(mMovies);
+                    new MovieAdapter(movieList, MainActivity.this).getFilter().filter(search);
+                    mAdapter.notifyDataSetChanged();
+
+                    return true;
+                }
+            });
 
             recyclerView.setAdapter(mAdapter);
         });
@@ -116,25 +122,26 @@ public class MainActivity extends AppCompatActivity {
 
             adapterThread.start();
             adapterThread.join();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
     public void setSearchBar() {
-//        SearchView searchView = (SearchView) findViewById(R.id.homepage_search);
-//        searchView.setIconified(false);
-//        searchView.clearFocus();
+        SearchView searchView = (SearchView) findViewById(R.id.homepage_search);
+        searchView.setIconified(false);
+        searchView.clearFocus();
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
             View v = getCurrentFocus();
-            if(v instanceof EditText) {
+            if (v instanceof EditText) {
                 Rect outRect = new Rect();
                 v.getGlobalVisibleRect(outRect);
-                if(!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                     v.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
