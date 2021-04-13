@@ -128,15 +128,15 @@ public class OrderActivity extends AppCompatActivity {
                 // Add ticket(s) to database.
                 Thread databaseThread = new Thread(() -> {
                     for (int i = 0; i < amountOfChildTickets; i++) {
-                        cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "child");
+                        cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "child", 7.0);
                     }
 
                     for (int i = 0; i < amountOfAdultTickets; i++) {
-                        cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "adult");
+                        cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "adult", 11.0);
                     }
 
                     for (int i = 0; i < amountOfSeniorTickets; i++) {
-                        cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "senior");
+                        cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "senior", 9.0);
                     }
                 });
 

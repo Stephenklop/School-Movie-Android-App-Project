@@ -244,27 +244,21 @@ public class CinemaDatabaseService {
 
         String query = "SELECT * FROM Ticket WHERE userID = '" + userId + "'";
 
-        int mTicketId;
-        int mUserId;
-        int mSeatNumber;
-        int mRowNumber;
-        int mShowId;
-        double mPrice;
-
         try {
             connect();
             executeQuery(query);
 
             while (resultSet.next()) {
-                mTicketId = resultSet.getInt("ticketID");
-                mUserId = resultSet.getInt("userID");
-                mSeatNumber = resultSet.getInt("chairNr");
-                mRowNumber = resultSet.getInt("rowNr");
-                mShowId = resultSet.getInt("showID");
-                // TODO: ADD PRICE TO TICKET
-                //mPrice = resultSet.getDouble("price");
-                Ticket ticket = new Ticket(mTicketId, mUserId, mSeatNumber, mRowNumber, 10);
-                ticket.setShow(getShow(mShowId));
+                int ticketId = resultSet.getInt("ticketID");
+                int uId = resultSet.getInt("userID");
+                int seatNumber = resultSet.getInt("chairNr");
+                int rowNumber = resultSet.getInt("rowNr");
+                int showId = resultSet.getInt("showID");
+                String ticketType = resultSet.getString("ticketType");
+                double price = resultSet.getDouble("price");
+
+                Ticket ticket = new Ticket(ticketId, uId, seatNumber, rowNumber, ticketType, price);
+                ticket.setShow(getShow(showId));
                 ticketList.add(ticket);
             }
         }
@@ -306,9 +300,9 @@ public class CinemaDatabaseService {
         return result;
     }
 
-    public void createTicket(int userId, int chairNr, int rowNr, int showId, String ticketType) {
-        String query = "INSERT INTO Ticket (userID, chairNr, rowNr, showID, ticketType) VALUES ('" + userId + "', '" + chairNr +
-                "', ' "+ rowNr + "', '" + showId + "', '" + ticketType + "')";
+    public void createTicket(int userId, int chairNr, int rowNr, int showId, String ticketType, double price) {
+        String query = "INSERT INTO Ticket (userID, chairNr, rowNr, showID, ticketType, price) VALUES ('" + userId + "', '" + chairNr +
+                "', ' "+ rowNr + "', '" + showId + "', '" + ticketType + "', '" + price + "')";
 
         try {
             connect();
