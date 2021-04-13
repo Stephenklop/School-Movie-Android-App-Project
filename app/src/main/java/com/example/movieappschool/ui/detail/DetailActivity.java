@@ -221,20 +221,20 @@ public class DetailActivity extends AppCompatActivity {
             loggedIn.setVisibility(View.VISIBLE);
         }
 
-        orderButton.setOnClickListener(v -> {
-            new Thread(() -> {
-                if (cinemaDatabaseService.doShowsExist(movieId)) {
-                    Intent orderIntent = new Intent(getApplicationContext(), OrderActivity.class);
-                    orderIntent.putExtra("movieId", movieId);
-                    orderIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    getApplicationContext().startActivity(orderIntent);
-                } else {
-                    runOnUiThread(() -> {
-                        Toast.makeText(this, "Geen voorstellingen gevonden.", Toast.LENGTH_LONG).show();
-                    });
-                }
-            }).start();
-        });
+        orderButton.setOnClickListener(v -> new Thread(() -> {
+            cinemaDatabaseService.deleteExpiredShows();
+
+            if (cinemaDatabaseService.doShowsExist(movieId)) {
+                Intent orderIntent = new Intent(getApplicationContext(), OrderActivity.class);
+                orderIntent.putExtra("movieId", movieId);
+                orderIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getApplicationContext().startActivity(orderIntent);
+            } else {
+                runOnUiThread(() -> {
+                    Toast.makeText(this, "Geen voorstellingen gevonden.", Toast.LENGTH_LONG).show();
+                });
+            }
+        }).start());
     }
 
     public int[] minutesToHoursAndMinutes(int minutes) {
