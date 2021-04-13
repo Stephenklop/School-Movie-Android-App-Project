@@ -127,8 +127,16 @@ public class OrderActivity extends AppCompatActivity {
             if (selectedSeats != null && selectedSeats.size() > 0 && seatConfigurator.allSeatsSelected()) {
                 // Add ticket(s) to database.
                 Thread databaseThread = new Thread(() -> {
-                    for (int i = 0; i < totalTicketAmount; i++) {
+                    for (int i = 0; i < amountOfChildTickets; i++) {
                         cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "child");
+                    }
+
+                    for (int i = 0; i < amountOfAdultTickets; i++) {
+                        cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "adult");
+                    }
+
+                    for (int i = 0; i < amountOfSeniorTickets; i++) {
+                        cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "senior");
                     }
                 });
 
