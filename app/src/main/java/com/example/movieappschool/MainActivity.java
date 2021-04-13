@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private final LocalAppStorage localAppStorage;
     private List<Movie> mMovies;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter<MovieAdapter.ViewHolder> mAdapter;
+    private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Integer> databaseIdsResult;
     private List<Movie> movieList = new ArrayList<>();
@@ -82,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
             localAppStorage.setMovies(mMovies);
         });
 
-
         Thread adapterThread = new Thread(() -> {
             Looper.prepare();
             movieList.addAll(mMovies);
@@ -110,10 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 }
-
-
             });
-
 
             recyclerView.setAdapter(mAdapter);
         });
@@ -138,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) findViewById(R.id.homepage_search);
         searchView.setIconified(false);
         searchView.clearFocus();
-
     }
 
     @Override
