@@ -3,14 +3,16 @@ package com.example.movieappschool.domain;
 public class Ticket {
 
     private int mSeatNumber, mRowNumber, mUserId, mTicketId;
+    private String mTicketType;
     private double mPrice;
     private Show mShow;
 
-    public Ticket(int mTicketId, int mUserId, int mSeatNumber, int mRowNumber, double mPrice) {
+    public Ticket(int mTicketId, int mUserId, int mSeatNumber, int mRowNumber, String ticketType, double mPrice) {
         this.mTicketId = mTicketId;
         this.mUserId = mUserId;
         this.mSeatNumber = mSeatNumber;
         this.mRowNumber = mRowNumber;
+        this.mTicketType = ticketType;
         this.mPrice = mPrice;
     }
 
@@ -24,6 +26,10 @@ public class Ticket {
 
     public int getUserId() {
         return mUserId;
+    }
+
+    public String getTicketType() {
+        return mTicketType;
     }
 
     public double getPrice() {
