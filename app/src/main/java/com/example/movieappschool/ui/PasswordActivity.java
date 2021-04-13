@@ -1,8 +1,11 @@
 package com.example.movieappschool.ui;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +41,9 @@ public class PasswordActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.change_password);
+
+        // Set logout receiver
+        setLogoutReceiver();
 
         Intent intent = getIntent();
         previousActivity = intent.getStringExtra("prevActivity");
@@ -118,5 +124,19 @@ public class PasswordActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return hashedPassword;
+    }
+
+    private void setLogoutReceiver() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("onReceive", "Logout in progress");
+                finish();
+                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(login);
+            }
+        }, intentFilter);
     }
 }

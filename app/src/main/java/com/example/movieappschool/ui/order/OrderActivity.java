@@ -1,6 +1,9 @@
 package com.example.movieappschool.ui.order;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -20,6 +23,7 @@ import com.example.movieappschool.domain.Seat;
 import com.example.movieappschool.domain.Ticket;
 import com.example.movieappschool.logic.CustomPicker;
 import com.example.movieappschool.logic.SeatConfigurator;
+import com.example.movieappschool.ui.LoginActivity;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -49,6 +53,9 @@ public class OrderActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
+
+        // Set logout receiver
+        setLogoutReceiver();
 
         toolbar = findViewById(R.id.order_toolbar);
         toolbar.findViewById(R.id.hamburger_icon).setVisibility(View.INVISIBLE);
@@ -126,5 +133,19 @@ public class OrderActivity extends AppCompatActivity {
     private void updateSeatTextView() {
         totalOrderSeatsTextView = findViewById(R.id.order_seats_total);
         totalOrderSeatsTextView.setText(selectedSeats.size() + " / " + totalAmountOfTickets + " stoelen");
+    }
+
+    private void setLogoutReceiver() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("onReceive", "Logout in progress");
+                finish();
+                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(login);
+            }
+        }, intentFilter);
     }
 }
