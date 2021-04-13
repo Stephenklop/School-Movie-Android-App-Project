@@ -98,7 +98,7 @@ public class CinemaDatabaseService {
 
             ResultSet rs = resultSet.peek();
 
-            while (resultSet.peek().next()) {
+            while (rs.next()) {
                 result.add(new Show(rs.getInt(2), rs.getString(4), rs.getInt(1), rs.getInt(3)));
             }
         } catch (SQLException e) {
@@ -256,14 +256,14 @@ public class CinemaDatabaseService {
 
             ResultSet rs = resultSet.peek();
 
-            while (resultSet.next()) {
-                int ticketId = resultSet.getInt("ticketID");
-                int uId = resultSet.getInt("userID");
-                int seatNumber = resultSet.getInt("chairNr");
-                int rowNumber = resultSet.getInt("rowNr");
-                int showId = resultSet.getInt("showID");
-                String ticketType = resultSet.getString("ticketType");
-                double price = resultSet.getDouble("price");
+            while (rs.next()) {
+                int ticketId = rs.getInt("ticketID");
+                int uId = rs.getInt("userID");
+                int seatNumber = rs.getInt("chairNr");
+                int rowNumber = rs.getInt("rowNr");
+                int showId = rs.getInt("showID");
+                String ticketType = rs.getString("ticketType");
+                double price = rs.getDouble("price");
 
                 Ticket ticket = new Ticket(ticketId, uId, seatNumber, rowNumber, ticketType, price);
                 ticket.setShow(getShow(showId));
