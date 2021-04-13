@@ -213,6 +213,9 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         orderButton = findViewById(R.id.detail_order_tickets);
+        if (!localAppStorage.getLoggedIn()) {
+            orderButton.setVisibility(View.INVISIBLE);
+        }
         orderButton.setOnClickListener(v -> {
             new Thread(() -> {
                 if (cinemaDatabaseService.doShowsExist(movieId)) {
