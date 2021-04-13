@@ -1,135 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/tint6">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/order_success_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="40dp"
+            android:text="Aankoop succesvol"
+            android:textColor="@color/tint1"
+            android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/order_success_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="40dp"
-                android:text="Aankoop succesvol"
-                android:textColor="@color/tint1"
-                android:textSize="30sp" />
+        <TextView
+            android:id="@+id/order_success_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="40dp"
+            android:text="Bedankt voor uw aankoop! Bekijk hieronder de details van uw bestelling."
+            android:textColor="@color/tint4"
+            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/order_success_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="40dp"
-                android:text="Bedankt voor uw aankoop! Bekijk hieronder de details van uw bestelling."
-                android:textColor="@color/tint4"
-                android:textSize="16sp" />
+        <ImageView
+            android:id="@+id/order_success_image"
+            android:layout_width="190dp"
+            android:layout_height="302dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="111dp" />
 
-            <ImageView
-                android:id="@+id/order_success_image"
-                android:layout_width="190dp"
-                android:layout_height="302dp"
-                android:layout_marginStart="110dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="111dp" />
+        <TextView
+            android:id="@+id/order_success_movie_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:text="Iron Man"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/order_success_movie_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="40dp"
-                android:gravity="center"
-                android:text="Iron Man"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+        <TextView
+            android:id="@+id/order_success_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:text="Datum: 6 maart 2021"
+            android:textColor="@color/tint1"
+            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/order_success_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="40dp"
-                android:gravity="center"
-                android:text="Datum: 6 maart 2021"
-                android:textColor="@color/tint1"
-                android:textSize="16sp" />
+        <TextView
+            android:id="@+id/order_success_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:text="Tijd: 16:30"
+            android:textColor="@color/tint1"
+            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/order_success_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="40dp"
-                android:gravity="center"
-                android:text="Tijd: 16:30"
-                android:textColor="@color/tint1"
-                android:textSize="16sp" />
+        <TextView
+            android:id="@+id/order_success_total_ticket_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:text="Aantal tickets: 5"
+            android:textColor="@color/tint1"
+            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/order_success_total_ticket_amount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="40dp"
-                android:gravity="center"
-                android:text="Aantal tickets: 5"
-                android:textColor="@color/tint1"
-                android:textSize="16sp" />
+        <TextView
+            android:id="@+id/order_success_total_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:text="Prijs totaal: €55,-"
+            android:textColor="@color/tint1"
+            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/order_success_total_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="40dp"
-                android:gravity="center"
-                android:text="Prijs totaal: €55,-"
-                android:textColor="@color/tint1"
-                android:textSize="16sp" />
+        <Button
+            android:id="@+id/order_success_back_home_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/purple_gradient"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Terug naar home" />
 
-            <Button
-                android:id="@+id/order_success_back_home_button"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="40dp"
-                android:background="@drawable/purple_gradient"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:text="Terug naar home" />
-
-            <Button
-                android:id="@+id/order_success_view_tickets_button"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="40dp"
-                android:background="@drawable/purple_gradient"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:text="Bekijk mijn tickets" />
-        </LinearLayout>
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/order_success_view_tickets_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/purple_gradient"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Bekijk mijn tickets" />
+    </LinearLayout>
+</ScrollView>
