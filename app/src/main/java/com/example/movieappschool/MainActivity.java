@@ -122,9 +122,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setSearchBar() {
-        SearchView searchView = (SearchView) findViewById(R.id.homepage_search);
-        searchView.setIconified(false);
-        searchView.clearFocus();
+//        SearchView searchView = (SearchView) findViewById(R.id.homepage_search);
+//        searchView.setIconified(false);
+//        searchView.clearFocus();
     }
 
     @Override
