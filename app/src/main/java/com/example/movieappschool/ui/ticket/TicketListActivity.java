@@ -83,7 +83,7 @@ public class TicketListActivity extends AppCompatActivity {
 
         Thread adapterThread = new Thread(() -> {
             // specify an adapter (see also next example)
-            mAdapter = new RecyclerViewAdapter(tickets, this, localAppStorage, cinemaDatabaseService);
+            mAdapter = new RecyclerViewAdapter(tickets, this);
             recyclerView.setAdapter(mAdapter);
         });
 

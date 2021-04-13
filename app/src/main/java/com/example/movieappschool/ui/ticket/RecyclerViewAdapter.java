@@ -1,6 +1,7 @@
 package com.example.movieappschool.ui.ticket;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -34,6 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public RecyclerViewAdapter(List<Ticket> tickets, Context context) {
         this.tickets = tickets;
         this.context = context;
+        Log.d("RECYCLERVIEWADAPTER", tickets.toString());
     }
 
     @NonNull

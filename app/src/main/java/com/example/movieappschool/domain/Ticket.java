@@ -41,4 +41,16 @@ public class Ticket {
     public void setShow(Show show) {
         this.mShow = show;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "mSeatNumber=" + mSeatNumber +
+                ", mRowNumber=" + mRowNumber +
+                ", mUserId=" + mUserId +
+                ", mTicketId=" + mTicketId +
+                ", mPrice=" + mPrice +
+                ", mShow=" + mShow +
+                '}';
+    }
 }
