@@ -72,7 +72,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="23dp"
-                android:text="@string/test"
                 android:textColor="@color/tint1"
                 android:textSize="16sp" />
 
@@ -184,7 +183,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:text="Show more"
+                android:text="@string/detail_show_more"
                 android:textColor="@color/purpleEndcolor" />
 
             <TextView
@@ -192,7 +191,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Log in to order a ticket"
+                android:text="@string/detail_login_warning"
                 android:textColor="@color/tint1"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -208,7 +207,7 @@
             android:background="@drawable/purple_gradient"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="Bekijk Ticket Beschikbaarheid"
+            android:text="@string/detail_order_tickets"
             android:textAllCaps="false"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"

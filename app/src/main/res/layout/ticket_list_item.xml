@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/oneLineTicketLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -26,7 +25,7 @@
             android:id="@+id/ticket_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Datum:"
+            android:text="@string/ticket_date"
             android:textSize="16sp"
             android:textColor="@color/tint1"
             android:layout_marginBottom="10dp"/>
@@ -35,7 +34,7 @@
             android:id="@+id/ticket_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rij:"
+            android:text="@string/ticket_row"
             android:textSize="16sp"
             android:textColor="@color/tint1"
             android:layout_marginBottom="10dp"/>
@@ -44,7 +43,7 @@
             android:id="@+id/ticket_chair"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Stoel:"
+            android:text="@string/ticket_seat"
             android:textSize="16sp"
             android:textColor="@color/tint1"
             android:layout_marginBottom="10dp"/>
@@ -53,7 +52,7 @@
             android:id="@+id/ticket_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tijd:"
+            android:text="@string/ticket_time"
             android:textSize="16sp"
             android:textColor="@color/tint1"
             android:layout_marginBottom="10dp"/>
@@ -62,7 +61,7 @@
             android:id="@+id/ticket_hall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Zaal:"
+            android:text="@string/ticket_hall"
             android:textSize="16sp"
             android:textColor="@color/tint1"
             android:layout_marginBottom="10dp"/>
@@ -71,7 +70,7 @@
             android:id="@+id/ticket_QRcode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="QR Code"
+            android:text="@string/ticket_qr_code"
             android:textSize="14sp"
             android:textAllCaps="false"
             android:background="@drawable/orange_gradient"

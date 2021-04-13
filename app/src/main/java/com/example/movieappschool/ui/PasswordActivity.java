@@ -94,8 +94,7 @@ public class PasswordActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     Context context = getApplicationContext();
-                    Toast toast = Toast.makeText(context, "Password changed", Toast.LENGTH_LONG);
-                    toast.show();
+                    Toast.makeText(context, getResources().getString(R.string.change_password_password_changed_notification), Toast.LENGTH_LONG).show();
                 }
             }
         });

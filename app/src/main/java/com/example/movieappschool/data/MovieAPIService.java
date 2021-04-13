@@ -3,6 +3,7 @@ package com.example.movieappschool.data;
 import android.util.Log;
 
 import com.example.movieappschool.domain.Movie;
+import com.example.movieappschool.logic.Language;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,9 +21,9 @@ public class MovieAPIService {
     private final String LANGUAGE;
     HttpURLConnection connection;
 
-    public MovieAPIService(String apiKey, String language) {
+    public MovieAPIService(String apiKey, Language language) {
         API_KEY = apiKey;
-        LANGUAGE = language;
+        LANGUAGE = language.getLanguage();
     }
 
     private void connect(String url) throws IOException {

@@ -22,6 +22,7 @@ import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.data.MovieAPIService;
 import com.example.movieappschool.domain.Movie;
+import com.example.movieappschool.logic.Language;
 import com.example.movieappschool.ui.home.GridSpacingItemDecoration;
 import com.example.movieappschool.ui.home.MovieAdapter;
 import com.example.movieappschool.ui.menu.MenuActivity;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     public MainActivity() {
         cinemaDatabaseService = new CinemaDatabaseService();
-        movieAPIService = new MovieAPIService(API_KEY, "en-US");
+        movieAPIService = new MovieAPIService(API_KEY, Language.EN_US);
         localAppStorage = (LocalAppStorage) this.getApplication();
 
     }
