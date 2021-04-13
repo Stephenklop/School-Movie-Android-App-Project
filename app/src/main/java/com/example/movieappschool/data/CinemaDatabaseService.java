@@ -2,6 +2,7 @@ package com.example.movieappschool.data;
 
 import android.util.Log;
 
+import com.example.movieappschool.domain.Seat;
 import com.example.movieappschool.domain.Show;
 import com.example.movieappschool.domain.Ticket;
 import com.example.movieappschool.domain.User;
@@ -91,16 +92,56 @@ public class CinemaDatabaseService {
         return result;
     }
 
-    public List<Integer> getOccupiedSeats(int showId) {
-        String query = "SELECT chairNr FROM Ticket WHERE showId = '" + showId + "'";
-        List<Integer> result = new ArrayList<>();
+    public List<Show> getAllShowsOfMovie(int movieId) {
+        String query = "SELECT * FROM Show WHERE movieID = " + movieId;
+        List<Show> result = new ArrayList<>();
 
         try {
             connect();
             executeQuery(query);
 
             while (resultSet.next()) {
-                result.add(resultSet.getInt(1));
+                result.add(new Show(resultSet.getInt(2), resultSet.getString(4), resultSet.getInt(1), resultSet.getInt(3)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            disconnect();
+        }
+
+        return result;
+    }
+
+    public boolean doShowsExist(int movieId) {
+        String query = "SELECT TOP 1 * FROM Show WHERE movieID = " + movieId;
+        boolean result = false;
+
+        try {
+            connect();
+            executeQuery(query);
+
+            while (resultSet.next()) {
+                result = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            disconnect();
+        }
+
+        return result;
+    }
+
+    public List<Seat> getOccupiedSeats(int showId) {
+        String query = "SELECT chairNr, rowNr FROM Ticket WHERE showId = " + showId;
+        List<Seat> result = new ArrayList<>();
+
+        try {
+            connect();
+            executeQuery(query);
+
+            while (resultSet.next()) {
+                result.add(new Seat(resultSet.getInt(1), resultSet.getInt(2)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -263,5 +304,17 @@ public class CinemaDatabaseService {
         }
 
         return result;
+    }
+
+    public void createTicket(int userId, int chairNr, int rowNr, int showId, String ticketType) {
+        String query = "INSERT INTO Ticket (userID, chairNr, rowNr, showID, ticketType) VALUES ('" + userId + "', '" + chairNr +
+                "', ' "+ rowNr + "', '" + showId + "', '" + ticketType + "')";
+
+        try {
+            connect();
+            executeQuery(query);
+        } finally {
+            disconnect();
+        }
     }
 }

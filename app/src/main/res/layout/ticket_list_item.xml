@@ -67,12 +67,14 @@
             android:textColor="@color/tint1"
             android:layout_marginBottom="10dp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ticket_QRcode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="QR Code"
             android:textSize="14sp"
-            android:textColor="@color/tint1"/>
+            android:textAllCaps="false"
+            android:background="@drawable/orange_gradient"
+            android:textColor="@color/white"/>
     </LinearLayout>
 </LinearLayout>
