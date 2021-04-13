@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,7 +18,6 @@ import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Seat;
 import com.example.movieappschool.domain.Show;
-import com.example.movieappschool.domain.Ticket;
 import com.example.movieappschool.logic.CustomPicker;
 import com.example.movieappschool.logic.SeatConfigurator;
 import com.example.movieappschool.logic.ShowConfigurator;
@@ -73,7 +71,6 @@ public class OrderActivity extends AppCompatActivity {
 
             showConfigurator = new ShowConfigurator(shows, OrderActivity.this, object -> {
                 selectedShow = (Show) object;
-                Log.d("CURRENT SHOW", object.toString());
                 // Update seat configurator.
                 updateSeats(selectedShow);
             });
@@ -131,11 +128,8 @@ public class OrderActivity extends AppCompatActivity {
                 // Add ticket(s) to database.
                 Thread databaseThread = new Thread(() -> {
                     for (int i = 0; i < totalTicketAmount; i++) {
-//                    Ticket ticket = new Ticket();
                         cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "child");
                     }
-
-                    Log.d("SHOW", "TICKET INFO "+  LocalAppStorage.getUser().getUserId() + " " + selectedShow.getShowId() + " " + selectedSeats.get(0).getSeatNumber());
                 });
 
                 Thread intentThread = new Thread(() -> {
@@ -147,8 +141,6 @@ public class OrderActivity extends AppCompatActivity {
                     orderSuccessIntent.putExtra("totalTickets", totalTicketAmount);
                     orderSuccessIntent.putExtra("totalPrice", totalPrice);
                     orderSuccessIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    Log.d("ORDER BUTTON", "READY TO ORDER!");
-                    Log.d("ALL SEATS SELECTED?", String.valueOf(seatConfigurator.allSeatsSelected()));
                     getApplicationContext().startActivity(orderSuccessIntent);
                 });
 
@@ -196,7 +188,6 @@ public class OrderActivity extends AppCompatActivity {
         registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Log.d("onReceive", "Logout in progress");
                 finish();
                 Intent login = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(login);
