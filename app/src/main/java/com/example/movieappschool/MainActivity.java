@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +25,7 @@ import com.example.movieappschool.ui.home.GridSpacingItemDecoration;
 import com.example.movieappschool.ui.home.MovieAdapter;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private final LocalAppStorage localAppStorage;
     private List<Movie> mMovies;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.Adapter<MovieAdapter.ViewHolder> mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Integer> databaseIdsResult;
 
@@ -86,22 +86,31 @@ public class MainActivity extends AppCompatActivity {
             Looper.prepare();
             mAdapter = new MovieAdapter(mMovies, MainActivity.this);
 
-            // Setup search function
-//            SearchView searchBar = findViewById(R.id.homepage_search);
-//
-//            searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//                @Override
-//                public boolean onQueryTextSubmit(String query) {
-//                    return false;
-//                }
-//
-//                @Override
-//                public boolean onQueryTextChange(String newText) {
-//                    System.out.println(newText);
-//                    new MovieAdapter(mMovies, MainActivity.this).getFilter().filter(newText);
-//                    return false;
-//                }
-//            });
+            SearchView searchBar = findViewById(R.id.homepage_search);
+
+            searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+
+                    return true;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String search) {
+
+
+                    new MovieAdapter(mMovies, MainActivity.this).getFilter().filter(search);
+
+                    mAdapter.notifyDataSetChanged();
+
+                    return true;
+
+
+                }
+
+
+            });
+
 
             recyclerView.setAdapter(mAdapter);
         });
@@ -125,16 +134,17 @@ public class MainActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) findViewById(R.id.homepage_search);
         searchView.setIconified(false);
         searchView.clearFocus();
+
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
             View v = getCurrentFocus();
-            if(v instanceof EditText) {
+            if (v instanceof EditText) {
                 Rect outRect = new Rect();
                 v.getGlobalVisibleRect(outRect);
-                if(!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                     v.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
