@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         cinemaDatabaseService = new CinemaDatabaseService();
         movieAPIService = new MovieAPIService(API_KEY, "en-US");
         localAppStorage = (LocalAppStorage) this.getApplication();
+
     }
 
     @Override
@@ -93,12 +94,8 @@ public class MainActivity extends AppCompatActivity {
             searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String search) {
-                    movieList.clear();
-                    movieList.addAll(mMovies);
-                    new MovieAdapter(movieList, MainActivity.this).getFilter().filter(search);
                     mAdapter.notifyDataSetChanged();
-
-                    return true;
+                    return false;
                 }
 
                 @Override
