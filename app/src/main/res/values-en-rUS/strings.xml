@@ -78,4 +78,6 @@
     <string name="ticket_hall">Hall:</string>
     <string name="ticket_qr_code">QR code:</string>
     <string name="home_explore_desc">Let\'s find your favorite movie.</string>
+    <string name="textfield_wrong">Check input field</string>
+    <string name="password_requirements">Password must have minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character</string>
 </resources>
