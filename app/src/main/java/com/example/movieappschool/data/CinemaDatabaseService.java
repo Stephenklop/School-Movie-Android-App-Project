@@ -2,7 +2,6 @@ package com.example.movieappschool.data;
 
 import android.util.Log;
 
-import com.example.movieappschool.domain.Movie;
 import com.example.movieappschool.domain.Show;
 import com.example.movieappschool.domain.Ticket;
 import com.example.movieappschool.domain.User;

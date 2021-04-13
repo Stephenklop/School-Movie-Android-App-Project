@@ -1,12 +1,8 @@
 package com.example.movieappschool.ui.ticket;
 
 import android.app.ActivityOptions;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -18,20 +14,20 @@ import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Ticket;
-import com.example.movieappschool.ui.LoginActivity;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
 import java.util.List;
 
 public class TicketListActivity extends AppCompatActivity {
+    private final CinemaDatabaseService cinemaDatabaseService;
+    private LocalAppStorage localAppStorage;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private LocalAppStorage localAppStorage;
     private List<Ticket> tickets;
-    CinemaDatabaseService cinemaDatabaseService = new CinemaDatabaseService();
 
     public TicketListActivity() {
+        cinemaDatabaseService = new CinemaDatabaseService();
         localAppStorage = (LocalAppStorage) this.getApplication();
     }
 

@@ -1,7 +1,6 @@
 package com.example.movieappschool.ui.ticket;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -29,7 +28,6 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
     public TicketAdapter(List<Ticket> tickets, Context context) {
         this.tickets = tickets;
         this.context = context;
-        Log.d("RECYCLERVIEWADAPTER", tickets.toString());
     }
 
     @NonNull
@@ -44,37 +42,13 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Ticket ticket = tickets.get(position);
-        //Movie movie = getMovie(show.getMovieId());
 
         String date = ticket.getShow().getDate();
-        int rowNr;
-        rowNr = ticket.getRowNumber();
-        int chairNr;
-        chairNr = ticket.getSeatNumber();
-        String time;
-        time = ticket.getShow().getTime();
-        int hall;
-        hall = ticket.getShow().getHallId();
-        String URL;
-        URL = ticket.getShow().getMovie().getPosterURL();
-
-
-
-        /*
-        int showId = getShowId(localAppStorage.getTicketList().get(position));
-        this.showId = showId;
-        int movieId = getMovieId(getShowId(localAppStorage.getTicketList().get(position)));
-        this.movieId = movieId;
-        String date = getDate(showId);
-        int hall = getHall(this.showId);
-        String time = getTime(this.showId);
-        int chairNr = getChair(localAppStorage.getTicketList().get(position));
-        int rowNr = getRowNr(chairNr);
-        String URL = getURL(movieId);
-        */
-
-
-
+        int rowNr = ticket.getRowNumber();
+        int chairNr = ticket.getSeatNumber();
+        String time = ticket.getShow().getTime();
+        int hall = ticket.getShow().getHallId();
+        String URL = ticket.getShow().getMovie().getPosterURL();
 
         Glide.with(this.context).load(URL).into(holder.ticket_image);
 
@@ -84,114 +58,33 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
         holder.ticket_row.setText("Rij: " + rowNr);
         holder.ticket_chair.setText("Stoel: " + chairNr);
 
-
-
-        //qr button
-        PopupWindow popUp;
-        boolean click = true;
+        // qr button
         // inflate the layout of the popup window
 
-        holder.ticket_QRcode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LayoutInflater inflater = (LayoutInflater)
-                        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.ticket_list_qr, null);
+        holder.ticket_QRcode.setOnClickListener(v -> {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View popupView = inflater.inflate(R.layout.ticket_list_qr, null);
 
-                // create the popup window
-                float width = Converter.dpToPx(context, 275);
-                float height = Converter.dpToPx(context, 324);
-                boolean focusable = true; // lets taps outside the popup also dismiss it
-                final PopupWindow popupWindow = new PopupWindow(popupView, (int) width, (int) height, focusable);
+            // create the popup window
+            float width = Converter.dpToPx(context, 275);
+            float height = Converter.dpToPx(context, 324);
+            boolean focusable = true; // lets taps outside the popup also dismiss it
+            final PopupWindow popupWindow = new PopupWindow(popupView, (int) width, (int) height, focusable);
 
-                // show the popup window
-                // which view you pass in doesn't matter, it is only used for the window tolken
-                popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+            // show the popup window
+            // which view you pass in doesn't matter, it is only used for the window tolken
+            popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
 
-                // dismiss the popup window when touched
-                popupView.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        popupWindow.dismiss();
-                        return true;
-                    }
-                });
-            }
-
+            // dismiss the popup window when touched
+            popupView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    popupWindow.dismiss();
+                    return true;
+                }
+            });
         });
     }
-
-    /*
-    //returns showid as int
-    private int getShowId(Ticket ticket) {
-        return ticket.getShow();
-    }
-
-    //returns -1 if not available in list
-    private int getMovieId(int showId){
-        for(int i = 0; i < localAppStorage.getShowList().size(); i++) {
-            if(localAppStorage.getShowList().get(i).getShowId() == showId){
-                return localAppStorage.getShowList().get(i).getMovieId();
-            }
-        }
-        return -1;
-    }
-
-    //returns null if not available in list
-    private String getDate(int showId) {
-        for(int i = 0; i < localAppStorage.getShowList().size(); i++) {
-            if(localAppStorage.getShowList().get(i).getShowId() == showId){
-                return localAppStorage.getShowList().get(i).getDate();
-            }
-        }
-        return null;
-    }
-
-    //returns -1 if not available in list
-    private int getHall(int showId) {
-        for(int i = 0; i < localAppStorage.getShowList().size(); i++) {
-            if(localAppStorage.getShowList().get(i).getShowId() == showId){
-                return localAppStorage.getShowList().get(i).getHallId();
-            }
-        }
-        return -1;
-    }
-
-    //returns null if not available in list
-    private String getTime(int showId) {
-        for(int i = 0; i < localAppStorage.getShowList().size(); i++) {
-            if(localAppStorage.getShowList().get(i).getShowId() == showId){
-                return localAppStorage.getShowList().get(i).getTime();
-            }
-        }
-        return null;
-    }
-
-    //returns chairnr
-    private int getChair(Ticket ticket) {
-        return ticket.getSeatNumber();
-    }
-
-    //returns -1 if not available in list
-    private int getRowNr(int chairNr) {
-        for(int i = 0; i < localAppStorage.getSeatList().size(); i++) {
-            if(localAppStorage.getSeatList().get(i).getSeatNumber() == chairNr){
-                return localAppStorage.getSeatList().get(i).getRowNumber();
-            }
-        }
-        return -1;
-    }
-
-    //return null if no url is available
-    private String getURL(int movieId) {
-        for(int i = 0; i < localAppStorage.getMovies().size(); i++) {
-            if(localAppStorage.getMovies().get(i).getId() == movieId){
-                return localAppStorage.getMovies().get(i).getPosterURL();
-            }
-        }
-        return null;
-    }
-    */
 
     @Override
     public int getItemCount() {
