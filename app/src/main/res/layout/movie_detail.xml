@@ -185,15 +185,25 @@
                 android:background="@android:color/transparent"
                 android:textColor="@color/purpleEndcolor" />
 
-            <TextView
-                android:id="@+id/not_logged_in"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/detail_login_warning"
-                android:textColor="@color/tint1"
-                android:textSize="16sp" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/not_logged_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="40dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="@string/detail_login_warning"
+            android:textColor="@color/tint1"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/detail_order_tickets"
@@ -211,6 +221,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 

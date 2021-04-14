@@ -17,6 +17,7 @@ import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Movie;
+import com.example.movieappschool.ui.LoginActivity;
 import com.example.movieappschool.ui.home.MovieAdapter;
 import com.example.movieappschool.ui.order.OrderActivity;
 import com.example.movieappschool.ui.success.OrderSuccessActivity;
@@ -135,6 +136,37 @@ public class DetailActivity extends AppCompatActivity {
                     }
                 }
             });
+
+            orderButton = findViewById(R.id.detail_order_tickets);
+            loggedIn = findViewById(R.id.not_logged_in);
+            loggedIn.setVisibility(View.INVISIBLE);
+
+            if (!localAppStorage.getLoggedIn()) {
+                orderButton.setVisibility(View.GONE);
+                loggedIn.setVisibility(View.VISIBLE);
+            }
+
+            loggedIn.setOnClickListener(v -> {
+                Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getApplicationContext().startActivity(loginIntent);
+            });
+
+            orderButton.setOnClickListener(v -> new Thread(() -> {
+                cinemaDatabaseService.deleteExpiredShows();
+
+                if (cinemaDatabaseService.doShowsExist(movieId)) {
+                    Intent orderIntent = new Intent(getApplicationContext(), OrderActivity.class);
+                    orderIntent.putExtra("prevActivity", getClass().getName());
+                    orderIntent.putExtra("movieId", movieId);
+                    orderIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getApplicationContext().startActivity(orderIntent);
+                } else {
+                    runOnUiThread(() -> {
+                        Toast.makeText(this, getString(R.string.detail_no_shows_found), Toast.LENGTH_LONG).show();
+                    });
+                }
+            }).start());
         } else {
             // Something went wrong, show error.
             // TODO: Handle error
@@ -211,31 +243,6 @@ public class DetailActivity extends AppCompatActivity {
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starFour);
             Glide.with(this).load(R.drawable.ic_baseline_star_24).into(starFive);
         }
-
-        orderButton = findViewById(R.id.detail_order_tickets);
-        loggedIn = findViewById(R.id.not_logged_in);
-        loggedIn.setVisibility(View.INVISIBLE);
-
-        if (!localAppStorage.getLoggedIn()) {
-            orderButton.setVisibility(View.INVISIBLE);
-            loggedIn.setVisibility(View.VISIBLE);
-        }
-
-        orderButton.setOnClickListener(v -> new Thread(() -> {
-            cinemaDatabaseService.deleteExpiredShows();
-
-            if (cinemaDatabaseService.doShowsExist(movieId)) {
-                Intent orderIntent = new Intent(getApplicationContext(), OrderActivity.class);
-                orderIntent.putExtra("prevActivity", getClass().getName());
-                orderIntent.putExtra("movieId", movieId);
-                orderIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                getApplicationContext().startActivity(orderIntent);
-            } else {
-                runOnUiThread(() -> {
-                    Toast.makeText(this, "Geen voorstellingen gevonden.", Toast.LENGTH_LONG).show();
-                });
-            }
-        }).start());
     }
 
     public int[] minutesToHoursAndMinutes(int minutes) {
