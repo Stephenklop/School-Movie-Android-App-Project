@@ -17,6 +17,7 @@ import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Movie;
+import com.example.movieappschool.ui.LoadActivity;
 import com.example.movieappschool.ui.home.MovieAdapter;
 import com.example.movieappschool.ui.order.OrderActivity;
 import com.example.movieappschool.ui.success.OrderSuccessActivity;
@@ -222,6 +223,8 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         orderButton.setOnClickListener(v -> {
+            Intent iLoad = new Intent(DetailActivity.this, LoadActivity.class);
+            startActivity(iLoad);
             new Thread(() -> {
                 if (cinemaDatabaseService.doShowsExist(movieId)) {
                     Intent orderIntent = new Intent(getApplicationContext(), OrderActivity.class);

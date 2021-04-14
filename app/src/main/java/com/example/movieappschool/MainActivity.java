@@ -22,6 +22,7 @@ import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.data.MovieAPIService;
 import com.example.movieappschool.domain.Movie;
+import com.example.movieappschool.ui.LoadActivity;
 import com.example.movieappschool.ui.home.GridSpacingItemDecoration;
 import com.example.movieappschool.ui.home.MovieAdapter;
 import com.example.movieappschool.ui.menu.MenuActivity;

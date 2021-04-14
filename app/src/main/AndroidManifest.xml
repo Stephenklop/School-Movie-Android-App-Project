@@ -20,6 +20,7 @@
         <activity android:name=".ui.success.OrderSuccessActivity" android:exported="true"/>
         <activity android:name=".ui.order.OrderActivity" android:exported="true"/>
         <activity android:name=".ui.menu.MenuActivity" android:exported="true"/>
+        <activity android:name=".ui.LoadActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

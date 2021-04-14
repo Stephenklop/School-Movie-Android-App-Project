@@ -21,6 +21,8 @@ import com.example.movieappschool.domain.Show;
 import com.example.movieappschool.logic.CustomPicker;
 import com.example.movieappschool.logic.SeatConfigurator;
 import com.example.movieappschool.logic.ShowConfigurator;
+import com.example.movieappschool.ui.LoadActivity;
+import com.example.movieappschool.ui.detail.DetailActivity;
 import com.example.movieappschool.ui.success.OrderSuccessActivity;
 import com.example.movieappschool.ui.LoginActivity;
 
@@ -141,6 +143,8 @@ public class OrderActivity extends AppCompatActivity {
                 });
 
                 Thread intentThread = new Thread(() -> {
+                    Intent iLoad = new Intent(OrderActivity.this, LoadActivity.class);
+                    startActivity(iLoad);
                     // Intent
                     Intent orderSuccessIntent = new Intent(getApplicationContext(), OrderSuccessActivity.class);
                     orderSuccessIntent.putExtra("movieId", movieId);
