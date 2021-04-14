@@ -201,7 +201,7 @@ public class CinemaDatabaseService {
     public User updateUser(int mUserId, String mFirstName, String mLastName, String mUsername, String mAddress, String mEmail, String mPassword, String mDateBirth) {
         User user;
         user = doesUserExist(mUsername, mPassword);
-        if (user != null) {
+        if (user == null) {
             return user;
         }
 

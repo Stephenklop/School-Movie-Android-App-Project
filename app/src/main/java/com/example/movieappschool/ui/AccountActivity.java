@@ -87,7 +87,7 @@ public class AccountActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             user = cinemaDatabaseService.updateUser(user.getUserId(), mFirstname.getText().toString(), mLastname.getText().toString(), mUsername.getText().toString(), mAddress.getText().toString(),
-                                    mEmail.getText().toString(), user.getPassword(), mDateOfBirth.getText().toString());
+                                    mEmail.getText().toString(), user.getPassword(), user.getDateBirth());
                             localAppStorage.deleteUser();
                             localAppStorage.setUser(user);
 
