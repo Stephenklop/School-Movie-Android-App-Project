@@ -33,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     private CinemaDatabaseService cinemaDatabaseService;
     private EditText mUsername, mFirstname, mLastname, mPassword, mEmail, mAddress, mDateBirth;
     private Button mCreateAccount;
+    private String dateBirthFinal;
 
     public RegisterActivity() {
         cinemaDatabaseService = new CinemaDatabaseService();
@@ -93,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                             String hashedPassword = hashPassword(password);
 
                             System.out.println("Hashed password: " + hashedPassword);
-                            cinemaDatabaseService.createAccount(username, firstname, lastname, hashedPassword, email, address, datebirth);
+                            cinemaDatabaseService.createAccount(username, firstname, lastname, hashedPassword, email, address, dateBirthFinal);
                         }
                     });
 
@@ -123,6 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 mDateBirth.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
+                dateBirthFinal = year + "-" + (month + 1) + "-" + dayOfMonth;
                 mDateBirth.setError(null);
             }
         }, mYear, mMonth, mDay);
@@ -164,7 +166,7 @@ public class RegisterActivity extends AppCompatActivity {
             mLastname.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
-        
+
         if (!validator.email(mEmail.getText().toString())) {
             mEmail.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
