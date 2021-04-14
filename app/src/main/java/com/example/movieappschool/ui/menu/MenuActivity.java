@@ -87,28 +87,21 @@ public class MenuActivity extends AppCompatActivity {
             flagIconEnglish.setVisibility(View.VISIBLE);
         }
 
-        flagIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LocalAppStorage.setLanguage(Language.NL_NL);
-                flagIconEnglish.setVisibility(View.VISIBLE);
-                flagIcon.setVisibility(View.GONE);
-                setAppLocale("nl");
-                recreate();
-            }
+        flagIcon.setOnClickListener(v -> {
+            LocalAppStorage.setLanguage(Language.NL_NL);
+            flagIconEnglish.setVisibility(View.VISIBLE);
+            flagIcon.setVisibility(View.GONE);
+
+            new Thread(() -> setAppLocale("nl")).start();
         });
 
-        flagIconEnglish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LocalAppStorage.setLanguage(Language.EN_US);
-                flagIconEnglish.setVisibility(View.GONE);
-                flagIcon.setVisibility(View.VISIBLE);
-                setAppLocale("en");
-                recreate();
-            }
-        });
+        flagIconEnglish.setOnClickListener(v -> {
+            LocalAppStorage.setLanguage(Language.EN_US);
+            flagIconEnglish.setVisibility(View.GONE);
+            flagIcon.setVisibility(View.VISIBLE);
 
+            new Thread(() -> setAppLocale("en")).start();
+        });
 
         // Make home button clickable
         home.setOnClickListener(v -> {
