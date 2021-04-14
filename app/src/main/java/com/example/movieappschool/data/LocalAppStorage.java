@@ -17,7 +17,7 @@ public class LocalAppStorage extends Application {
     private static boolean isLoggedIn;
     private static List<Movie> movies = new ArrayList<>();
     private static User user;
-    private static Language language;
+    private static Language language = Language.EN_US;
 
     public static void setMovies(List<Movie> movies) {
         LocalAppStorage.movies = movies;
@@ -79,4 +79,12 @@ public class LocalAppStorage extends Application {
     }
 
     public static void setLoggedOut() { isLoggedIn = false; }
+
+    public static Language getLanguage() {
+        return language;
+    }
+
+    public static void setLanguage(Language language) {
+        LocalAppStorage.language = language;
+    }
 }
