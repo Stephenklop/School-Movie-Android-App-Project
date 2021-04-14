@@ -90,4 +90,9 @@ public class TicketListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        System.out.println("Back button is disabled");
+    }
 }
