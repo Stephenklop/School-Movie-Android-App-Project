@@ -53,7 +53,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.movie_detail);
 
         Intent intent = getIntent();
-        movieId = intent.getIntExtra("id", -1);
+        movieId = intent.getIntExtra("movieId", -1);
         previousActivity = intent.getStringExtra("prevActivity");
 
         toolbar = findViewById(R.id.movie_detail_toolbar);
