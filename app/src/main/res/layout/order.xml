@@ -44,22 +44,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/order_datetime_title" />
 
-        <RadioGroup
-            android:id="@+id/order_datetime_date_picker"
+        <HorizontalScrollView
+            android:id="@+id/order_datetime_date_picker_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="40dp"
-            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/order_datetime_date">
 
-            <!-- Automatically generated -->
+            <RadioGroup
+                android:id="@+id/order_datetime_date_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/order_datetime_date">
 
-        </RadioGroup>
+                <!-- Automatically generated -->
+
+            </RadioGroup>
+        </HorizontalScrollView>
 
         <TextView
             android:id="@+id/order_datetime_time"
@@ -75,25 +84,34 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/order_datetime_date_picker" />
+            app:layout_constraintTop_toBottomOf="@+id/order_datetime_date_picker_scroll_view" />
 
-
-        <RadioGroup
-            android:id="@+id/order_datetime_time_picker"
+        <HorizontalScrollView
+            android:id="@+id/order_datetime_time_picker_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="40dp"
-            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/order_datetime_time">
 
-            <!-- Automatically generated -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-        </RadioGroup>
+                <RadioGroup
+                    android:id="@+id/order_datetime_time_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <!-- Automatically generated -->
+
+                </RadioGroup>
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <TextView
             android:id="@+id/order_person_picker_title"
@@ -107,7 +125,7 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/order_datetime_time_picker" />
+            app:layout_constraintTop_toBottomOf="@+id/order_datetime_time_picker_scroll_view" />
 
         <LinearLayout
             android:id="@+id/order_person_picker"
