@@ -94,6 +94,7 @@ public class MenuActivity extends AppCompatActivity {
                 flagIconEnglish.setVisibility(View.VISIBLE);
                 flagIcon.setVisibility(View.GONE);
                 setAppLocale("nl");
+                recreate();
             }
         });
 
@@ -104,6 +105,7 @@ public class MenuActivity extends AppCompatActivity {
                 flagIconEnglish.setVisibility(View.GONE);
                 flagIcon.setVisibility(View.VISIBLE);
                 setAppLocale("en");
+                recreate();
             }
         });
 
