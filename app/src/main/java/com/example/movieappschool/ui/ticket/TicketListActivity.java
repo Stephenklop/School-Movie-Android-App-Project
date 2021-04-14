@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +25,7 @@ import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Ticket;
+import com.example.movieappschool.ui.home.GridSpacingItemDecoration;
 import com.example.movieappschool.ui.home.MovieAdapter;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
@@ -46,9 +48,11 @@ public class TicketListActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ticket_list);
+
+        setSearchBar();
 
         // Menu
         View toolBar = findViewById(R.id.tickets_list_toolbar);
@@ -81,7 +85,7 @@ public class TicketListActivity extends AppCompatActivity {
 
         Thread adapterThread = new Thread(() -> {
             // specify an adapter (see also next example)
-            if(tickets.isEmpty()){
+            if (tickets.isEmpty()) {
                 System.out.println("No data");
                 recyclerView.setVisibility(View.GONE);
                 findViewById(R.id.tickets_list_no_tickets_found).setVisibility(View.VISIBLE);
@@ -124,6 +128,30 @@ public class TicketListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public void setSearchBar() {
+        SearchView searchView = (SearchView) findViewById(R.id.tickets_list_search);
+        searchView.setIconified(false);
+        searchView.clearFocus();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event);
+    }
+
 
     @Override
     public void onBackPressed() {
