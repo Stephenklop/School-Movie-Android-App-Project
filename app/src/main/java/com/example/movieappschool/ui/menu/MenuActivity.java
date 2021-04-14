@@ -94,6 +94,8 @@ public class MenuActivity extends AppCompatActivity {
             flagIcon.setVisibility(View.GONE);
 
             new Thread(() -> setAppLocale("nl")).start();
+            finish();
+            startActivity(getIntent());
         });
 
         flagIconEnglish.setOnClickListener(v -> {
@@ -102,6 +104,8 @@ public class MenuActivity extends AppCompatActivity {
             flagIcon.setVisibility(View.VISIBLE);
 
             new Thread(() -> setAppLocale("en")).start();
+            finish();
+            startActivity(getIntent());
         });
 
         // Make home button clickable
