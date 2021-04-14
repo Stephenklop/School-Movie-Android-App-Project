@@ -86,10 +86,9 @@ public class AccountActivity extends AppCompatActivity {
                     Thread t1 = new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            user = cinemaDatabaseService.updateUser(user.getUserId(), mFirstname.getText().toString(), mLastname.getText().toString(), mUsername.getText().toString(), mAddress.getText().toString(),
+                            cinemaDatabaseService.updateUser(user.getUserId(), mFirstname.getText().toString(), mLastname.getText().toString(), mUsername.getText().toString(), mAddress.getText().toString(),
                                     mEmail.getText().toString(), user.getPassword(), user.getDateBirth());
-                            localAppStorage.deleteUser();
-                            localAppStorage.setUser(user);
+
 
                         }
                     });
