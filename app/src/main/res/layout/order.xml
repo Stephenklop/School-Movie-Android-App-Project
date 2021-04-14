@@ -940,6 +940,7 @@
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
                     app:iconPadding="0dp"
+                    android:clickable="false"
                     tools:layout_editor_absoluteX="53dp"
                     tools:layout_editor_absoluteY="227dp" />
 
@@ -981,7 +982,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_marginRight="7dp"
