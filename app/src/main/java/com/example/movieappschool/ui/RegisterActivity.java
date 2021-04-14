@@ -124,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 mDateBirth.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
-                dateBirthFinal = year + "-" + (month +1) + "-" + dayOfMonth;
+                dateBirthFinal = year + "-" + (month + 1) + "-" + dayOfMonth;
                 mDateBirth.setError(null);
             }
         }, mYear, mMonth, mDay);
@@ -166,7 +166,7 @@ public class RegisterActivity extends AppCompatActivity {
             mLastname.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
-        
+
         if (!validator.email(mEmail.getText().toString())) {
             mEmail.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
