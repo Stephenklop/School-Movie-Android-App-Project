@@ -182,8 +182,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-
-
                 for(Movie movie : mMoviesFull) {
                     System.out.println(movie.getTitle().toLowerCase().contains(filterPattern));
                     if(movie.getTitle().toLowerCase().contains(filterPattern)) {

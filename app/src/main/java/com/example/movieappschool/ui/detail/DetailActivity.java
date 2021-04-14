@@ -122,16 +122,16 @@ public class DetailActivity extends AppCompatActivity {
 
             // Set description
             description.setText(movie.getDescription());
+            showMoreButton.setText(R.string.movie_details_show_more);
             showMoreButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println("clicked");
-                    if(showMoreButton.getText().toString().equalsIgnoreCase("Show more")) {
+                    if(showMoreButton.getText().toString().equals(getString(R.string.movie_details_show_more))) {
                         description.setMaxLines(Integer.MAX_VALUE);
-                        showMoreButton.setText("Show less");
+                        showMoreButton.setText(R.string.movie_details_show_less);
                     } else {
                         description.setMaxLines(2);
-                        showMoreButton.setText("Show more");
+                        showMoreButton.setText(R.string.movie_details_show_more);
                     }
                 }
             });

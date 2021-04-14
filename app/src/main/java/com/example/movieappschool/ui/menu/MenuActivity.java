@@ -103,7 +103,6 @@ public class MenuActivity extends AppCompatActivity {
             new Thread(() -> setAppLocale("en")).start();
         });
 
-
         // Make home button clickable
         home.setOnClickListener(v -> {
             Intent homeIntent = new Intent(getApplicationContext(), MainActivity.class);

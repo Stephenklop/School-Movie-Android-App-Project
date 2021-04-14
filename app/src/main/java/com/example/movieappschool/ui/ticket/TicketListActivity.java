@@ -1,11 +1,17 @@
 package com.example.movieappschool.ui.ticket;
 
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Looper;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,12 +19,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movieappschool.MainActivity;
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Ticket;
+import com.example.movieappschool.ui.home.MovieAdapter;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TicketListActivity extends AppCompatActivity {
@@ -28,6 +38,7 @@ public class TicketListActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Ticket> tickets;
+    private List<Ticket> ticketList = new ArrayList<>();
 
     public TicketListActivity() {
         cinemaDatabaseService = new CinemaDatabaseService();
@@ -75,7 +86,30 @@ public class TicketListActivity extends AppCompatActivity {
                 recyclerView.setVisibility(View.GONE);
                 findViewById(R.id.tickets_list_no_tickets_found).setVisibility(View.VISIBLE);
             } else {
-                mAdapter = new TicketAdapter(tickets, this);
+                Looper.prepare();
+                ticketList.addAll(tickets);
+                mAdapter = new TicketAdapter(ticketList, this);
+
+                SearchView searchBar = findViewById(R.id.tickets_list_search);
+
+                searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String search) {
+                        mAdapter.notifyDataSetChanged();
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String search) {
+                        ticketList.clear();
+                        ticketList.addAll(tickets);
+                        new TicketAdapter(ticketList, TicketListActivity.this).getFilter().filter(search);
+                        mAdapter.notifyDataSetChanged();
+
+                        return true;
+                    }
+                });
+
                 recyclerView.setAdapter(mAdapter);
             }
         });
@@ -94,5 +128,22 @@ public class TicketListActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         System.out.println("Back button is disabled");
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if(v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if(!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event);
     }
 }
