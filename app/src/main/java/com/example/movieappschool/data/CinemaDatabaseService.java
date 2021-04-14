@@ -41,7 +41,7 @@ public class CinemaDatabaseService {
         try {
             statement = connection.createStatement();
             resultSet.push(statement.executeQuery(query));
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             e.getMessage();
         }
@@ -187,51 +187,31 @@ public class CinemaDatabaseService {
 
     public void createAccount(String username, String firstname, String lastname, String password, String email, String address, String datebirth) {
         String query = "INSERT INTO Account (username, firstName, lastName, password, email, address, dateOfBirth) VALUES ('" + username + "', '" + firstname +
-                "', ' "+ lastname + "', '" + password + "', '" + email + "', '" + address + "', '" + datebirth + "')";
+                "', ' " + lastname + "', '" + password + "', '" + email + "', '" + address + "', '" + datebirth + "')";
 
         try {
             connect();
             executeQuery(query);
-        }
-        finally {
-            disconnect();
-        }
-    }
-  
-    public User updateUser(int mUserId, String mFirstName, String mLastName, String mUsername, String mAddress, String mEmail, String mPassword, String mDateBirth) {
-        User user;
-        user = doesUserExist(mUsername, mPassword);
-        if (user != null) {
-            return user;
-        }
-
-        String query = "UPDATE Account SET username='" + mUsername + "', email='" + mEmail + "', password='" + mPassword + "', firstName='" + mFirstName
-                + "', lastName='" + mLastName + "', dateOfBirth='" + mDateBirth + "', address='" + mAddress + "' WHERE userID='" + mUserId + "'";
-
-        try {
-            connect();
-            executeQuery(query);
-
-            ResultSet rs = resultSet.peek();
-
-            while (rs.next()) {
-                mUserId = rs.getInt("userID");
-                mUsername = rs.getString("username");
-                mFirstName = rs.getString("firstName");
-                mLastName = rs.getString("lastName");
-                mAddress = rs.getString("address");
-                mEmail = rs.getString("email");
-                mPassword = rs.getString("password");
-                mDateBirth = rs.getString("dateOfBirth");
-                user = new User(mUserId, mFirstName, mLastName, mUsername, mAddress, mEmail, mPassword, mDateBirth);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
         } finally {
             disconnect();
         }
+    }
 
-        return user;
+    public void updateUser(int mUserId, String mFirstName, String mLastName, String mUsername, String mAddress, String mEmail, String mPassword, String mDateBirth) {
+        User user;
+        user = doesUserExist(mUsername, mPassword);
+        if (user != null) {
+            String query = "UPDATE Account SET username='" + mUsername + "', email='" + mEmail + "', password='" + mPassword + "', firstName='" + mFirstName
+                    + "', lastName='" + mLastName + "', dateOfBirth='" + mDateBirth + "', address='" + mAddress + "' WHERE userID='" + mUserId + "'";
+
+            try {
+                connect();
+                executeQuery(query);
+            } finally {
+                disconnect();
+            }
+
+        }
     }
 
     public void changePassword(String mUsername, String mOldPassword, String mNewPassword) {
@@ -239,13 +219,12 @@ public class CinemaDatabaseService {
         try {
             connect();
             executeQuery(query);
-        }
-        finally {
+        } finally {
             disconnect();
         }
     }
 
-    public List<Ticket> getTicketList(int userId){
+    public List<Ticket> getTicketList(int userId) {
         List<Ticket> ticketList = new ArrayList<>();
 
         String query = "SELECT * FROM Ticket WHERE userID = '" + userId + "'";
@@ -269,18 +248,16 @@ public class CinemaDatabaseService {
                 ticket.setShow(getShow(showId));
                 ticketList.add(ticket);
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             disconnect();
         }
 
         return ticketList;
     }
 
-    public Show getShow(int showId){
+    public Show getShow(int showId) {
         String query = "SELECT * FROM Show WHERE showID = " + showId;
         Show result = null;
 
@@ -299,11 +276,9 @@ public class CinemaDatabaseService {
                 result = new Show(movieId, fullDate, id, hallId);
                 result.setMovie(LocalAppStorage.getMovie(movieId));
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             disconnect();
         }
 
@@ -312,7 +287,7 @@ public class CinemaDatabaseService {
 
     public void createTicket(int userId, int chairNr, int rowNr, int showId, String ticketType, double price) {
         String query = "INSERT INTO Ticket (userID, chairNr, rowNr, showID, ticketType, price) VALUES ('" + userId + "', '" + chairNr +
-                "', ' "+ rowNr + "', '" + showId + "', '" + ticketType + "', '" + price + "')";
+                "', ' " + rowNr + "', '" + showId + "', '" + ticketType + "', '" + price + "')";
 
         try {
             connect();
