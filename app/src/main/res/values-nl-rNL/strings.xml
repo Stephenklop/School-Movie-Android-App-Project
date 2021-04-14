@@ -7,7 +7,7 @@
     <string name="menu_my_tickets">Mijn tickets</string>
     <string name="menu_my_account">Mijn account</string>
     <string name="menu_account_login">Login</string>
-    <string name="menu_account_logout">Logout</string>
+    <string name="menu_account_logout">Log uit</string>
     <string name="change_password_title">Wachtwoord wijzigen</string>
     <string name="change_password_desc">Voer uw oude en nieuwe wachtwoord in.</string>
     <string name="change_password_old_password">Oud wachtwoord</string>

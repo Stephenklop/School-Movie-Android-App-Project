@@ -1,6 +1,7 @@
 package com.example.movieappschool.ui;
 
 import android.app.ActivityOptions;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
