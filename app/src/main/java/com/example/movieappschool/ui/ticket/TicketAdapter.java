@@ -53,11 +53,11 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
 
         Glide.with(this.context).load(URL).into(holder.ticket_image);
 
-        holder.ticket_date.setText("Datum: " + date);
-        holder.ticket_hall.setText("Zaal: " + hall);
-        holder.ticket_time.setText("Tijd: " + time);
-        holder.ticket_row.setText("Rij: " + rowNr);
-        holder.ticket_chair.setText("Stoel: " + chairNr);
+        holder.ticket_date.setText(context.getResources().getString(R.string.ticket_date) + " " + date);
+        holder.ticket_hall.setText(context.getResources().getString(R.string.ticket_hall) + " " + hall);
+        holder.ticket_time.setText(context.getResources().getString(R.string.ticket_time) + " " + time);
+        holder.ticket_row.setText(context.getResources().getString(R.string.ticket_row) + " " + rowNr);
+        holder.ticket_chair.setText(context.getResources().getString(R.string.ticket_seat) + " " + chairNr);
 
         // qr button
         // inflate the layout of the popup window

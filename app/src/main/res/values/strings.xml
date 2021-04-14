@@ -76,7 +76,7 @@
     <string name="ticket_seat">Stoel:</string>
     <string name="ticket_time">Tijd:</string>
     <string name="ticket_hall">Zaal:</string>
-    <string name="ticket_qr_code">QR code:</string>
+    <string name="ticket_qr_code">QR-code</string>
     <string name="textfield_wrong">Controleer invulveld</string>
     <string name="password_requirements">Wachtwoord moet minimaal uit 8 tekens bestaan waarvan 1 hoofdletter, 1 special character en 1 cijfer</string>
 </resources>
