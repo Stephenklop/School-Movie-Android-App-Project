@@ -33,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     private CinemaDatabaseService cinemaDatabaseService;
     private EditText mUsername, mFirstname, mLastname, mPassword, mEmail, mAddress, mDateBirth;
     private Button mCreateAccount;
+    private String dateBirthFinal;
 
     public RegisterActivity() {
         cinemaDatabaseService = new CinemaDatabaseService();
@@ -93,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                             String hashedPassword = hashPassword(password);
 
                             System.out.println("Hashed password: " + hashedPassword);
-                            cinemaDatabaseService.createAccount(username, firstname, lastname, hashedPassword, email, address, datebirth);
+                            cinemaDatabaseService.createAccount(username, firstname, lastname, hashedPassword, email, address, dateBirthFinal);
                         }
                     });
 
@@ -123,6 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 mDateBirth.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
+                dateBirthFinal = year + "-" + (month + 1) + "-" + dayOfMonth;
                 mDateBirth.setError(null);
             }
         }, mYear, mMonth, mDay);
@@ -151,38 +153,38 @@ public class RegisterActivity extends AppCompatActivity {
         boolean valid = true;
 
         if (!validator.global(mUsername.getText().toString())) {
-            mUsername.setError("Controleer gebruikersnaam");
+            mUsername.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
         if (!validator.global(mFirstname.getText().toString())) {
-            mFirstname.setError("Controleer voornaam");
+            mFirstname.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
         if (!validator.global(mLastname.getText().toString())) {
-            mLastname.setError("Controleer achternaam");
+            mLastname.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
-        
+
         if (!validator.email(mEmail.getText().toString())) {
-            mEmail.setError("Controleer email");
+            mEmail.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
         if (!validator.password(mPassword.getText().toString())) {
-            mPassword.setError("Wachtwoord moet minimaal uit 8 tekens bestaan waarvan 1 hoofdletter, 1 special character en 1 cijfer");
+            mPassword.setError(getResources().getString(R.string.password_requirements));
             valid = false;
         }
 
 
         if (!validator.global(mDateBirth.getText().toString())) {
-            mDateBirth.setError("Controlleer geboortedatum");
+            mDateBirth.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
         if (!validator.global(mAddress.getText().toString())) {
-            mAddress.setError("Controleer Adres");
+            mAddress.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 

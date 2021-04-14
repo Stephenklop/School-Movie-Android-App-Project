@@ -78,4 +78,6 @@
     <string name="ticket_time">Tijd:</string>
     <string name="ticket_hall">Zaal:</string>
     <string name="ticket_qr_code">QR-code</string>
+    <string name="textfield_wrong">Controleer inputveld.</string>
+    <string name="password_requirements">Het wachtwoord moet minimaal acht characters bevatten, waarvan minimaal één hoofdletter, één kleine letter, één cijfer en één speciaal character.</string>
 </resources>

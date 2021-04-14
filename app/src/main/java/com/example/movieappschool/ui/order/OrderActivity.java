@@ -42,6 +42,7 @@ public class OrderActivity extends AppCompatActivity {
     private List<Seat> occupiedSeats;
     private List<Seat> selectedSeats;
     private int totalPrice;
+    private String previousActivity;
 
     public OrderActivity() {
         cinemaDatabaseService = new CinemaDatabaseService();
@@ -52,18 +53,29 @@ public class OrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
 
+        // Set logout receiver
+        setLogoutReceiver();
+
         Intent intent = getIntent();
         // TODO: Check if movieId == -1 (= error)
         movieId = intent.getIntExtra("movieId", -1);
-
-        // Set logout receiver
-        setLogoutReceiver();
+        previousActivity = intent.getStringExtra("prevActivity");
 
         toolbar = findViewById(R.id.order_toolbar);
         toolbar.findViewById(R.id.hamburger_icon).setVisibility(View.INVISIBLE);
 
         backButton = toolbar.findViewById(R.id.back_icon);
         backButton.setVisibility(View.VISIBLE);
+        backButton.setOnClickListener(v -> {
+            try {
+                Intent backIntent = new Intent(getApplicationContext(), Class.forName(previousActivity));
+                backIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                getApplicationContext().startActivity(backIntent);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
 
         // Threads.
         Thread showConfiguratorThread = new Thread(() -> {
