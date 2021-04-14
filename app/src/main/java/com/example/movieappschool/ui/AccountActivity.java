@@ -18,12 +18,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.movieappschool.MainActivity;
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.User;
-import com.example.movieappschool.logic.validator;
+import com.example.movieappschool.logic.Validator;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
 public class AccountActivity extends AppCompatActivity {
@@ -139,27 +138,27 @@ public class AccountActivity extends AppCompatActivity {
     private boolean validate() {
         boolean valid = true;
 
-        if (!validator.global(mUsername.getText().toString())) {
+        if (!Validator.global(mUsername.getText().toString())) {
             mUsername.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
-        if (!validator.global(mFirstname.getText().toString())) {
+        if (!Validator.global(mFirstname.getText().toString())) {
             mFirstname.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
-        if (!validator.global(mLastname.getText().toString())) {
+        if (!Validator.global(mLastname.getText().toString())) {
             mLastname.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
-        if (!validator.email(mEmail.getText().toString())) {
+        if (!Validator.email(mEmail.getText().toString())) {
             mEmail.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
-        if (!validator.global(mAddress.getText().toString())) {
+        if (!Validator.global(mAddress.getText().toString())) {
             mAddress.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }

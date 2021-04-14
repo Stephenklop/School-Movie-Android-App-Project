@@ -21,7 +21,7 @@ import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.User;
-import com.example.movieappschool.logic.validator;
+import com.example.movieappschool.logic.Validator;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -105,12 +105,12 @@ public class PasswordActivity extends AppCompatActivity {
     private boolean validate() {
         boolean valid = true;
 
-        if (!validator.global(mOldPasswordEdit.getText().toString())) {
+        if (!Validator.global(mOldPasswordEdit.getText().toString())) {
             mOldPasswordEdit.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
-        if (!validator.password(mNewPasswordEdit.getText().toString())) {
+        if (!Validator.password(mNewPasswordEdit.getText().toString())) {
             mNewPasswordEdit.setError(getResources().getString(R.string.password_requirements));
             valid = false;
         }

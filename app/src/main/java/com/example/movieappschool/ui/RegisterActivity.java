@@ -1,7 +1,6 @@
 package com.example.movieappschool.ui;
 
 import android.app.ActivityOptions;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -14,17 +13,15 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
-import com.example.movieappschool.logic.validator;
+import com.example.movieappschool.logic.Validator;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
@@ -152,38 +149,38 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean validate() {
         boolean valid = true;
 
-        if (!validator.global(mUsername.getText().toString())) {
+        if (!Validator.global(mUsername.getText().toString())) {
             mUsername.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
-        if (!validator.global(mFirstname.getText().toString())) {
+        if (!Validator.global(mFirstname.getText().toString())) {
             mFirstname.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
-        if (!validator.global(mLastname.getText().toString())) {
+        if (!Validator.global(mLastname.getText().toString())) {
             mLastname.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
-        if (!validator.email(mEmail.getText().toString())) {
+        if (!Validator.email(mEmail.getText().toString())) {
             mEmail.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
-        if (!validator.password(mPassword.getText().toString())) {
+        if (!Validator.password(mPassword.getText().toString())) {
             mPassword.setError(getResources().getString(R.string.password_requirements));
             valid = false;
         }
 
 
-        if (!validator.global(mDateBirth.getText().toString())) {
+        if (!Validator.global(mDateBirth.getText().toString())) {
             mDateBirth.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
-        if (!validator.global(mAddress.getText().toString())) {
+        if (!Validator.global(mAddress.getText().toString())) {
             mAddress.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
