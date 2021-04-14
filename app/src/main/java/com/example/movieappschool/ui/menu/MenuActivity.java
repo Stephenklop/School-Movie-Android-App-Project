@@ -12,6 +12,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -159,6 +160,13 @@ public class MenuActivity extends AppCompatActivity {
                 Intent broadcastIntent = new Intent();
                 broadcastIntent.setAction("com.package.ACTION_LOGOUT");
                 sendBroadcast(broadcastIntent);
+
+                Toast.makeText(getApplicationContext(), getString(R.string.logout_successfull), Toast.LENGTH_LONG).show();
+
+                Intent homePageIntent = new Intent(getApplicationContext(), MainActivity.class);
+                homePageIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.fade_out);
+                getApplicationContext().startActivity(homePageIntent, options.toBundle());
             });
 
             // Show my account

@@ -82,4 +82,5 @@
     <string name="password_requirements">Het wachtwoord moet minimaal acht characters bevatten, waarvan minimaal één hoofdletter, één kleine letter, één cijfer en één speciaal character.</string>
     <string name="movie_details_show_more">Bekijk meer</string>
     <string name="movie_details_show_less">Bekijk minder</string>
+    <string name="logout_successfull">Log uit succesvol</string>
 </resources>
