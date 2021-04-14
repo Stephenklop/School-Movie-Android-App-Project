@@ -226,6 +226,7 @@ public class DetailActivity extends AppCompatActivity {
 
             if (cinemaDatabaseService.doShowsExist(movieId)) {
                 Intent orderIntent = new Intent(getApplicationContext(), OrderActivity.class);
+                orderIntent.putExtra("prevActivity", getClass().getName());
                 orderIntent.putExtra("movieId", movieId);
                 orderIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getApplicationContext().startActivity(orderIntent);
