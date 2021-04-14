@@ -1,6 +1,6 @@
 package com.example.movieappschool.logic;
 
-public class validator {
+public class Validator {
 
     //email must be like user@domain.tld
     public static boolean email(String emailaddress) {
@@ -9,7 +9,6 @@ public class validator {
         } else {
             return true;
         }
-
     }
 
     //mPassword must have minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
@@ -22,11 +21,6 @@ public class validator {
     }
 
     public static boolean global(String input) {
-        if (input.isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
-
+        return input.isEmpty();
     }
 }
