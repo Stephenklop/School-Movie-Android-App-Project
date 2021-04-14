@@ -21,6 +21,6 @@ public class Validator {
     }
 
     public static boolean global(String input) {
-        return input.isEmpty();
+        return !input.isEmpty();
     }
 }
