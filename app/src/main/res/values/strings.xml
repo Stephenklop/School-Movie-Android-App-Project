@@ -80,4 +80,6 @@
     <string name="home_explore_desc">Let\'s find your favorite movie.</string>
     <string name="textfield_wrong">Check input field</string>
     <string name="password_requirements">Password must have minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character</string>
+    <string name="movie_details_show_more">Show more</string>
+    <string name="movie_details_show_less">Show less</string>
 </resources>
