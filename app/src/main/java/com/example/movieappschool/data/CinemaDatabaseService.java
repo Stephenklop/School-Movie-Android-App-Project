@@ -201,8 +201,6 @@ public class CinemaDatabaseService {
         User user;
         user = doesUserExist(mUsername, mPassword);
         if (user != null) {
-
-
             String query = "UPDATE Account SET username='" + mUsername + "', email='" + mEmail + "', password='" + mPassword + "', firstName='" + mFirstName
                     + "', lastName='" + mLastName + "', dateOfBirth='" + mDateBirth + "', address='" + mAddress + "' WHERE userID='" + mUserId + "'";
 

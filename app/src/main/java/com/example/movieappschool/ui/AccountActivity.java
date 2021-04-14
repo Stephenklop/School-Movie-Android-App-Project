@@ -89,7 +89,11 @@ public class AccountActivity extends AppCompatActivity {
                             cinemaDatabaseService.updateUser(user.getUserId(), mFirstname.getText().toString(), mLastname.getText().toString(), mUsername.getText().toString(), mAddress.getText().toString(),
                                     mEmail.getText().toString(), user.getPassword(), user.getDateBirth());
 
-
+                            user.setUsername(mUsername.getText().toString());
+                            user.setFirstName(mFirstname.getText().toString());
+                            user.setLastName(mLastname.getText().toString());
+                            user.setEmail(mEmail.getText().toString());
+                            user.setAddress(mAddress.getText().toString());
                         }
                     });
 

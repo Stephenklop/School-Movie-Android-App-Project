@@ -13,7 +13,7 @@ public class User {
         this.mEmail = mEmail;
         this.mPassword = mPassword;
         this.mUserId = mUserId;
-        this.mDateBirth = mDateBirth;          
+        this.mDateBirth = mDateBirth;
     }
 
     public int getUserId() {
@@ -47,4 +47,30 @@ public class User {
     public String getDateBirth() {
         return mDateBirth;
     }
+
+    public void setFirstName(String mFirstName) {
+        this.mFirstName = mFirstName;
+
+    }
+
+    public void setLastName(String mLastName) {
+        this.mLastName = mLastName;
+
+    }
+
+    public void setUsername(String mUsername) {
+        this.mUsername = mUsername;
+
+    }
+
+    public void setAddress(String mAddress) {
+        this.mAddress = mAddress;
+
+    }
+
+    public void setEmail(String mEmail) {
+        this.mEmail = mEmail;
+
+    }
+
 }
