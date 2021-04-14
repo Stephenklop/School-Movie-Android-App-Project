@@ -7,6 +7,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -17,17 +19,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.movieappschool.R;
+import com.example.movieappschool.domain.Movie;
 import com.example.movieappschool.domain.Ticket;
 import com.example.movieappschool.logic.Converter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHolder> {
+public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHolder> implements Filterable {
     private List<Ticket> tickets;
     private Context context;
+    private List<Ticket> mTicketsFull;
 
     public TicketAdapter(List<Ticket> tickets, Context context) {
         this.tickets = tickets;
+        mTicketsFull = new ArrayList<>(tickets);
         this.context = context;
     }
 
@@ -114,4 +120,41 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
             ticket_QRcode = itemView.findViewById(R.id.ticket_QRcode);
         }
     }
+
+    @Override
+    public Filter getFilter() {
+        return ticketFilter;
+    }
+
+    private Filter ticketFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Ticket> filteredList = new ArrayList<>();
+
+            if(constraint == null || constraint.length() == 0) {
+                filteredList.addAll(mTicketsFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for(Ticket ticket : mTicketsFull) {
+                    System.out.println(ticket.getShow().getMovie().getTitle().toLowerCase().contains(filterPattern));
+                    if(ticket.getShow().getMovie().getTitle().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(ticket);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            tickets.clear();
+            tickets.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }

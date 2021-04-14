@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/tint6">
@@ -37,27 +38,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ticket_list_title" />
 
-<!--    <include-->
-<!--        android:id="@+id/tickets_list_search"-->
-<!--        layout="@layout/search_fragment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="15dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tickets_list_description" />-->
+    <SearchView
+        android:id="@+id/tickets_list_search"
+        layout="@layout/search_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ticket_list_description"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ticket_list_items"
         android:layout_width="0dp"
-        android:layout_height="517dp"
+        android:layout_height="458dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ticket_list_description" />
+        app:layout_constraintTop_toBottomOf="@+id/tickets_list_search"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/tickets_list_no_tickets_found"
@@ -73,6 +75,6 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ticket_list_search" />
+        app:layout_constraintTop_toBottomOf="@+id/tickets_list_search" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
