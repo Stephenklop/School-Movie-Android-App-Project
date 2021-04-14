@@ -45,5 +45,13 @@
             android:visibility="invisible"
             app:srcCompat="@drawable/_66px_flag_of_the_netherlands_svg" />
 
+        <ImageView
+            android:id="@+id/flag_icon_english"
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/usflag" />
+
     </RelativeLayout>
 </RelativeLayout>

@@ -8,9 +8,14 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -29,6 +34,7 @@ import com.example.movieappschool.ui.menu.MenuActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private final CinemaDatabaseService cinemaDatabaseService;
@@ -44,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
     public MainActivity() {
         cinemaDatabaseService = new CinemaDatabaseService();
-        movieAPIService = new MovieAPIService(API_KEY, Language.EN_US);
         localAppStorage = (LocalAppStorage) this.getApplication();
-
+        movieAPIService = new MovieAPIService(API_KEY, localAppStorage.getLanguage());
+        Log.d("mainactivity", localAppStorage.getLanguage().getLanguage());
     }
 
     @Override

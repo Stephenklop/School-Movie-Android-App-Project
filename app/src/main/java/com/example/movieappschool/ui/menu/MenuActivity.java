@@ -1,8 +1,14 @@
 package com.example.movieappschool.ui.menu;
 
+import android.app.Activity;
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,19 +18,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.movieappschool.MainActivity;
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.LocalAppStorage;
+import com.example.movieappschool.logic.Language;
 import com.example.movieappschool.ui.AccountActivity;
 import com.example.movieappschool.ui.LoginActivity;
 import com.example.movieappschool.ui.ticket.TicketListActivity;
 
+import java.util.Locale;
+
 public class MenuActivity extends AppCompatActivity {
     private View toolbar;
-    private ImageView closeButton;
+    private ImageView closeButton, flagIcon, flagIconEnglish;
     private TextView logout;
     private LocalAppStorage localAppStorage;
     private TextView home;
     private TextView myTickets;
     private TextView login;
     private TextView myAccount;
+    private Locale locale;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +74,39 @@ public class MenuActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+
+        flagIcon = toolbar.findViewById(R.id.flag_icon);
+        flagIconEnglish = toolbar.findViewById(R.id.flag_icon_english);
+
+        // Check which flag to show
+        if(LocalAppStorage.getLanguage().equals(Language.EN_US)) {
+            flagIcon.setVisibility(View.VISIBLE);
+            flagIconEnglish.setVisibility(View.GONE);
+        } else {
+            flagIcon.setVisibility(View.GONE);
+            flagIconEnglish.setVisibility(View.VISIBLE);
+        }
+
+        flagIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LocalAppStorage.setLanguage(Language.NL_NL);
+                flagIconEnglish.setVisibility(View.VISIBLE);
+                flagIcon.setVisibility(View.GONE);
+                setAppLocale("nl");
+            }
+        });
+
+        flagIconEnglish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LocalAppStorage.setLanguage(Language.EN_US);
+                flagIconEnglish.setVisibility(View.GONE);
+                flagIcon.setVisibility(View.VISIBLE);
+                setAppLocale("en");
+            }
+        });
+
 
         // Make home button clickable
         home.setOnClickListener(v -> {
@@ -144,5 +188,21 @@ public class MenuActivity extends AppCompatActivity {
                 getApplicationContext().startActivity(myTicketsIntent, options.toBundle());
             });
         }
+    }
+
+    private void setAppLocale(String localeCode){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if(localeCode.equals("nl")) {
+                conf.setLocale(new Locale(localeCode.toLowerCase(), "NL"));
+            } else {
+                conf.setLocale(new Locale(localeCode.toLowerCase()));
+            }
+        } else {
+            conf.locale = new Locale(localeCode.toLowerCase());
+        }
+        res.updateConfiguration(conf, dm);
     }
 }
