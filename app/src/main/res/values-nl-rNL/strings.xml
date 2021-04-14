@@ -26,6 +26,7 @@
     <string name="detail_show_more">Meer tonen</string>
     <string name="detail_login_warning">Log in om tickets te kopen.</string>
     <string name="detail_order_tickets">Tickets bestellen</string>
+    <string name="detail_no_shows_found">Geen voorstellingen gevonden.</string>
     <string name="my_account_title">Mijn account</string>
     <string name="my_account_desc">Hier kunt u uw gegevens aanpassen.</string>
     <string name="my_account_username">Gebruikersnaam</string>
@@ -83,5 +84,4 @@
     <string name="movie_details_show_more">Bekijk meer</string>
     <string name="movie_details_show_less">Bekijk minder</string>
     <string name="logout_successfull">Log uit succesvol</string>
-    <string name="detail_no_shows_found">No shows found</string>
 </resources>
