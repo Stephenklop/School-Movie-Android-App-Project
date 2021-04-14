@@ -69,6 +69,8 @@ public class OrderActivity extends AppCompatActivity {
         backButton.setOnClickListener(v -> {
             try {
                 Intent backIntent = new Intent(getApplicationContext(), Class.forName(previousActivity));
+                backIntent.putExtra("movieId", movieId);
+                backIntent.putExtra("prevActivity", "com.example.movieappschool.MainActivity");
                 backIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 getApplicationContext().startActivity(backIntent);
