@@ -73,8 +73,6 @@ public class TicketListActivity extends AppCompatActivity {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 60, false, 0));
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
