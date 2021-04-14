@@ -106,12 +106,12 @@ public class PasswordActivity extends AppCompatActivity {
         boolean valid = true;
 
         if (!validator.global(mOldPasswordEdit.getText().toString())) {
-            mOldPasswordEdit.setError("Controleer oud wachtwoord");
+            mOldPasswordEdit.setError(getResources().getString(R.string.textfield_wrong));
             valid = false;
         }
 
         if (!validator.password(mNewPasswordEdit.getText().toString())) {
-            mNewPasswordEdit.setError("Wachtwoord moet minimaal uit 8 tekens bestaan waarvan 1 hoofdletter, 1 special character en 1 cijfer");
+            mNewPasswordEdit.setError(getResources().getString(R.string.password_requirements));
             valid = false;
         }
         if (!valid) {
