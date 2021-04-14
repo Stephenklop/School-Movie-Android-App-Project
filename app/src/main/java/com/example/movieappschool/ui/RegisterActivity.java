@@ -33,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     private CinemaDatabaseService cinemaDatabaseService;
     private EditText mUsername, mFirstname, mLastname, mPassword, mEmail, mAddress, mDateBirth;
     private Button mCreateAccount;
+    private String dateBirthFinal;
 
     public RegisterActivity() {
         cinemaDatabaseService = new CinemaDatabaseService();
@@ -93,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                             String hashedPassword = hashPassword(password);
 
                             System.out.println("Hashed password: " + hashedPassword);
-                            cinemaDatabaseService.createAccount(username, firstname, lastname, hashedPassword, email, address, datebirth);
+                            cinemaDatabaseService.createAccount(username, firstname, lastname, hashedPassword, email, address, dateBirthFinal);
                         }
                     });
 
@@ -122,7 +123,8 @@ public class RegisterActivity extends AppCompatActivity {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                mDateBirth.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                mDateBirth.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
+                dateBirthFinal = year + "-" + (month +1) + "-" + dayOfMonth;
                 mDateBirth.setError(null);
             }
         }, mYear, mMonth, mDay);
