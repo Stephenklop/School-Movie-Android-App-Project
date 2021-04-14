@@ -198,19 +198,14 @@ public class CinemaDatabaseService {
     }
 
     public void updateUser(int mUserId, String mFirstName, String mLastName, String mUsername, String mAddress, String mEmail, String mPassword, String mDateBirth) {
-        User user;
-        user = doesUserExist(mUsername, mPassword);
-        if (user != null) {
-            String query = "UPDATE Account SET username='" + mUsername + "', email='" + mEmail + "', password='" + mPassword + "', firstName='" + mFirstName
-                    + "', lastName='" + mLastName + "', dateOfBirth='" + mDateBirth + "', address='" + mAddress + "' WHERE userID='" + mUserId + "'";
+        String query = "UPDATE Account SET username='" + mUsername + "', email='" + mEmail + "', password='" + mPassword + "', firstName='" + mFirstName
+                + "', lastName='" + mLastName + "', dateOfBirth='" + mDateBirth + "', address='" + mAddress + "' WHERE userID='" + mUserId + "'";
 
-            try {
-                connect();
-                executeQuery(query);
-            } finally {
-                disconnect();
-            }
-
+        try {
+            connect();
+            executeQuery(query);
+        } finally {
+            disconnect();
         }
     }
 
