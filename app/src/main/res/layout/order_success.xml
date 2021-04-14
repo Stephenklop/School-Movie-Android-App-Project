@@ -8,8 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
+        android:orientation="vertical"
+        android:paddingBottom="40dp" >
         <TextView
             android:id="@+id/order_success_title"
             android:layout_width="match_parent"
@@ -99,7 +99,7 @@
             android:textColor="@color/tint1"
             android:textSize="16sp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/order_success_back_home_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -107,11 +107,13 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="40dp"
             android:background="@drawable/purple_gradient"
+            android:textAllCaps="false"
+            android:textSize="18sp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="@string/order_success_back_home" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/order_success_view_tickets_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -119,6 +121,8 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="40dp"
             android:background="@drawable/purple_gradient"
+            android:textAllCaps="false"
+            android:textSize="18sp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="@string/order_success_my_tickets" />

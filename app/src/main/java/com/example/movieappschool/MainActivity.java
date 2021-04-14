@@ -151,4 +151,9 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.dispatchTouchEvent(event);
     }
+
+    @Override
+    public void onBackPressed() {
+        System.out.println("Back button is disabled");
+    }
 }

@@ -69,4 +69,9 @@ public class OrderSuccessActivity extends AppCompatActivity {
             getApplicationContext().startActivity(ticketsIntent);
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        System.out.println("Back button is disabled");
+    }
 }
