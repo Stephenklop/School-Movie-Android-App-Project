@@ -26,14 +26,14 @@ import com.example.movieappschool.logic.Converter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHolder> /*implements Filterable*/ {
+public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHolder> implements Filterable {
     private List<Ticket> tickets;
     private Context context;
-//    private List<Ticket> mTickets;
-//    private List<Ticket> mTicketsFull;
+    private List<Ticket> mTicketsFull;
 
     public TicketAdapter(List<Ticket> tickets, Context context) {
         this.tickets = tickets;
+        mTicketsFull = new ArrayList<>(tickets);
         this.context = context;
     }
 
@@ -121,42 +121,40 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
         }
     }
 
-//    @Override
-//    public Filter getFilter() {
-//        return ticketFilter;
-//    }
-//
-//    private Filter ticketFilter = new Filter() {
-//        @Override
-//        protected FilterResults performFiltering(CharSequence constraint) {
-//            List<Ticket> filteredList = new ArrayList<>();
-//
-//            if(constraint == null || constraint.length() == 0) {
-//                filteredList.addAll(mTicketsFull);
-//            } else {
-//                String filterPattern = constraint.toString().toLowerCase().trim();
-//
-//
-//
-//                for(Ticket ticket : mTicketsFull) {
-//                    System.out.println(ticket.getShow().getMovie().getTitle().toLowerCase().contains(filterPattern));
-//                    if(ticket.getShow().getMovie().getTitle().toLowerCase().contains(filterPattern)) {
-//                        filteredList.add(ticket);
-//                    }
-//                }
-//            }
-//
-//            FilterResults results = new FilterResults();
-//            results.values = filteredList;
-//
-//            return results;
-//        }
-//
-//        @Override
-//        protected void publishResults(CharSequence constraint, FilterResults results) {
-//            mTickets.clear();
-//            mTickets.addAll((List) results.values);
-//            notifyDataSetChanged();
-//        }
-//    };
+    @Override
+    public Filter getFilter() {
+        return ticketFilter;
+    }
+
+    private Filter ticketFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Ticket> filteredList = new ArrayList<>();
+
+            if(constraint == null || constraint.length() == 0) {
+                filteredList.addAll(mTicketsFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for(Ticket ticket : mTicketsFull) {
+                    System.out.println(ticket.getShow().getMovie().getTitle().toLowerCase().contains(filterPattern));
+                    if(ticket.getShow().getMovie().getTitle().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(ticket);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            tickets.clear();
+            tickets.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }

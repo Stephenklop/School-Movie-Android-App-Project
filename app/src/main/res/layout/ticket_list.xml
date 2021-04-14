@@ -38,7 +38,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ticket_list_title" />
 
-    <include
+    <SearchView
         android:id="@+id/tickets_list_search"
         layout="@layout/search_fragment"
         android:layout_width="match_parent"
@@ -46,7 +46,7 @@
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ticket_list_description" />
+        app:layout_constraintTop_toBottomOf="@+id/ticket_list_description"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ticket_list_items"
