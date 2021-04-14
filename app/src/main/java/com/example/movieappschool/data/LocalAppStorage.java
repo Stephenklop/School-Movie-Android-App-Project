@@ -7,6 +7,7 @@ import com.example.movieappschool.domain.Seat;
 import com.example.movieappschool.domain.Show;
 import com.example.movieappschool.domain.Ticket;
 import com.example.movieappschool.domain.User;
+import com.example.movieappschool.logic.Language;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class LocalAppStorage extends Application {
     private static boolean isLoggedIn;
     private static List<Movie> movies = new ArrayList<>();
     private static User user;
+    private static Language language;
 
     public static void setMovies(List<Movie> movies) {
         LocalAppStorage.movies = movies;

@@ -18,7 +18,7 @@ import com.example.movieappschool.ui.ticket.TicketListActivity;
 
 public class MenuActivity extends AppCompatActivity {
     private View toolbar;
-    private ImageView closeButton;
+    private ImageView closeButton, flagIcon;
     private TextView logout;
     private LocalAppStorage localAppStorage;
     private TextView home;
@@ -63,6 +63,17 @@ public class MenuActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+
+
+        flagIcon = toolbar.findViewById(R.id.flag_icon);
+        flagIcon.setVisibility(View.VISIBLE);
+        flagIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
         // Make home button clickable
         home.setOnClickListener(v -> {
