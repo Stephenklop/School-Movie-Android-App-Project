@@ -140,12 +140,11 @@ public class TicketListActivity extends AppCompatActivity {
 
         if(filteredList.isEmpty()) {
             // If no item is added in our filtered list, we are displaying a toast message that no data if found
-            Toast.makeText(this, getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
             ticketRV.setVisibility(View.GONE);
             findViewById(R.id.tickets_list_no_tickets_found).setVisibility(View.VISIBLE);
         } else {
             ticketRV.setVisibility(View.VISIBLE);
-            findViewById(R.id.tickets_list_no_tickets_found).setVisibility(View.INVISIBLE);
+            findViewById(R.id.tickets_list_no_tickets_found).setVisibility(View.GONE);
             mAdapter.filterList(filteredList);
         }
     }

@@ -136,8 +136,11 @@ public class MainActivity extends AppCompatActivity {
 
         if(filteredList.isEmpty()) {
             // If no item is added in our filtered list, we are displaying a toast message that no data is found
-            Toast.makeText(this, getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+            movieRV.setVisibility(View.GONE);
+            findViewById(R.id.homepage_movies_no_tickets_found).setVisibility(View.VISIBLE);
         } else {
+            movieRV.setVisibility(View.VISIBLE);
+            findViewById(R.id.homepage_movies_no_tickets_found).setVisibility(View.GONE);
             mAdapter.filterList(filteredList);
         }
     }
