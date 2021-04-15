@@ -92,6 +92,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                     try {
                         cinemaDatabaseService.createAccount(username, firstname, lastname, hashedPassword, email, address, dateBirthFinal);
+
+                        emptyInputs();
                     } catch (SQLException e) {
                         e.printStackTrace();
                         errorOccurred.set(true);
@@ -199,6 +201,16 @@ public class RegisterActivity extends AppCompatActivity {
             return true;
         }
 
+    }
+
+    private void emptyInputs() {
+        mUsername.getText().clear();
+        mFirstname.getText().clear();
+        mLastname.getText().clear();
+        mPassword.getText().clear();
+        mEmail.getText().clear();
+        mAddress.getText().clear();
+        mDateBirth.getText().clear();
     }
 
 
