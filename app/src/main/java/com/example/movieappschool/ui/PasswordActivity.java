@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.movieappschool.MainActivity;
 import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
@@ -84,6 +85,8 @@ public class PasswordActivity extends AppCompatActivity {
                         public void run() {
                             String mNewPassword = hashPassword(mNewPasswordEdit.getText().toString());
                             cinemaDatabaseService.changePassword(mUsername, mOldPassword, mNewPassword);
+                            Intent i = new Intent(PasswordActivity.this, AccountActivity.class);
+                            startActivity(i);
                         }
                     });
 
