@@ -13,6 +13,22 @@ class ValidatorTest {
      *  @requires no other precondition
      *  @ensures result = true;
      * }
+     *
+     * @desc Validates if the password is valid. It should contain the following characters:
+     * At least one Uppercase letter, one Lowercase letter, a number and a special character.
+     * It should also be atleast 8 characters in length.
+     *
+     * @subcontract valid password {
+     *  @requires no other precondition
+     *  @ensures result = true;
+     * }
+     *
+     * @desc Checks if the given input is not empty
+     *
+     * @subcontract valid input {
+     *  @requires no other precondition
+     *  @ensures result = true;
+     * }
      */
 
     // email() method
@@ -116,6 +132,86 @@ class ValidatorTest {
     }
 
     @Test
-    void global() {
+    void testPasswordRequiresAgEightPercentEnsuresFalse() {
+        // Arrange
+        String password = "Ag8%";
+
+        // Act
+        final boolean result = Validator.password(password);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testPasswordRequiresEfFourQapdfEnsuresFalse() {
+        // Arrange
+        String password = "ef4qapdf";
+
+        // Act
+        final boolean result = Validator.password(password);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testPasswordRequiresEfPercentQapdfEnsuresFalse() {
+        // Arrange
+        String password = "ef%qapdf";
+
+        // Act
+        final boolean result = Validator.password(password);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testPasswordRequiresEFFourPercentQAPDFEnsuresFalse() {
+        // Arrange
+        String password = "EF4%QAPDF";
+
+        // Act
+        final boolean result = Validator.password(password);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testPasswordRequiresEfFourPercentQapdfFifteenAbcdefEnsuresTrue() {
+        // Arrange
+        String password = "ef4%Qapdf15abcdef";
+
+        // Act
+        final boolean result = Validator.password(password);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void testGlobalRequiresNullEnsuresFalse() {
+        // Arrange
+        String input = "";
+
+        // Act
+        final boolean result = Validator.global(input);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testGlobalRequiresNotNullEnsuresTrue() {
+        // Arrange
+        String input = "test";
+
+        // Act
+        final boolean result = Validator.global(input);
+
+        // Assert
+        assertTrue(result);
     }
 }
