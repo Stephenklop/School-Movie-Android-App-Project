@@ -92,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
             movieAPIThread.start();
             movieAPIThread.join();
 
+            adapterThread.start();
+            adapterThread.join();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
