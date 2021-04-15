@@ -121,7 +121,6 @@ public class SeatConfigurator {
         }
 
         updateSeatAmountText();
-        enableAvailableSeats();
     }
 
     // Remove a seat from the selected seats array.
