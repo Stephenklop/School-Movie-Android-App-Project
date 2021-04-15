@@ -4,16 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 public class Movie {
-    private int mId;
-    private String mTitle;
-    private String mDescription;
-    private String mLanguage;
+    private int mId, mRatingCount, mLength;
+    private String mTitle, mDescription, mLanguage, mReleaseDate, mPosterURL;
     private List<String> mGenreIds;
-    private String mReleaseDate;
-    private String mPosterURL;
     private double mRatingAverage;
-    private int mRatingCount;
-    private int mLength;
 
     public Movie(int id, String title, String description, String language, List<String> genreIds, String releaseDate, String posterURL, double ratingAverage, int ratingCount, int movieLength) {
         mId = id;
@@ -70,15 +64,15 @@ public class Movie {
     public String toString() {
         return "Movie{" +
                 "mId=" + mId +
+                ", mRatingCount=" + mRatingCount +
+                ", mLength=" + mLength +
                 ", mTitle='" + mTitle + '\'' +
                 ", mDescription='" + mDescription + '\'' +
                 ", mLanguage='" + mLanguage + '\'' +
-                ", mGenreIds=" + mGenreIds +
                 ", mReleaseDate='" + mReleaseDate + '\'' +
                 ", mPosterURL='" + mPosterURL + '\'' +
+                ", mGenreIds=" + mGenreIds +
                 ", mRatingAverage=" + mRatingAverage +
-                ", mRatingCount=" + mRatingCount +
-                ", mLength=" + mLength +
                 '}';
     }
 }
