@@ -84,4 +84,5 @@
     <string name="movie_details_show_more">Show more</string>
     <string name="movie_details_show_less">Show less</string>
     <string name="logout_successfull">Logout successfull</string>
+    <string name="no_data_found">No data found</string>
 </resources>

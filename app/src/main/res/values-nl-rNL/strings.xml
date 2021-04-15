@@ -84,4 +84,5 @@
     <string name="movie_details_show_more">Bekijk meer</string>
     <string name="movie_details_show_less">Bekijk minder</string>
     <string name="logout_successfull">Log uit succesvol</string>
+    <string name="no_data_found">Geen data gevonden</string>
 </resources>

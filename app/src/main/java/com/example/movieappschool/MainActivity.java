@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(filteredList.isEmpty()) {
             // If no item is added in our filtered list, we are displaying a toast message that no data is found
-            Toast.makeText(this, "No data found...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
         } else {
             mAdapter.filterList(filteredList);
         }
