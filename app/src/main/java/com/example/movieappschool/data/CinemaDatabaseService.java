@@ -222,7 +222,7 @@ public class CinemaDatabaseService {
     public List<Ticket> getTicketList(int userId) {
         List<Ticket> ticketList = new ArrayList<>();
 
-        String query = "SELECT * FROM Ticket WHERE userID = '" + userId + "'";
+        String query = "SELECT * FROM Ticket JOIN Show ON Ticket.showID = Show.showID WHERE userID = '" + userId + "' ORDER BY dateTime";
 
         try {
             connect();
