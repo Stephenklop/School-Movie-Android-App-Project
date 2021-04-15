@@ -25,7 +25,9 @@ import com.example.movieappschool.ui.menu.MenuActivity;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class RegisterActivity extends AppCompatActivity {
     private CinemaDatabaseService cinemaDatabaseService;
@@ -73,37 +75,42 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        mCreateAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username = mUsername.getText().toString();
-                String firstname = mFirstname.getText().toString();
-                String lastname = mLastname.getText().toString();
-                String password = mPassword.getText().toString();
-                String email = mEmail.getText().toString();
-                String address = mAddress.getText().toString();
-                String datebirth = mDateBirth.getText().toString();
+        mCreateAccount.setOnClickListener(v -> {
+            String username = mUsername.getText().toString();
+            String firstname = mFirstname.getText().toString();
+            String lastname = mLastname.getText().toString();
+            String password = mPassword.getText().toString();
+            String email = mEmail.getText().toString();
+            String address = mAddress.getText().toString();
+            String datebirth = mDateBirth.getText().toString();
+            
+            AtomicBoolean errorOccurred = new AtomicBoolean(false);
 
-
-                if (validate()) {
-                    Thread t1 = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            String hashedPassword = hashPassword(password);
-
-                            System.out.println("Hashed password: " + hashedPassword);
-                            cinemaDatabaseService.createAccount(username, firstname, lastname, hashedPassword, email, address, dateBirthFinal);
-                        }
-                    });
+            if (validate()) {
+                Thread t1 = new Thread(() -> {
+                    String hashedPassword = hashPassword(password);
 
                     try {
-                        t1.start();
-                        t1.join();
-
-                    } catch (InterruptedException e) {
+                        cinemaDatabaseService.createAccount(username, firstname, lastname, hashedPassword, email, address, dateBirthFinal);
+                    } catch (SQLException e) {
                         e.printStackTrace();
+                        errorOccurred.set(true);
                     }
-                    Context context = getApplicationContext();
+                });
+
+                try {
+                    t1.start();
+                    t1.join();
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                Context context = getApplicationContext();
+
+                if (errorOccurred.get()) {
+                    Toast.makeText(context, getResources().getString(R.string.register_username_email_error), Toast.LENGTH_LONG).show();
+                } else {
                     Toast.makeText(context, getResources().getString(R.string.register_account_created_notification), Toast.LENGTH_LONG).show();
                 }
             }

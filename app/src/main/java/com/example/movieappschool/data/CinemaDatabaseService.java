@@ -37,14 +37,14 @@ public class CinemaDatabaseService {
         }
     }
 
-    private void executeQuery(String query) {
-        try {
-            statement = connection.createStatement();
-            resultSet.push(statement.executeQuery(query));
-        } catch (SQLException e) {
-            e.printStackTrace();
-            e.getMessage();
-        }
+    private void executeQuery(String query) throws SQLException {
+        statement = connection.createStatement();
+        resultSet.push(statement.executeQuery(query));
+    }
+
+    private void executeUpdate(String update) throws SQLException {
+        statement = connection.createStatement();
+        statement.executeUpdate(update);
     }
 
     private void disconnect() {
@@ -185,35 +185,35 @@ public class CinemaDatabaseService {
     }
 
 
-    public void createAccount(String username, String firstname, String lastname, String password, String email, String address, String datebirth) {
+    public void createAccount(String username, String firstname, String lastname, String password, String email, String address, String datebirth) throws SQLException {
         String query = "INSERT INTO Account (username, firstName, lastName, password, email, address, dateOfBirth) VALUES ('" + username + "', '" + firstname +
                 "', ' " + lastname + "', '" + password + "', '" + email + "', '" + address + "', '" + datebirth + "')";
 
         try {
             connect();
-            executeQuery(query);
+            executeUpdate(query);
         } finally {
             disconnect();
         }
     }
 
-    public void updateUser(int mUserId, String mFirstName, String mLastName, String mUsername, String mAddress, String mEmail, String mPassword, String mDateBirth) {
+    public void updateUser(int mUserId, String mFirstName, String mLastName, String mUsername, String mAddress, String mEmail, String mPassword, String mDateBirth) throws SQLException {
         String query = "UPDATE Account SET username='" + mUsername + "', email='" + mEmail + "', password='" + mPassword + "', firstName='" + mFirstName
                 + "', lastName='" + mLastName + "', dateOfBirth='" + mDateBirth + "', address='" + mAddress + "' WHERE userID='" + mUserId + "'";
 
         try {
             connect();
-            executeQuery(query);
+            executeUpdate(query);
         } finally {
             disconnect();
         }
     }
 
-    public void changePassword(String mUsername, String mOldPassword, String mNewPassword) {
+    public void changePassword(String mUsername, String mOldPassword, String mNewPassword) throws SQLException {
         String query = "Update Account SET password = '" + mNewPassword + "' WHERE username = '" + mUsername + "' AND password = '" + mOldPassword + "'";
         try {
             connect();
-            executeQuery(query);
+            executeUpdate(query);
         } finally {
             disconnect();
         }
@@ -280,35 +280,35 @@ public class CinemaDatabaseService {
         return result;
     }
 
-    public void createTicket(int userId, int chairNr, int rowNr, int showId, String ticketType, double price) {
+    public void createTicket(int userId, int chairNr, int rowNr, int showId, String ticketType, double price) throws SQLException {
         String query = "INSERT INTO Ticket (userID, chairNr, rowNr, showID, ticketType, price) VALUES ('" + userId + "', '" + chairNr +
                 "', ' " + rowNr + "', '" + showId + "', '" + ticketType + "', '" + price + "')";
 
         try {
             connect();
-            executeQuery(query);
+            executeUpdate(query);
         } finally {
             disconnect();
         }
     }
 
-    public void deleteExpiredTickets() {
+    public void deleteExpiredTickets() throws SQLException {
         String query = "EXEC DeleteExpiredTickets;";
 
         try {
             connect();
-            executeQuery(query);
+            executeUpdate(query);
         } finally {
             disconnect();
         }
     }
 
-    public void deleteExpiredShows() {
+    public void deleteExpiredShows() throws SQLException {
         String query = "EXEC DeleteExpiredShows;";
 
         try {
             connect();
-            executeQuery(query);
+            executeUpdate(query);
         } finally {
             disconnect();
         }

@@ -24,6 +24,7 @@ import com.example.movieappschool.logic.ShowConfigurator;
 import com.example.movieappschool.ui.success.OrderSuccessActivity;
 import com.example.movieappschool.ui.LoginActivity;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class OrderActivity extends AppCompatActivity {
@@ -142,15 +143,27 @@ public class OrderActivity extends AppCompatActivity {
                 // Add ticket(s) to database.
                 Thread databaseThread = new Thread(() -> {
                     for (int i = 0; i < amountOfChildTickets; i++) {
-                        cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "child", 7.0);
+                        try {
+                            cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "child", 7.0);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     for (int i = 0; i < amountOfAdultTickets; i++) {
-                        cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "adult", 11.0);
+                        try {
+                            cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "adult", 11.0);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     for (int i = 0; i < amountOfSeniorTickets; i++) {
-                        cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "senior", 9.0);
+                        try {
+                            cinemaDatabaseService.createTicket(LocalAppStorage.getUser().getUserId(), selectedSeats.get(i).getSeatNumber(), selectedSeats.get(i).getRowNumber(), selectedShow.getShowId(), "senior", 9.0);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 

@@ -26,6 +26,7 @@ import com.example.movieappschool.logic.Validator;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 
 public class PasswordActivity extends AppCompatActivity {
     private CinemaDatabaseService cinemaDatabaseService;
@@ -84,7 +85,11 @@ public class PasswordActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             String mNewPassword = hashPassword(mNewPasswordEdit.getText().toString());
-                            cinemaDatabaseService.changePassword(mUsername, mOldPassword, mNewPassword);
+                            try {
+                                cinemaDatabaseService.changePassword(mUsername, mOldPassword, mNewPassword);
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
                             Intent i = new Intent(PasswordActivity.this, AccountActivity.class);
                             startActivity(i);
                         }

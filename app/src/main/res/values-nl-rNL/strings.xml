@@ -70,6 +70,7 @@
     <string name="register_address">Adres</string>
     <string name="register_register">Registreer</string>
     <string name="register_account_created_notification">Uw account is aangemaakt.</string>
+    <string name="register_username_email_error">Er heeft zich een fout opgetreden. Uw emailadres en/of gebruikersnaam is mogelijk al in gebruik.</string>
     <string name="ticket_list_title">Mijn tickets</string>
     <string name="ticket_list_desc">Hier kunt u uw tickets vinden.</string>
     <string name="ticket_list_no_tickets_error">Geen tickets gevonden.</string>

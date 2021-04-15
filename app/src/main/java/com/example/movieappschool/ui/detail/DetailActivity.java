@@ -23,6 +23,7 @@ import com.example.movieappschool.ui.order.OrderActivity;
 import com.example.movieappschool.ui.success.OrderSuccessActivity;
 
 import java.lang.reflect.Array;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
@@ -153,7 +154,11 @@ public class DetailActivity extends AppCompatActivity {
             });
 
             orderButton.setOnClickListener(v -> new Thread(() -> {
-                cinemaDatabaseService.deleteExpiredShows();
+                try {
+                    cinemaDatabaseService.deleteExpiredShows();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
                 if (cinemaDatabaseService.doShowsExist(movieId)) {
                     Intent orderIntent = new Intent(getApplicationContext(), OrderActivity.class);
