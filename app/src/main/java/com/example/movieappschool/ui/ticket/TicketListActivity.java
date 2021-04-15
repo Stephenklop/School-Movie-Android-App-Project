@@ -144,6 +144,8 @@ public class TicketListActivity extends AppCompatActivity {
             ticketRV.setVisibility(View.GONE);
             findViewById(R.id.tickets_list_no_tickets_found).setVisibility(View.VISIBLE);
         } else {
+            ticketRV.setVisibility(View.VISIBLE);
+            findViewById(R.id.tickets_list_no_tickets_found).setVisibility(View.INVISIBLE);
             mAdapter.filterList(filteredList);
         }
     }
