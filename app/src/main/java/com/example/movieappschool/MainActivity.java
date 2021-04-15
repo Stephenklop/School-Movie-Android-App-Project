@@ -22,6 +22,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
@@ -37,22 +38,25 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+
+    // Create final variables
+    private final String API_KEY = "b3dc30d1b882188c9c0161b97d66f032";
     private final CinemaDatabaseService cinemaDatabaseService;
     private final MovieAPIService movieAPIService;
-    private final String API_KEY = "b3dc30d1b882188c9c0161b97d66f032";
     private final LocalAppStorage localAppStorage;
-    private List<Movie> mMovies;
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+
+    // Creating variables for our UI components
+    private RecyclerView movieRV;
     private List<Integer> databaseIdsResult;
-    private List<Movie> movieList = new ArrayList<>();
+
+    // Variable for our adapter class and array list
+    private MovieAdapter mAdapter;
+    private List<Movie> mMovies;
 
     public MainActivity() {
         cinemaDatabaseService = new CinemaDatabaseService();
         localAppStorage = (LocalAppStorage) this.getApplication();
         movieAPIService = new MovieAPIService(API_KEY, localAppStorage.getLanguage());
-        Log.d("mainactivity", localAppStorage.getLanguage().getLanguage());
     }
 
     @Override
@@ -60,63 +64,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Set menubar
+        setMenuBar();
+
+        // Set search view
         setSearchBar();
 
-        // Menu
-        View toolBar = findViewById(R.id.homepage_toolbar);
-        ImageView hamburgerIcon = toolBar.findViewById(R.id.hamburger_icon);
+        // Initializing our variables
+        movieRV = findViewById(R.id.homepage_movies);
 
-        hamburgerIcon.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-            intent.putExtra("prevActivity", getClass().getName());
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            ActivityOptions options = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.fade_out);
-
-            getApplicationContext().startActivity(intent, options.toBundle());
-        });
-
-        // RecyclerView
-        recyclerView = findViewById(R.id.homepage_movies);
-
-        layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 60, false, 0));
-
-        // Create three new threads.
+        // Create threads
         Thread cinemaDatabaseThread = new Thread(() -> databaseIdsResult = cinemaDatabaseService.getAllMovieIds());
-
         Thread movieAPIThread = new Thread(() -> {
             mMovies = movieAPIService.getMoviesByIds(databaseIdsResult);
             localAppStorage.setMovies(mMovies);
         });
-
         Thread adapterThread = new Thread(() -> {
-            Looper.prepare();
-            movieList.addAll(mMovies);
-            mAdapter = new MovieAdapter(movieList, MainActivity.this);
-
-            SearchView searchBar = findViewById(R.id.homepage_search);
-
-            searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String search) {
-                    mAdapter.notifyDataSetChanged();
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String search) {
-                    movieList.clear();
-                    movieList.addAll(mMovies);
-                    new MovieAdapter(movieList, MainActivity.this).getFilter().filter(search);
-                    mAdapter.notifyDataSetChanged();
-
-                    return true;
-                }
-            });
-
-            recyclerView.setAdapter(mAdapter);
+            // Calling the method to build the recyclerview
+            buildRecyclerView();
         });
 
         // Start and join the threads.
@@ -139,6 +104,78 @@ public class MainActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) findViewById(R.id.homepage_search);
         searchView.setIconified(false);
         searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Inside this method we are calling the method to filter our recycler view
+                filter(newText);
+                return false;
+            }
+        });
+    }
+
+    private void filter(String text) {
+        // Creating a new array list to filter our data
+        ArrayList<Movie> filteredList = new ArrayList<>();
+
+        // Running a for loop to compare elements
+        for(Movie item : mMovies) {
+
+            // Checking if the given string matches with the title of any item in our recycler view
+            if(item.getTitle().toLowerCase().contains(text.toLowerCase())) {
+
+                // If the item is matched we are adding it to our filtered list
+                filteredList.add(item);
+            }
+        }
+
+        if(filteredList.isEmpty()) {
+            // If no item is added in our filtered list, we are displaying a toast message that no data is found
+            Toast.makeText(this, "No data found...", Toast.LENGTH_SHORT).show();
+        } else {
+            mAdapter.filterList(filteredList);
+        }
+    }
+
+    private void buildRecyclerView() {
+        // Below, we create a new array list
+        mMovies = movieAPIService.getMoviesByIds(databaseIdsResult);
+
+        // Initializing our adapter class
+        mAdapter = new MovieAdapter(mMovies, MainActivity.this);
+
+        // Adding layout manager to our recycler view
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        movieRV.addItemDecoration(new GridSpacingItemDecoration(2, 60, false, 0));
+        movieRV.setHasFixedSize(true);
+
+        // Setting layout manager to our recycler view
+        movieRV.setLayoutManager(layoutManager);
+
+        // Connecting adapter to our recycler view
+        movieRV.setAdapter(mAdapter);
+    }
+
+    private void setMenuBar() {
+        // Get views
+        View toolBar = findViewById(R.id.homepage_toolbar);
+        ImageView hamburgerIcon = toolBar.findViewById(R.id.hamburger_icon);
+
+        // Set onclick listeners
+        hamburgerIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+            intent.putExtra("prevActivity", getClass().getName());
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            ActivityOptions options = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.fade_out);
+
+            getApplicationContext().startActivity(intent, options.toBundle());
+        });
     }
 
     @Override
