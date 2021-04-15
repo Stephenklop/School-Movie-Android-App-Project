@@ -21,7 +21,9 @@ import com.example.movieappschool.R;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.logic.Language;
 import com.example.movieappschool.ui.AccountActivity;
+import com.example.movieappschool.ui.LoadActivity;
 import com.example.movieappschool.ui.LoginActivity;
+import com.example.movieappschool.ui.detail.DetailActivity;
 import com.example.movieappschool.ui.ticket.TicketListActivity;
 
 import java.util.Locale;
@@ -187,6 +189,8 @@ public class MenuActivity extends AppCompatActivity {
             // Show my tickets
             myTickets.setVisibility(View.VISIBLE);
             myTickets.setOnClickListener(view3 -> {
+                Intent iLoad = new Intent(MenuActivity.this, LoadActivity.class);
+                startActivity(iLoad);
                 Intent myTicketsIntent = new Intent(getApplicationContext(), TicketListActivity.class);
                 myTicketsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

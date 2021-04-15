@@ -25,6 +25,8 @@ import com.example.movieappschool.R;
 import com.example.movieappschool.data.CinemaDatabaseService;
 import com.example.movieappschool.data.LocalAppStorage;
 import com.example.movieappschool.domain.Ticket;
+import com.example.movieappschool.ui.LoadActivity;
+import com.example.movieappschool.ui.detail.DetailActivity;
 import com.example.movieappschool.ui.home.GridSpacingItemDecoration;
 import com.example.movieappschool.ui.home.MovieAdapter;
 import com.example.movieappschool.ui.menu.MenuActivity;
@@ -56,6 +58,9 @@ public class TicketListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ticket_list);
+
+        Intent iLoad = new Intent(TicketListActivity.this, LoadActivity.class);
+        startActivity(iLoad);
 
         // Set menubar
         setMenuBar();

@@ -23,6 +23,6 @@ public class LoadActivity extends AppCompatActivity {
 //                startActivity(new Intent(LoadActivity.this, MainActivity.class));
                 finish();
             }
-        }, 3000);
+        }, 2000);
     }
 }
