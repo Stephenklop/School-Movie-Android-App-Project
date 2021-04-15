@@ -34,13 +34,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TicketListActivity extends AppCompatActivity {
+
+    // Create final variables
     private final CinemaDatabaseService cinemaDatabaseService;
-    private LocalAppStorage localAppStorage;
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private List<Ticket> tickets;
-    private List<Ticket> ticketList = new ArrayList<>();
+    private final LocalAppStorage localAppStorage;
+
+    // Creating variables for our UI components
+    private RecyclerView ticketRV;
+
+    // Variable for our adapter class and array list
+    private TicketAdapter mAdapter;
+    private List<Ticket> mTickets;
 
     public TicketListActivity() {
         cinemaDatabaseService = new CinemaDatabaseService();
@@ -48,16 +52,47 @@ public class TicketListActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ticket_list);
 
+        // Set menubar
+        setMenuBar();
+
+        // Set search view
         setSearchBar();
 
-        // Menu
+        // Initializing our variables
+        ticketRV = findViewById(R.id.ticket_list_items);
+
+        // Create threads
+        Thread cinemaDatabaseThread = new Thread(() -> {
+            cinemaDatabaseService.deleteExpiredTickets();
+            mTickets = cinemaDatabaseService.getTicketList(localAppStorage.getUser().getUserId());
+        });
+        Thread adapterThread = new Thread(() -> {
+            buildRecyclerView();
+        });
+
+        // Start and join the threads.
+        try {
+            cinemaDatabaseThread.start();
+            cinemaDatabaseThread.join();
+
+            adapterThread.start();
+            adapterThread.join();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setMenuBar() {
+        // Get views
         View toolBar = findViewById(R.id.tickets_list_toolbar);
         ImageView hamburgerIcon = toolBar.findViewById(R.id.hamburger_icon);
 
+        // Set onclick listeners
         hamburgerIcon.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
             intent.putExtra("prevActivity", getClass().getName());
@@ -67,72 +102,65 @@ public class TicketListActivity extends AppCompatActivity {
 
             getApplicationContext().startActivity(intent, options.toBundle());
         });
-
-        recyclerView = findViewById(R.id.ticket_list_items);
-
-        // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(true);
-
-        Thread loadTicketsThread = new Thread(() -> {
-            cinemaDatabaseService.deleteExpiredTickets();
-            tickets = cinemaDatabaseService.getTicketList(localAppStorage.getUser().getUserId());
-        });
-
-        Thread adapterThread = new Thread(() -> {
-            // specify an adapter (see also next example)
-            if (tickets.isEmpty()) {
-                System.out.println("No data");
-                recyclerView.setVisibility(View.GONE);
-                findViewById(R.id.tickets_list_no_tickets_found).setVisibility(View.VISIBLE);
-            } else {
-                Looper.prepare();
-                ticketList.addAll(tickets);
-                mAdapter = new TicketAdapter(ticketList, this);
-
-                SearchView searchBar = findViewById(R.id.tickets_list_search);
-
-                searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String search) {
-                        mAdapter.notifyDataSetChanged();
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String search) {
-                        ticketList.clear();
-                        ticketList.addAll(tickets);
-                        new TicketAdapter(ticketList, TicketListActivity.this).getFilter().filter(search);
-                        mAdapter.notifyDataSetChanged();
-
-                        return true;
-                    }
-                });
-
-                recyclerView.setAdapter(mAdapter);
-            }
-        });
-
-        try {
-            loadTicketsThread.start();
-            loadTicketsThread.join();
-
-            adapterThread.start();
-            adapterThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
-    public void setSearchBar() {
+    private void setSearchBar() {
         SearchView searchView = (SearchView) findViewById(R.id.tickets_list_search);
         searchView.setIconified(false);
         searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Inside this method we are calling the method to filter our recycler view
+                filter(newText);
+                return false;
+            }
+        });
+    }
+
+    private void filter(String text) {
+        // Creating a new array list to filter our data
+        ArrayList<Ticket> filteredList = new ArrayList<>();
+
+        // Running a for loop to compare elements
+        for(Ticket item : mTickets) {
+
+            // Checking if the given string matches with the title of any item in our recycler view
+            if(item.getShow().getMovie().getTitle().toLowerCase().contains(text.toLowerCase())) {
+
+                // If the item is matches we are adding it to our filtered list
+                filteredList.add(item);
+            }
+        }
+
+        if(filteredList.isEmpty()) {
+            // If no item is added in our filtered list, we are displaying a toast message that no data if found
+            Toast.makeText(this, "No data found...", Toast.LENGTH_SHORT).show();
+            ticketRV.setVisibility(View.GONE);
+            findViewById(R.id.tickets_list_no_tickets_found).setVisibility(View.VISIBLE);
+        } else {
+            mAdapter.filterList(filteredList);
+        }
+    }
+
+    private void buildRecyclerView() {
+        // Initializing our adapter class
+        mAdapter = new TicketAdapter(mTickets, this);
+
+        // Adding layout manager to our recycler view
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        ticketRV.setHasFixedSize(true);
+
+        // Setting layout manager to our recycler view
+        ticketRV.setLayoutManager(layoutManager);
+
+        // Connecting adapter to our recycler view
+        ticketRV.setAdapter(mAdapter);
     }
 
     @Override

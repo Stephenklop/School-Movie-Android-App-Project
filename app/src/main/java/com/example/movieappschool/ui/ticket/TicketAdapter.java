@@ -26,29 +26,39 @@ import com.example.movieappschool.logic.Converter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHolder> implements Filterable {
-    private List<Ticket> tickets;
-    private Context context;
-    private List<Ticket> mTicketsFull;
+public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder> {
 
-    public TicketAdapter(List<Ticket> tickets, Context context) {
-        this.tickets = tickets;
-        mTicketsFull = new ArrayList<>(tickets);
+    // Creating a variable for array list and context
+    private List<Ticket> mTickets;
+    private Context context;
+
+    // Creating a constructor for our variables
+    public TicketAdapter(List<Ticket> mTickets, Context context) {
+        this.mTickets = mTickets;
         this.context = context;
+    }
+
+    // Method for filtering our recyclerview items.
+    public void filterList(List<Ticket> filterList) {
+
+        // The line below is to add our filtered list in our ticket array list
+        mTickets = filterList;
+
+        // The line below is to notify our adapter to update the recycler view
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // The line below is to inflate our layout
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ticket_list_item, parent, false);
-        MyViewHolder holder = new MyViewHolder(view);
-
-        return holder;
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Ticket ticket = tickets.get(position);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Ticket ticket = mTickets.get(position);
 
         String date = ticket.getShow().getDate();
         int rowNr = ticket.getRowNumber();
@@ -75,8 +85,6 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
             // Create the popup background blur
 
             // create the popup window
-            float width = Converter.dpToPx(context, 275);
-            float height = Converter.dpToPx(context, 324);
             boolean focusable = true; // lets taps outside the popup also dismiss it
             final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, focusable);
 
@@ -97,10 +105,11 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        return tickets.size();
+        // Returning the size of the array list
+        return mTickets.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ticket_image;
         TextView ticket_date;
         TextView ticket_hall;
@@ -109,8 +118,10 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
         TextView ticket_chair;
         Button ticket_QRcode;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            // Initialize our views with their id's
             ticket_image = itemView.findViewById(R.id.ticket_image);
             ticket_date = itemView.findViewById(R.id.ticket_date);
             ticket_hall = itemView.findViewById(R.id.ticket_hall);
@@ -120,41 +131,4 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
             ticket_QRcode = itemView.findViewById(R.id.ticket_QRcode);
         }
     }
-
-    @Override
-    public Filter getFilter() {
-        return ticketFilter;
-    }
-
-    private Filter ticketFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            List<Ticket> filteredList = new ArrayList<>();
-
-            if(constraint == null || constraint.length() == 0) {
-                filteredList.addAll(mTicketsFull);
-            } else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-
-                for(Ticket ticket : mTicketsFull) {
-                    System.out.println(ticket.getShow().getMovie().getTitle().toLowerCase().contains(filterPattern));
-                    if(ticket.getShow().getMovie().getTitle().toLowerCase().contains(filterPattern)) {
-                        filteredList.add(ticket);
-                    }
-                }
-            }
-
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            tickets.clear();
-            tickets.addAll((List) results.values);
-            notifyDataSetChanged();
-        }
-    };
 }
