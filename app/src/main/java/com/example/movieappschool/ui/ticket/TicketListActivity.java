@@ -30,6 +30,7 @@ import com.example.movieappschool.ui.home.MovieAdapter;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
 import java.lang.reflect.Array;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +68,11 @@ public class TicketListActivity extends AppCompatActivity {
 
         // Create threads
         Thread cinemaDatabaseThread = new Thread(() -> {
-            cinemaDatabaseService.deleteExpiredTickets();
+            try {
+                cinemaDatabaseService.deleteExpiredTickets();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             mTickets = cinemaDatabaseService.getTicketList(localAppStorage.getUser().getUserId());
         });
         Thread adapterThread = new Thread(() -> {

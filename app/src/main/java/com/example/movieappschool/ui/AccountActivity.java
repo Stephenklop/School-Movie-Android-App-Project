@@ -25,6 +25,8 @@ import com.example.movieappschool.domain.User;
 import com.example.movieappschool.logic.Validator;
 import com.example.movieappschool.ui.menu.MenuActivity;
 
+import java.sql.SQLException;
+
 public class AccountActivity extends AppCompatActivity {
     private EditText mUsername, mFirstname, mLastname, mPassword, mEmail, mDateOfBirth, mAddress;
     private Button mUpdate;
@@ -86,8 +88,12 @@ public class AccountActivity extends AppCompatActivity {
                     Thread t1 = new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            cinemaDatabaseService.updateUser(user.getUserId(), mFirstname.getText().toString(), mLastname.getText().toString(), mUsername.getText().toString(), mAddress.getText().toString(),
-                                    mEmail.getText().toString(), user.getPassword(), user.getDateBirth());
+                            try {
+                                cinemaDatabaseService.updateUser(user.getUserId(), mFirstname.getText().toString(), mLastname.getText().toString(), mUsername.getText().toString(), mAddress.getText().toString(),
+                                        mEmail.getText().toString(), user.getPassword(), user.getDateBirth());
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
 
                             user.setUsername(mUsername.getText().toString());
                             user.setFirstName(mFirstname.getText().toString());
