@@ -21,6 +21,7 @@ import com.example.movieappschool.ui.LoginActivity;
 import com.example.movieappschool.ui.home.MovieAdapter;
 import com.example.movieappschool.ui.order.OrderActivity;
 import com.example.movieappschool.ui.success.OrderSuccessActivity;
+import com.example.movieappschool.ui.LoadActivity;
 
 import java.lang.reflect.Array;
 import java.sql.SQLException;
@@ -154,6 +155,8 @@ public class DetailActivity extends AppCompatActivity {
             });
 
             orderButton.setOnClickListener(v -> new Thread(() -> {
+                Intent iLoad = new Intent(DetailActivity.this, LoadActivity.class);
+                startActivity(iLoad);
                 try {
                     cinemaDatabaseService.deleteExpiredShows();
                 } catch (SQLException e) {
