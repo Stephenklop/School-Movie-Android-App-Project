@@ -107,43 +107,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         }
     }
 
-
-
-
-
-
-
-//    @NonNull
-//    @Override
-//    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        // Inflate the list item layout.
-//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item, parent, false);
-//        ViewHolder holder = new ViewHolder(view);
-//
-//        return holder;
-//    }
-
-//    @Override
-//    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        // Set the data and onClickListener() on the list item.
-//        // Set Poster
-//        Glide.with(context).load(mMovies.get(position).getPosterURL()).into(holder.poster);
-//
-//        // Set Title
-//        holder.title.setText(mMovies.get(position).getTitle());
-//
-//        // Set Rating
-//        setMovieRating(mMovies.get(position).getRatingAverage(), holder);
-//
-//        holder.parentLayout.setOnClickListener(v -> {
-//            Intent intent = new Intent(context, DetailActivity.class);
-//            intent.putExtra("movieId", mMovies.get(position).getId());
-//            intent.putExtra("prevActivity", "com.example.movieappschool.MainActivity");
-//
-//            context.startActivity(intent);
-//        });
-//    }
-
     public void setMovieRating(Double rating, ViewHolder holder) {
         long ratingRounded = Math.round(rating);
         System.out.println(ratingRounded);
@@ -216,70 +179,4 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             Glide.with(context).load(R.drawable.ic_baseline_star_24).into(holder.starFive);
         }
     }
-
-//    @Override
-//    public int getItemCount() {
-//        // Return the Movie list size.
-//        return mMovies.size();
-//    }
-
-//    public class ViewHolder extends RecyclerView.ViewHolder {
-//        // Define the ViewHolder.
-//        ImageView poster;
-//        TextView title;
-//        LinearLayout parentLayout;
-//        LinearLayout ratingLayout;
-//        ImageView starOne, starTwo, starThree, starFour, starFive;
-//
-//        public ViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//
-//            poster = itemView.findViewById(R.id.item_poster);
-//            title = itemView.findViewById(R.id.item_title);
-//            parentLayout = itemView.findViewById(R.id.movie_list_item);
-//            ratingLayout = itemView.findViewById(R.id.item_rating);
-//            starOne = itemView.findViewById(R.id.item_star_one);
-//            starTwo = itemView.findViewById(R.id.item_star_two);
-//            starThree = itemView.findViewById(R.id.item_star_three);
-//            starFour = itemView.findViewById(R.id.item_star_four);
-//            starFive = itemView.findViewById(R.id.item_star_five);
-//        }
-//    }
-
-//    @Override
-//    public Filter getFilter() {
-//        return movieFilter;
-//    }
-//
-//    private Filter movieFilter = new Filter() {
-//        @Override
-//        protected FilterResults performFiltering(CharSequence constraint) {
-//            List<Movie> filteredList = new ArrayList<>();
-//
-//            if(constraint == null || constraint.length() == 0) {
-//                filteredList.addAll(mMoviesFull);
-//            } else {
-//                String filterPattern = constraint.toString().toLowerCase().trim();
-//
-//                for(Movie movie : mMoviesFull) {
-//                    System.out.println(movie.getTitle().toLowerCase().contains(filterPattern));
-//                    if(movie.getTitle().toLowerCase().contains(filterPattern)) {
-//                        filteredList.add(movie);
-//                    }
-//                }
-//            }
-//
-//            FilterResults results = new FilterResults();
-//            results.values = filteredList;
-//
-//            return results;
-//        }
-//
-//        @Override
-//        protected void publishResults(CharSequence constraint, FilterResults results) {
-//            mMovies.clear();
-//            mMovies.addAll((List) results.values);
-//            notifyDataSetChanged();
-//        }
-//    };
 }
